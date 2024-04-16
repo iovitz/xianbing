@@ -10,11 +10,11 @@ module.exports = () => {
 
   exports.sequelize = {
     dialect: "mysql",
-    database: "duke_store_dev",
+    database: "duuk_book_dev",
     host: "mysql.sqlpub.com",
     port: 3306,
-    username: "duke_store_dev",
-    password: CryptoJS.AES.decrypt("U2FsdGVkX1/EAwFCcXF+OFwEnMbMWEt17mOjz8CZPn02oAzgC2ZXkAa2hwKX5myX", "").toString(CryptoJS.enc.Utf8),
+    username: "duuk_book_dev",
+    password: CryptoJS.AES.decrypt("U2FsdGVkX19JY1VzI8bzi3U/fcTzxPPgJB8fTw0kYK4BBCW3VfIeyG1scweJnjd7", "").toString(CryptoJS.enc.Utf8),
   };
 
   return {
