@@ -1,0 +1,30 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "mysql.sqlpub.com",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "正式环境DB",
+      "database": "duuk_book_prod",
+      "username": "duuk_book_prod"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "mysql.sqlpub.com",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "开发环境DB",
+      "database": "duuk_book_dev",
+      "username": "duuk_book_dev"
+    }
+  ]
+}
