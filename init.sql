@@ -1,0 +1,53 @@
+-- 删除表
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS authors;
+DROP TABLE IF EXISTS c2;
+DROP TABLE IF EXISTS c1;
+
+-- 创建作者表
+CREATE TABLE authors (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(100) NOT NULL,
+  `state` tinyint NULL,
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间'
+) CHARACTER SET = utf8mb4;
+
+
+-- 创建一级分类表
+CREATE TABLE c1 (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(10) NOT NULL,
+  `state` tinyint NULL,
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间'
+) CHARACTER SET = utf8mb4;
+
+-- 创建二级分类表
+CREATE TABLE c2 (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(20) NOT NULL,
+  `c1` int UNSIGNED NOT NULL,
+  `state` tinyint UNSIGNED NULL,
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  CONSTRAINT `c2_fk_c1` FOREIGN KEY (`c1`) REFERENCES c1 (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) CHARACTER SET = utf8mb4;
+
+
+-- 创建图书表
+CREATE TABLE books (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` varchar(200) NOT NULL,
+  `c1` int UNSIGNED NOT NULL,
+  `c2` int UNSIGNED NOT NULL,
+  `author` int UNSIGNED NOT NULL,
+  `poster` varchar(100) NOT NULL,
+  `price` float NOT NULL,
+  `state` tinyint UNSIGNED NULL,
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
+  CONSTRAINT `books_fk_c1` FOREIGN KEY (`c1`) REFERENCES c1 (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `books_fk_c2` FOREIGN KEY (`c2`) REFERENCES c2 (`id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `books_fk_author` FOREIGN KEY (`author`) REFERENCES authors (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) CHARACTER SET = utf8mb4;
