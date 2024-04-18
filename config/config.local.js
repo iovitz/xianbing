@@ -18,6 +18,13 @@ module.exports = () => {
     port: 3306,
     username: "duuk_book_dev",
     password: CryptoJS.AES.decrypt(password, "").toString(CryptoJS.enc.Utf8),
+    timezone: "+08:00",
+    define: {
+      timestamps: true, // 添加create,update,delete时间戳
+      freezeTableName: true, // 防止修改表名为复数
+    },
+    // 打印日志
+    logging: false,
   };
 
   return {
