@@ -1,30 +1,19 @@
-# server
+# Duuk服务端文档
 
-## QuickStart
+## 设计目标
 
-<!-- add docs here for user -->
+### 1. 数据结构精简
 
-see [egg docs][egg] for more detail.
+避免在数据结构中键名过长，或者传递了大量重复数据
 
-### Development
+### 2. 请求体压缩
 
-```bash
-npm i
-npm run dev
-open http://localhost:7001/
-```
+启用Gzip
 
-### Deploy
+### 3. 大请求管理
 
-```bash
-npm start
-npm stop
-```
+限流机制、响应管理
 
-### npm scripts
+### 4. 架构优先，产品第二
 
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
-
-[egg]: https://eggjs.org
+不因为功能引入额外复杂度
