@@ -1,12 +1,12 @@
 "use strict";
 
 module.exports = (app) => {
-  const { STRING, INTEGER } = app.Sequelize;
+  const { STRING, INTEGER, BOOLEAN } = app.Sequelize;
 
   const User = app.model.define("user", {
     id: {
       field: "id",
-      type: INTEGER,
+      type: INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -15,14 +15,19 @@ module.exports = (app) => {
       type: STRING(10),
       allowNull: false,
     },
-    username: {
-      field: "username",
-      type: STRING(20),
+    pwd: {
+      field: "pwd",
+      type: STRING(60),
       allowNull: false,
     },
-    password: {
-      field: "password",
-      type: STRING(72),
+    address: {
+      field: "address",
+      type: STRING(100),
+      allowNull: false,
+    },
+    state: {
+      field: "state",
+      type: BOOLEAN,
       allowNull: false,
     },
   });
