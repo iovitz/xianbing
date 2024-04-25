@@ -15,6 +15,7 @@
     "egg-router-plus": "^2.0.0",
     "egg-scripts": "^2",
     "egg-sequelize": "^6.0.0",
+    "egg-socket.io": "^4.1.6",
     "egg-validate": "^2.0.2",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",

@@ -2,11 +2,11 @@
 
 module.exports = (app) => {
   const { router, controller, middleware } = app;
-  // const { io } = app;
+  const { io } = app;
   const { home, service } = controller;
 
   // Socket.IO
-  // io.route("chat", io.controller.chat.ping);
+  io.route("chat", io.controller.chat.ping);
 
   // 普通请求
   const homeRouter = router.namespace("/api");

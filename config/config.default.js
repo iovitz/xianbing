@@ -1,6 +1,7 @@
 const secretConfig = require("./config.secret");
+const path = require("path");
 
-module.exports = () => {
+module.exports = (appInfo) => {
   const config = (exports = {});
 
   // 需要进行jwt鉴权的路由前缀
@@ -14,9 +15,27 @@ module.exports = () => {
     },
   };
 
+  config.static = {
+    prefix: "/",
+    dir: path.join(appInfo.baseDir, "app/public"),
+    dynamic: true,
+    preload: false,
+    maxAge: 31536000,
+    buffer: true,
+  };
+
   config.cluster = {
     listen: {
       port: 3333,
+    },
+  };
+
+  config.io = {
+    namespace: {
+      "/": {
+        connectionMiddleware: ["auth"],
+        packetMiddleware: ["filter"],
+      },
     },
   };
 
