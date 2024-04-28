@@ -25,10 +25,8 @@ jobs:
           EXCLUDE: "/dist/, /node_modules/"
           SCRIPT_BEFORE: |
             echo '###start1' $PWD
-            whoami
-            ls -al
           SCRIPT_AFTER: |
             echo '###start2' $PWD
-            whoami
-            ls -al
-            echo $RSYNC_STDOUT
+            cd /root/duuk/serve
+            pnpm i
+            pnpm start
