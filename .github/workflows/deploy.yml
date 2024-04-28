@@ -26,6 +26,7 @@ jobs:
           SCRIPT_BEFORE: |
             echo '###start1' $PWD
           SCRIPT_AFTER: |
+            source ~/.profile
             echo '###start2' $PWD
             cd /root/duuk/serve
             pnpm i
