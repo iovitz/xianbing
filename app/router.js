@@ -3,7 +3,7 @@
 module.exports = (app) => {
   const { router, controller, middleware } = app;
   // const { io } = app;
-  const { home, service } = controller;
+  const { home, service, user } = controller;
 
   // Socket.IO
   // io.route("chat", io.controller.chat.ping);
@@ -12,6 +12,8 @@ module.exports = (app) => {
   const homeRouter = router.namespace("/api");
   registerRouter(homeRouter, "get", "/status", home.getStatus);
 
+  const userRouter = router.namespace("/api/user");
+  registerRouter(userRouter, "post", "/register", user.register);
   registerRouter(homeRouter, "get", "/service/verify-code", service.getVerifyCode);
 
   function registerRouter(router, method, path, fn, config = {}) {

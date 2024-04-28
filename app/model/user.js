@@ -10,8 +10,13 @@ module.exports = (app) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      field: "name",
+    nickname: {
+      field: "nickname",
+      type: STRING(10),
+      allowNull: false,
+    },
+    uname: {
+      field: "uname",
       type: STRING(10),
       allowNull: false,
     },
@@ -23,12 +28,10 @@ module.exports = (app) => {
     address: {
       field: "address",
       type: STRING(100),
-      allowNull: false,
     },
     state: {
       field: "state",
       type: BOOLEAN,
-      allowNull: false,
     },
   });
 

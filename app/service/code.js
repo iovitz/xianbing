@@ -19,6 +19,7 @@ module.exports = class CodeService extends Service {
     const { ctx } = this;
     const code = ctx.session[`#c_${field}`] ?? "";
     const codeTime = ctx.session[`#t_${field}`] ?? "";
+    console.log(code, field);
     if (moment(codeTime).add(30, "M") < moment(Date.now())) {
       return ctx.throw(422, "验证码过期");
     }

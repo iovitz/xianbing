@@ -5,21 +5,21 @@ class BizController extends Controller {
     const { ctx } = this;
     const body = ctx.$body;
     ctx.validate({
-      username: { type: "string", required: true, max: 10, min: 2 },
-      password: { type: "string", required: true, max: 16, min: 6 },
+      uname: { type: "string", required: true, max: 10, min: 2 },
+      pwd: { type: "string", required: true, max: 16, min: 6 },
       vcode: { type: "string", required: true, max: 4, min: 4 },
     });
-    ctx.service.code.checkVerifyCode("login", ctx.$body.vcode);
+    ctx.service.code.checkVerifyCode("register", ctx.$body.vcode);
 
     const userService = this.service.user;
-    if (await userService.findByUsername(body.username)) {
+    if (await userService.findByUsername(body.uname)) {
       return ctx.throw(422, "用户名已存在");
     }
-    body.password = await userService.encryptPassword(body.password);
+    body.pwd = await userService.encryptPassword(body.pwd);
     const user = await userService.createUser(body);
 
     const token = userService.createToken({
-      userid: user._id,
+      userid: user.id,
     });
 
     ctx.success({

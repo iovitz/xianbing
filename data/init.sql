@@ -49,7 +49,8 @@ CREATE TABLE book (
 -- 创建用户表
 CREATE TABLE user(
   `id` int UNSIGNED AUTO_INCREMENT NOT NULL COMMENT '自增主键id',
-  `name` varchar(20) NOT NULL COMMENT '昵称',
+  `nickname` varchar(20) NOT NULL COMMENT '昵称',
+  `uname` varchar(20) NOT NULL COMMENT '用户名',
   `pwd` char(60) NOT NULL COMMENT 'Bcrypt加密的密码',
   `address` varchar(100) COMMENT '居住地',
   `state` tinyint COMMENT '是否可用',

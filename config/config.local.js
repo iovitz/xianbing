@@ -22,6 +22,9 @@ module.exports = () => {
     define: {
       timestamps: true, // 添加create,update,delete时间戳
       freezeTableName: true, // 防止修改表名为复数
+      deletedAt: false,
+      updatedAt: "updated_at",
+      createdAt: "created_at",
     },
     // 打印日志
     logging: false,
