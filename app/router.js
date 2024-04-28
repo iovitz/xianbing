@@ -3,7 +3,7 @@
 module.exports = (app) => {
   const { router, controller, middleware } = app;
   const { io } = app;
-  const { home, service } = controller;
+  const { home, service, user } = controller;
 
   // Socket.IO
   io.of("/duuk").route("chat", io.controller.chat.ping);
