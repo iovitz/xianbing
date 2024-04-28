@@ -1,8 +1,21 @@
 const Service = require("egg").Service;
 const moment = require("moment");
+const pako = require("pako");
 const svgCaptcha = require("svg-captcha");
 
 module.exports = class CodeService extends Service {
+  ungzip(gzipBase64Str) {
+    return JSON.parse(pako.ungzip(Buffer.from(gzipBase64Str, "base64"), { to: "string" }));
+  }
+
+  gzip(data) {
+    return this.strToGzipBase64(JSON.stringify(data));
+  }
+
+  strToGzipBase64(str) {
+    return Buffer.from(pako.gzip(str, { level: 9 })).toString("base64");
+  }
+
   getVerifyCode(width, height, length = 4) {
     return svgCaptcha.create({
       size: length, // 验证码长度
