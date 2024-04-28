@@ -30,6 +30,7 @@ jobs:
             ls -al
           SCRIPT_AFTER: |
             pwd
+            echo '###start2'
             whoami
             ls -al
             echo $RSYNC_STDOUT
