@@ -24,12 +24,12 @@ jobs:
           TARGET: /root/duuk/serve
           EXCLUDE: "/dist/, /node_modules/"
           SCRIPT_BEFORE: |
-            pwd
+            echo $PWD
             echo '###start1'
             whoami
             ls -al
           SCRIPT_AFTER: |
-            pwd
+            echo $PWD
             echo '###start2'
             whoami
             ls -al
