@@ -24,11 +24,9 @@ jobs:
           TARGET: /root/duuk/serve
           EXCLUDE: "/dist/, /node_modules/"
           SCRIPT_BEFORE: |
-            echo '###start1' $PWD
           SCRIPT_AFTER: |
             source ~/.profile
-            echo '###start2' $PWD
             cd /root/duuk/serve
-            echo '###start3' $PWD
             pnpm i
+            pnpm stop
             pnpm start
