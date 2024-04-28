@@ -25,7 +25,7 @@ jobs:
           EXCLUDE: "/dist/, /node_modules/"
           SCRIPT_BEFORE: |
             pwd
-            echo '###start'
+            echo '###start1'
             whoami
             ls -al
           SCRIPT_AFTER: |
