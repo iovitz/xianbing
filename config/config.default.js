@@ -1,4 +1,3 @@
-const secretConfig = require("./config.secret");
 const path = require("path");
 const { customAlphabet } = require("nanoid");
 
@@ -62,7 +61,6 @@ module.exports = (appInfo) => {
   config.gzipThreshold = 1000;
 
   return {
-    ...secretConfig,
     ...config,
   };
 };

@@ -1,4 +1,5 @@
 const CryptoJS = require("crypto-js");
+const secretConfig = require("./config.secret");
 
 module.exports = () => {
   const config = (exports = {});
@@ -31,6 +32,7 @@ module.exports = () => {
   };
 
   return {
+    ...secretConfig,
     ...config,
   };
 };
