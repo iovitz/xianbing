@@ -24,6 +24,7 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
           EXCLUDE: "/dist/, /node_modules/"
           SCRIPT_BEFORE: |
+            pwd
             echo '###start'
             whoami
             ls -al
