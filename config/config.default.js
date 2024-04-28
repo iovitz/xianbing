@@ -15,6 +15,8 @@ module.exports = (appInfo) => {
     },
   };
 
+  config.keys = "BeEby5uY6xRRueJxFHfv9";
+
   config.static = {
     prefix: "/",
     dir: path.join(appInfo.baseDir, "app/public"),
