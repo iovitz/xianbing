@@ -29,5 +29,6 @@ jobs:
             source ~/.profile
             echo '###start2' $PWD
             cd /root/duuk/serve
+            echo '###start3' $PWD
             pnpm i
             pnpm start
