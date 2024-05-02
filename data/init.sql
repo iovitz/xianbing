@@ -53,6 +53,7 @@ CREATE TABLE user(
   `nickname` varchar(10) NOT NULL COMMENT '昵称',
   `uname` varchar(20) NOT NULL COMMENT '用户名',
   `pwd` char(60) NOT NULL COMMENT 'Bcrypt加密的密码',
+  `avatar` varchar(50) NOT NULL COMMENT '头像地址',
   `address` varchar(100) COMMENT '居住地',
   `state` tinyint COMMENT '是否可用',
   `created_at` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
