@@ -10,6 +10,11 @@ module.exports = (app) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    uid: {
+      field: "uid",
+      type: STRING(10),
+      allowNull: false,
+    },
     nickname: {
       field: "nickname",
       type: STRING(10),
@@ -17,7 +22,7 @@ module.exports = (app) => {
     },
     uname: {
       field: "uname",
-      type: STRING(10),
+      type: STRING(20),
       allowNull: false,
     },
     pwd: {

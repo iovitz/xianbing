@@ -4,7 +4,7 @@ const { customAlphabet } = require("nanoid");
 module.exports = (appInfo) => {
   const config = (exports = {});
 
-  const nanoid = customAlphabet("123456789", 10);
+  const nanoid = customAlphabet("0123456789", 10);
 
   // 需要进行jwt鉴权的路由前缀
   config.needAuthPrefixList = [];

@@ -1,10 +1,16 @@
 const Service = require("egg").Service;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const nanoid = require("nanoid");
+const { nanoid, customAlphabet } = require("nanoid");
 const { pick } = require("lodash");
 
+const idGenerator = customAlphabet("0123456789", 9);
+
 module.exports = class UserService extends Service {
+  genUserId() {
+    return `2${idGenerator()}`;
+  }
+
   get User() {
     return this.app.model.User;
   }
@@ -12,6 +18,7 @@ module.exports = class UserService extends Service {
   async createUser(data) {
     return this.User.create({
       nickname: this.genRandomNickname(),
+      uid: this.genUserId(),
       uname: data.uname,
       pwd: data.pwd,
     });
@@ -41,7 +48,7 @@ module.exports = class UserService extends Service {
   getUserInfoByModel(userModel) {
     return {
       user: {
-        ...pick(userModel, ["id", "nickname", "uname", "state"]),
+        ...pick(userModel, ["uid", "nickname", "uname", "state"]),
       },
     };
   }
