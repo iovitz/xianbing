@@ -3,7 +3,7 @@
 module.exports = (app) => {
   const { router, controller, middleware } = app;
   const { io } = app;
-  const { home, service, user } = controller;
+  const { home, service, user, book } = controller;
 
   // Socket.IO
   io.of("/duuk").route("chat", io.controller.chat.ping);
@@ -15,6 +15,9 @@ module.exports = (app) => {
   const userRouter = router.namespace("/api/user");
   registerRouter(userRouter, "post", "/register", user.register);
   registerRouter(userRouter, "post", "/login", user.login);
+
+  const bookService = router.namespace("/api/book");
+  registerRouter(bookService, "get", "/category", book.getCategory);
 
   const serviceRouter = router.namespace("/api/service");
   registerRouter(serviceRouter, "get", "/verify-code", service.getVerifyCode);

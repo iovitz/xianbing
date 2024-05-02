@@ -21,5 +21,9 @@ module.exports = (app) => {
     },
   });
 
+  C1.associate = () => {
+    C1.hasMany(app.model.C2, { foreignKey: "c1", targetKey: "id" });
+  };
+
   return C1;
 };

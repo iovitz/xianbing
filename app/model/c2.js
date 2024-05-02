@@ -10,6 +10,11 @@ module.exports = (app) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    c1: {
+      field: "c1",
+      type: INTEGER.UNSIGNED,
+      allowNull: false,
+    },
     name: {
       field: "name",
       type: STRING(200),
@@ -20,6 +25,10 @@ module.exports = (app) => {
       type: BOOLEAN,
     },
   });
+
+  C2.associate = function () {
+    C2.belongsTo(app.model.C1, { foreignKey: "c1", targetKey: "id", as: "c1_info" });
+  };
 
   return C2;
 };
