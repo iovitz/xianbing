@@ -16,25 +16,25 @@ module.exports = {
       msg,
     };
   },
-  paramsError(msg = "Params Validation Failed") {
+  paramsError(message = "Params Validation Failed") {
     this.status = 422;
     this.body = {
       code: 40022,
-      msg: Array.isArray(msg) ? msg.map((info) => `${info.field} ${info.code}`) : msg,
+      message: Array.isArray(message) ? message.map((info) => `${info.field} ${info.code}`) : message,
     };
   },
-  authError(msg = "Login Request") {
+  authError(message = "Login Request") {
     this.status = 403;
     this.body = {
       code: 40003,
-      msg,
+      message,
     };
   },
-  serverError(msg = "Internal Server Error", status = 500, code = 50000) {
+  serverError(message = "Internal Server Error", status = 500, code = 50000) {
     this.status = status;
     this.body = {
       code,
-      msg,
+      message,
     };
   },
 };

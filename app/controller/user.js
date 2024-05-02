@@ -5,9 +5,9 @@ class BizController extends Controller {
     const { ctx } = this;
     const body = ctx.$body;
     ctx.validate({
-      uname: { type: "string", required: true, max: 16, min: 6, format: /^[0-9a-zA-Z_]+$/ },
-      pwd: { type: "string", required: true, max: 16, min: 6, format: /^[0-9a-zA-Z_]{1,}$/ },
-      vcode: { type: "string", required: true, max: 4, min: 4 },
+      uname: { type: "string", max: 16, min: 6, format: /\S+/ },
+      pwd: { type: "string", max: 16, min: 6, format: /\S+/ },
+      vcode: { type: "string", max: 4, min: 4 },
     });
     ctx.service.code.checkVerifyCode("register", ctx.$body.vcode);
 
@@ -26,6 +26,31 @@ class BizController extends Controller {
       ...userService.getUserInfoByModel(user),
       token,
     });
+  }
+
+  async login() {
+    const { ctx } = this;
+    const body = ctx.$body;
+    ctx.validate({
+      uname: { type: "string", max: 16, min: 6, format: /\S+/ },
+      pwd: { type: "string", max: 16, min: 6, format: /\S+/ },
+      vcode: { type: "string", max: 4, min: 4 },
+    });
+    ctx.service.code.checkVerifyCode("login", ctx.$body.vcode);
+
+    const userService = this.service.user;
+    const user = await userService.findByUsername(body.uname);
+    if (user && (await ctx.service.user.comparePassword(body.pwd, user.pwd))) {
+      const token = userService.createToken({
+        userid: user.id,
+      });
+      return ctx.success({
+        ...userService.getUserInfoByModel(user),
+        token,
+      });
+    }
+
+    return ctx.paramsError("用户名或密码错误");
   }
 }
 

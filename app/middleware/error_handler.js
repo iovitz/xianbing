@@ -15,15 +15,17 @@ module.exports = (app) => {
 
       // 422客户端参数错误
       if (status === 422) {
-        ctx.paramsError(err.errors);
-        return;
+        if (!isProd) {
+          ctx.logger.error(err);
+        }
+        return ctx.paramsError(err.errors ?? err.message);
       }
 
       ctx.logger.error(err);
 
       const message = status === 500 && isProd ? "Internal Server Error" : err.message ?? err.msg;
 
-      ctx.serverError(message, typeof status === "number" ? status : 500, typeof code === "number" ? code : 50000);
+      return ctx.serverError(message, typeof status === "number" ? status : 500, typeof code === "number" ? code : 50000);
     }
   };
 };

@@ -14,7 +14,10 @@ module.exports = (app) => {
 
   const userRouter = router.namespace("/api/user");
   registerRouter(userRouter, "post", "/register", user.register);
-  registerRouter(homeRouter, "get", "/service/verify-code", service.getVerifyCode);
+  registerRouter(userRouter, "post", "/login", user.login);
+
+  const serviceRouter = router.namespace("/api/service");
+  registerRouter(serviceRouter, "get", "/verify-code", service.getVerifyCode);
 
   function registerRouter(router, method, path, fn, config = {}) {
     const configMiddlewares = [];
