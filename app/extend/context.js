@@ -20,7 +20,7 @@ module.exports = {
     this.status = 422;
     this.body = {
       code: 40022,
-      msg,
+      msg: Array.isArray(msg) ? msg.map((info) => `${info.field} ${info.code}`) : msg,
     };
   },
   authError(msg = "Login Request") {

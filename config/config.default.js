@@ -46,6 +46,19 @@ module.exports = (appInfo) => {
     },
   };
 
+  config.validate = {
+    translate(...args) {
+      const translate = {
+        required: "字段不能为空",
+        missing_field: "字段丢失",
+        "should not be empty": "字段不能为空",
+        invalid: "字段校验失败",
+        "should be an email": "字段应该为电子邮件格式",
+      };
+      return args.map((k) => translate[k]).join("");
+    },
+  };
+
   config.logger = {
     consoleLevel: "INFO",
     allowDebugAtProd: true,

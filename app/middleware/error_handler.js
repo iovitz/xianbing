@@ -14,9 +14,8 @@ module.exports = (app) => {
       const { status, code } = err;
 
       // 422客户端参数错误
-      // 422不写入日志
       if (status === 422) {
-        ctx.paramsError(isProd ? void 0 : err.errors ?? err.message ?? err.msg);
+        ctx.paramsError(err.errors);
         return;
       }
 
