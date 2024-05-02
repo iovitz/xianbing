@@ -6,13 +6,15 @@ module.exports = (appInfo) => {
 
   const nanoid = customAlphabet("0123456789", 10);
 
-  // 需要进行jwt鉴权的路由前缀
-  config.needAuthPrefixList = [];
-
   config.security = {
     csrf: {
       enable: false,
     },
+  };
+
+  exports.jwt = {
+    secret: "wNCj-FMP9Q",
+    expiresIn: "30d",
   };
 
   config.keys = "BeEby5uY6xRRueJxFHfv9";
