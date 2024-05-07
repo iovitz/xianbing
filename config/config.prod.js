@@ -4,41 +4,21 @@ module.exports = () => {
   const config = (exports = {});
 
   // https://www.sojson.com/encrypt_aes.html
-  // const password = "U2FsdGVkX1+SOUbpnfavlUCqPaC66NcYqtt6SGGtRKo0udbZgsInAFXRYVfUqUL3";
+  const password = "U2FsdGVkX1+SOUbpnfavlUCqPaC66NcYqtt6SGGtRKo0udbZgsInAFXRYVfUqUL3";
 
-  // exports.sequelize = {
-  //   dialect: "mysql",
-  //   database: "duuk_book_prod",
-  //   host: "mysql.sqlpub.com",
-  //   port: 3306,
-  //   username: "duuk_book_prod",
-  //   password: CryptoJS.AES.decrypt(password, "").toString(CryptoJS.enc.Utf8),
-  //   timezone: "+08:00",
-  //   define: {
-  //     timestamps: true, // 添加create,update,delete时间戳
-  //     freezeTableName: true, // 防止修改表名为复数
-  //   },
-  //   // 打印日志
-  //   logging: false,
-  // };
-
-  // 暂时使用开发数据库
-  const password = "U2FsdGVkX19JY1VzI8bzi3U/fcTzxPPgJB8fTw0kYK4BBCW3VfIeyG1scweJnjd7";
+  config.multiavatar_key = "icklZBjWuCEbMm";
 
   exports.sequelize = {
     dialect: "mysql",
-    database: "duuk_book_dev",
+    database: "duuk_book_prod",
     host: "mysql.sqlpub.com",
     port: 3306,
-    username: "duuk_book_dev",
+    username: "duuk_book_prod",
     password: CryptoJS.AES.decrypt(password, "").toString(CryptoJS.enc.Utf8),
     timezone: "+08:00",
     define: {
       timestamps: true, // 添加create,update,delete时间戳
       freezeTableName: true, // 防止修改表名为复数
-      deletedAt: false,
-      updatedAt: "updated_at",
-      createdAt: "created_at",
     },
     // 打印日志
     logging: false,

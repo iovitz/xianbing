@@ -9,6 +9,8 @@ module.exports = () => {
     allowDebugAtProd: true,
   };
 
+  config.multiavatar_key = "cseDKi8S9hnyRa";
+
   // https://www.sojson.com/encrypt_aes.html
   const password = "U2FsdGVkX19JY1VzI8bzi3U/fcTzxPPgJB8fTw0kYK4BBCW3VfIeyG1scweJnjd7";
 

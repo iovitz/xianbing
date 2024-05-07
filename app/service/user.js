@@ -5,6 +5,7 @@ const { nanoid, customAlphabet } = require("nanoid");
 const { pick } = require("lodash");
 
 const idGenerator = customAlphabet("0123456789", 9);
+const avatarGenerator = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 10);
 
 module.exports = class UserService extends Service {
   genUserId() {
@@ -16,9 +17,11 @@ module.exports = class UserService extends Service {
   }
 
   async createUser(data) {
+    const uid = this.genUserId();
     return this.User.create({
       nickname: this.genRandomNickname(),
-      uid: this.genUserId(),
+      uid,
+      avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${this.app.config.multiavatar_key}`,
       uname: data.uname,
       pwd: data.pwd,
     });
