@@ -51,7 +51,7 @@ module.exports = class UserService extends Service {
   getUserInfoByModel(userModel) {
     return {
       user: {
-        ...pick(userModel, ["uid", "nickname", "uname", "state"]),
+        ...pick(userModel, ["uid", "nickname", "uname", "avatar", "state"]),
       },
     };
   }

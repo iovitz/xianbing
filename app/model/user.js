@@ -20,6 +20,11 @@ module.exports = (app) => {
       type: STRING(10),
       allowNull: false,
     },
+    avatar: {
+      field: "avatar",
+      type: STRING(100),
+      allowNull: false,
+    },
     uname: {
       field: "uname",
       type: STRING(20),

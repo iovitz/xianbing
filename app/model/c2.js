@@ -10,8 +10,8 @@ module.exports = (app) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    c1: {
-      field: "c1",
+    id_c1: {
+      field: "id_c1",
       type: INTEGER.UNSIGNED,
       allowNull: false,
     },
@@ -27,7 +27,8 @@ module.exports = (app) => {
   });
 
   C2.associate = function () {
-    C2.belongsTo(app.model.C1, { foreignKey: "c1", targetKey: "id", as: "c1_info" });
+    C2.belongsTo(app.model.C1, { foreignKey: "id_c1", targetKey: "id", as: "c1" });
+    C2.hasMany(app.model.Book, { foreignKey: "id_c2", targetKey: "id", as: "book" });
   };
 
   return C2;

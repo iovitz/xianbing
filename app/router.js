@@ -18,6 +18,7 @@ module.exports = (app) => {
 
   const bookService = router.namespace("/api/book");
   registerRouter(bookService, "get", "/category", book.getCategory);
+  registerRouter(bookService, "get", "/detail/:bookid(\\d+)", book.getBookDetail);
 
   const serviceRouter = router.namespace("/api/service");
   registerRouter(serviceRouter, "get", "/verify-code", service.getVerifyCode);
