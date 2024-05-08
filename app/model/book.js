@@ -15,18 +15,18 @@ module.exports = (app) => {
       type: STRING,
       allowNull: false,
     },
-    c1: {
-      field: "c1",
+    id_c1: {
+      field: "id_c1",
       type: STRING,
       allowNull: false,
     },
-    c2: {
-      field: "c2",
+    id_c2: {
+      field: "id_c2",
       type: STRING,
       allowNull: false,
     },
-    author: {
-      field: "author",
+    id_author: {
+      field: "id_author",
       type: STRING,
       allowNull: false,
     },
@@ -45,6 +45,12 @@ module.exports = (app) => {
       type: BOOLEAN,
     },
   });
+
+  Book.associate = function () {
+    Book.belongsTo(app.model.C1, { foreignKey: "id_c1", targetKey: "id", as: "c1" });
+    Book.belongsTo(app.model.C2, { foreignKey: "id_c2", targetKey: "id", as: "c2" });
+    Book.belongsTo(app.model.Author, { foreignKey: "id_author", targetKey: "id", as: "author" });
+  };
 
   return Book;
 };

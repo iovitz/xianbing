@@ -22,7 +22,8 @@ module.exports = (app) => {
   });
 
   C1.associate = () => {
-    C1.hasMany(app.model.C2, { foreignKey: "c1", targetKey: "id" });
+    C1.hasMany(app.model.C2, { foreignKey: "id_c1", targetKey: "id" });
+    C1.hasMany(app.model.Book, { foreignKey: "id_c1", targetKey: "id" });
   };
 
   return C1;
