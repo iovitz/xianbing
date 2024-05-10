@@ -1,20 +1,18 @@
-const CryptoJS = require("crypto-js");
+const secretConfig = require("./config.secret");
 
 module.exports = () => {
   const config = (exports = {});
 
-  // https://www.sojson.com/encrypt_aes.html
-  const password = "U2FsdGVkX1+SOUbpnfavlUCqPaC66NcYqtt6SGGtRKo0udbZgsInAFXRYVfUqUL3";
+  config.multiavatar_key = secretConfig.multiavatar_key;
 
-  config.multiavatar_key = "icklZBjWuCEbMm";
+  config.keys = secretConfig.keys;
 
-  exports.sequelize = {
+  config.keys = secretConfig.keys;
+
+  config.sequelize = {
+    ...secretConfig.mysqlConf,
     dialect: "mysql",
-    database: "duuk_book_prod",
-    host: "mysql.sqlpub.com",
     port: 3306,
-    username: "duuk_book_prod",
-    password: CryptoJS.AES.decrypt(password, "").toString(CryptoJS.enc.Utf8),
     timezone: "+08:00",
     define: {
       timestamps: true, // 添加create,update,delete时间戳

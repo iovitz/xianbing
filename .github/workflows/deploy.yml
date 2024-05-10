@@ -2,7 +2,7 @@ name: Deploy To Test Environment
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -27,6 +27,7 @@ jobs:
           SCRIPT_AFTER: |
             source ~/.profile
             cd /root/duuk/serve
+            curl -o ./config/config.secret.json ${{ secrets.CONFIG_URL }}
             pnpm i
             pnpm stop
             pnpm start

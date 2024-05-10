@@ -1,23 +1,15 @@
 const path = require("path");
 const { customAlphabet } = require("nanoid");
 
-module.exports = (appInfo) => {
+module.exports = async (appInfo) => {
   const config = (exports = {});
 
   const nanoid = customAlphabet("0123456789", 10);
-
   config.security = {
     csrf: {
       enable: false,
     },
   };
-
-  exports.jwt = {
-    secret: "wNCj-FMP9Q",
-    expiresIn: "30d",
-  };
-
-  config.keys = "BeEby5uY6xRRueJxFHfv9";
 
   config.static = {
     prefix: "/",
