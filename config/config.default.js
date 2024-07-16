@@ -5,11 +5,6 @@ module.exports = async (appInfo) => {
   const config = (exports = {});
 
   const nanoid = customAlphabet("0123456789", 10);
-  config.security = {
-    csrf: {
-      enable: false,
-    },
-  };
 
   config.static = {
     prefix: "/",
@@ -23,6 +18,12 @@ module.exports = async (appInfo) => {
   config.cluster = {
     listen: {
       port: 9293,
+    },
+  };
+
+  config.security = {
+    csrf: {
+      enable: false,
     },
   };
 
@@ -58,7 +59,7 @@ module.exports = async (appInfo) => {
     allowDebugAtProd: true,
   };
 
-  exports.session = {
+  config.session = {
     key: "__server_session__",
     maxAge: 30 * 24 * 3600 * 1000, // 1 天
     httpOnly: true,

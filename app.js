@@ -23,7 +23,9 @@ module.exports = class AppBootHook {
   async willReady() {
     // All plugins have started, can do some thing before app ready
     // 同步Sequelize Model
-    // this.app.model.sync({ alter: true });
+    // this.app.model.sync({ alter: true }).then(() => {
+    //   this.app.logger.info("同步DB Model成功");
+    // });
   }
 
   async didReady() {
@@ -33,7 +35,7 @@ module.exports = class AppBootHook {
 
   async serverDidReady() {
     // Server is listening.
-    this.app.logger.info(`Server running in http://localhost:${this.app.config.cluster.listen.port}"`);
+    this.app.logger.info(`Server running in http://localhost:${this.app.config.cluster.listen.port}`);
   }
 
   async beforeClose() {

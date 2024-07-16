@@ -1,16 +1,24 @@
-const secretConfig = require("./config.secret");
-
 module.exports = () => {
   const config = (exports = {});
+
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
 
   config.logger = {
     consoleLevel: "DEBUG",
     allowDebugAtProd: true,
   };
 
-  exports.jwt = secretConfig.jwt;
+  config.jwt = {
+    secret: "wNCj-FMP9Q",
+    expiresIn: "30d",
+  };
 
-  config.keys = secretConfig.keys;
+  config.keys = "BeEby5uY6xRRueJxFHfv9";
+  config.multiavatar_key = "cseDKi8S9hnyRa";
 
   config.cluster = {
     listen: {
@@ -18,11 +26,10 @@ module.exports = () => {
     },
   };
 
-  config.multiavatar_key = secretConfig.multiavatar_key;
-
   config.sequelize = {
     dialect: "sqlite",
-    storage: "../data.db",
+    // 工作目录是根目录，不是config文件所在目录
+    storage: "./data.db",
   };
 
   return {

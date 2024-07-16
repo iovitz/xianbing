@@ -1,17 +1,24 @@
-const secretConfig = require("./config.secret");
-
 module.exports = () => {
   const config = (exports = {});
 
-  config.multiavatar_key = secretConfig.multiavatar_key;
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
 
-  config.keys = secretConfig.keys;
+  config.jwt = {
+    secret: "wNCj-FMP9Q",
+    expiresIn: "30d",
+  };
 
-  config.keys = secretConfig.keys;
+  config.keys = "BeEby5uY6xRRueJxFHfv9";
+  config.multiavatar_key = "cseDKi8S9hnyRa";
 
   config.sequelize = {
     dialect: "sqlite",
-    storage: "path/to/database.sqlite",
+    // 工作目录是根目录，不是config文件所在目录
+    storage: "./data.db",
   };
 
   return {
