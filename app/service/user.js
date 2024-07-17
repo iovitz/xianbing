@@ -33,7 +33,6 @@ module.exports = class UserService extends Service {
         uname,
       },
     }).then((r) => {
-      console.error(r);
       return r;
     });
   }
