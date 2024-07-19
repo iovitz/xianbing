@@ -6,19 +6,12 @@ module.exports = {
     return this.request.query;
   },
   get $params() {
-    return this.request.params;
+    return this.params;
   },
   get $header() {
     return this.request.header;
   },
-  // get logger() {
-  //   const logger = this.getLogger("httpLogger");
-  //   // 统一输出格式
-  //   if (logger._logger.duplicateLoggers.size) {
-  //     logger._logger.duplicateLoggers = new Map();
-  //   }
-  //   return logger;
-  // },
+
   success(data, msg = "success") {
     this.status = 200;
     this.body = {

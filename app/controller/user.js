@@ -19,7 +19,7 @@ class BizController extends Controller {
     const user = await userService.createUser(body);
 
     const token = userService.createToken({
-      userid: user.id,
+      userid: user.uid,
     });
 
     ctx.success({
@@ -42,7 +42,7 @@ class BizController extends Controller {
     const user = await userService.findByUsername(body.uname);
     if (user && (await ctx.service.user.comparePassword(body.pwd, user.pwd))) {
       const token = userService.createToken({
-        userid: user.id,
+        userid: user.uid,
       });
       return ctx.success({
         ...userService.getUserInfoByModel(user),

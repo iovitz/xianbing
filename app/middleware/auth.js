@@ -10,14 +10,11 @@ module.exports = () => {
     // 解析token
     try {
       const tokenInfo = await jwt.verify(token, app.config.jwt.secret);
+      console.log(tokenInfo);
       ctx.userId = tokenInfo.userid;
     } catch (e) {
-      console.error("fail", e);
-      throw {
-        status: 401,
-        code: 40001,
-        message: "Unauthorized",
-      };
+      ctx.authError();
+      return;
     }
     await next();
   };

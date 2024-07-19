@@ -10,7 +10,6 @@ module.exports = () => {
       `收到请求`,
       JSON.stringify(
         {
-          tid,
           body: ctx.$body,
           query: ctx.$query,
           params: ctx.$params,
@@ -21,6 +20,7 @@ module.exports = () => {
     );
 
     await next();
+
     ctx.logger.info(`完成请求`);
   };
 };

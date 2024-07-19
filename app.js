@@ -24,9 +24,9 @@ module.exports = class AppBootHook {
     // All plugins have started, can do some thing before app ready
     console.log(this.app.logger._logger);
     this.app.logger.info("nan", {});
-    // this.app.model.sync({ alter: true }).then(() => {
-    //   this.app.logger.info("同步DB Model成功");
-    // });
+    this.app.model.sync({ alter: true }).then(() => {
+      this.app.logger.info("同步DB Model成功");
+    });
   }
 
   async didReady() {

@@ -3,7 +3,7 @@
 module.exports = (app) => {
   const { router, controller, middleware } = app;
   const { io } = app;
-  const { home, service, user } = controller;
+  const { home, service, user, songWords } = controller;
 
   // Socket.IO
   io.of("/duuk").route("chat", io.controller.chat.ping);
@@ -16,6 +16,11 @@ module.exports = (app) => {
   registerRouter(userRouter, "post", "/register", user.register);
   registerRouter(userRouter, "post", "/login", user.login);
 
+  const songWordsRouter = router.namespace("/api/song_words");
+  registerRouter(songWordsRouter, "get", "/:id", songWords.getSongWords, {
+    auth: true,
+  });
+
   const serviceRouter = router.namespace("/api/service");
   registerRouter(serviceRouter, "get", "/verify-code", service.getVerifyCode);
 
@@ -23,7 +28,6 @@ module.exports = (app) => {
     const middlewares = [middleware.tracer(app), middleware.access(app), middleware.errorHandler(app), middleware.gzip(app)];
 
     config.auth && middlewares.unshift(middleware.auth(app));
-
     router[method](path, ...middlewares, fn);
   }
 };
