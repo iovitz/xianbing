@@ -22,7 +22,8 @@ module.exports = class AppBootHook {
 
   async willReady() {
     // All plugins have started, can do some thing before app ready
-    // 同步Sequelize Model
+    console.log(this.app.logger._logger);
+    this.app.logger.info("nan", {});
     // this.app.model.sync({ alter: true }).then(() => {
     //   this.app.logger.info("同步DB Model成功");
     // });

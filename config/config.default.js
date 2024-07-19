@@ -2,7 +2,7 @@ const path = require("path");
 const { customAlphabet } = require("nanoid");
 
 module.exports = async (appInfo) => {
-  const config = (exports = {});
+  const config = {};
 
   const nanoid = customAlphabet("0123456789", 10);
 
@@ -52,11 +52,6 @@ module.exports = async (appInfo) => {
       };
       return args.map((k) => translate[k]).join("");
     },
-  };
-
-  config.logger = {
-    consoleLevel: "INFO",
-    allowDebugAtProd: true,
   };
 
   config.session = {

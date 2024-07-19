@@ -1,5 +1,5 @@
 module.exports = () => {
-  const config = (exports = {});
+  const config = {};
 
   config.security = {
     csrf: {

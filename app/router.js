@@ -20,15 +20,9 @@ module.exports = (app) => {
   registerRouter(serviceRouter, "get", "/verify-code", service.getVerifyCode);
 
   function registerRouter(router, method, path, fn, config = {}) {
-    const configMiddlewares = [];
+    const middlewares = [middleware.tracer(app), middleware.access(app), middleware.errorHandler(app), middleware.gzip(app)];
 
-    const frontMiddlewares = [middleware.gzip(app), middleware.errorHandler(app)];
-    // 放在Auth之后的中间件
-    const rearMiddlewares = [middleware.access(app)];
-
-    config.auth && configMiddlewares.push(middleware.auth(app));
-
-    const middlewares = [...frontMiddlewares, ...configMiddlewares, ...rearMiddlewares];
+    config.auth && middlewares.unshift(middleware.auth(app));
 
     router[method](path, ...middlewares, fn);
   }

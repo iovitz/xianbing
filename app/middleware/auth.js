@@ -10,7 +10,7 @@ module.exports = () => {
     // 解析token
     try {
       const tokenInfo = await jwt.verify(token, app.config.jwt.secret);
-      ctx.currentUserId = tokenInfo.userid;
+      ctx.userId = tokenInfo.userid;
     } catch (e) {
       console.error("fail", e);
       throw {

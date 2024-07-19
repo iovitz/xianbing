@@ -2,11 +2,9 @@ module.exports = (app) => {
   const { isProd } = app;
   return async function notFoundHandler(ctx, next) {
     try {
-      if (!isProd) {
-        ctx.logger.info("请求参数", ctx.$body);
-      }
       await next();
     } catch (err) {
+      ctx.logger.error("##服务器内部错误", err);
       if (!err) {
         ctx.serverError();
         return;
@@ -21,9 +19,7 @@ module.exports = (app) => {
         return ctx.paramsError(err.errors ?? err.message);
       }
 
-      ctx.logger.error(err);
-
-      const message = status === 500 && isProd ? "Internal Server Error" : err.message ?? err.msg;
+      const message = status === 500 && isProd ? "Internal Server Error" : (err.message ?? err.msg);
 
       return ctx.serverError(message, typeof status === "number" ? status : 500, typeof code === "number" ? code : 50000);
     }
