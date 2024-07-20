@@ -20,6 +20,16 @@ module.exports = (app) => {
       type: STRING(100),
       allowNull: false,
     },
+    cover: {
+      field: "cover",
+      type: STRING(100),
+      allowNull: true,
+    },
+    use: {
+      field: "use",
+      type: INTEGER,
+      allowNull: true,
+    },
     authorId: {
       field: "authorId",
       type: STRING(20),

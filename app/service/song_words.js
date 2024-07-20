@@ -7,6 +7,14 @@ module.exports = class ServiceController extends Service {
     return this.app.model.SongWords;
   }
 
+  getSongWords(page, perPage) {
+    return this.SongWords.findAll({
+      while: {},
+      limit: perPage,
+      offset: (page - 1) * perPage,
+    });
+  }
+
   createSongWords(authorId, name, words) {
     return this.SongWords.create(
       {
