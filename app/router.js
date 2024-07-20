@@ -3,7 +3,7 @@
 module.exports = (app) => {
   const { router, controller, middleware } = app;
   const { io } = app;
-  const { home, service, user, songWords } = controller;
+  const { home, verify, user, songWords, github } = controller;
 
   // Socket.IO
   io.of("/duuk").route("chat", io.controller.chat.ping);
@@ -22,8 +22,11 @@ module.exports = (app) => {
     auth: true,
   });
 
-  const serviceRouter = router.namespace("/api/service");
-  registerRouter(serviceRouter, "get", "/verify-code", service.getVerifyCode);
+  const serviceRouter = router.namespace("/api/verify");
+  registerRouter(serviceRouter, "get", "/verify-code", verify.getVerifyCode);
+
+  const githubRouter = router.namespace("/api/github");
+  registerRouter(githubRouter, "get", "/commits", github.getCommits);
 
   function registerRouter(router, method, path, fn, config = {}) {
     const middlewares = [middleware.tracer(app), middleware.access(app), middleware.errorHandler(app), middleware.gzip(app)];
