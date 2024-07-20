@@ -1,9 +1,20 @@
-const Controller = require("../core/controller");
+const { Controller } = require("egg");
+const { pagination } = require("../common/dto/dto");
 
 class BizController extends Controller {
   // 获取歌词
   getSongWords() {
-    this.ctx.success("OKOK");
+    const { ctx } = this;
+    const query = ctx.$query;
+    ctx.validate(
+      {
+        ...pagination,
+      },
+      query,
+    );
+    ctx.success({
+      data: query,
+    });
   }
 
   // 上传歌词

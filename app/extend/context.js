@@ -25,7 +25,7 @@ module.exports = {
     this.status = 422;
     this.body = {
       code: 40022,
-      message: Array.isArray(message) ? message.map((info) => `${info.field} ${info.code}`) : message,
+      message: Array.isArray(message) ? message.map((info) => `${info.field} ${info.message}`) : message,
       tid: this.tid,
     };
   },

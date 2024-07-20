@@ -17,9 +17,7 @@ module.exports = (app) => {
   registerRouter(userRouter, "post", "/login", user.login);
 
   const songWordsRouter = router.namespace("/api/song_words");
-  registerRouter(songWordsRouter, "get", "/:id", songWords.getSongWords, {
-    auth: true,
-  });
+  registerRouter(songWordsRouter, "get", "/", songWords.getSongWords);
   registerRouter(songWordsRouter, "post", "/upload", songWords.uploadWords, {
     auth: true,
   });

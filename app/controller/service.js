@@ -1,4 +1,4 @@
-const Controller = require("../core/controller");
+const { Controller } = require("egg");
 
 class BizController extends Controller {
   /**
