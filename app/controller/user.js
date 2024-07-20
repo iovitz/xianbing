@@ -34,9 +34,9 @@ class BizController extends Controller {
     ctx.validate({
       uname: { type: "string", max: 16, min: 6, format: /\S+/ },
       pwd: { type: "string", max: 16, min: 6, format: /\S+/ },
-      vcode: { type: "string", max: 4, min: 4 },
+      // vcode: { type: "string", max: 4, min: 4 },
     });
-    ctx.service.code.checkVerifyCode("login", ctx.$body.vcode);
+    // ctx.service.code.checkVerifyCode("login", ctx.$body.vcode);
 
     const userService = this.service.user;
     const user = await userService.findByUsername(body.uname);

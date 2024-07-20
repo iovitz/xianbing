@@ -3,7 +3,7 @@ const moment = require("moment");
 const pako = require("pako");
 const svgCaptcha = require("svg-captcha");
 
-module.exports = class CodeService extends Service {
+module.exports = class ServiceController extends Service {
   ungzip(gzipBase64Str) {
     return JSON.parse(pako.ungzip(Buffer.from(gzipBase64Str, "base64"), { to: "string" }));
   }

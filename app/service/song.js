@@ -1,7 +1,7 @@
 const Service = require("egg").Service;
 
 module.exports = class ServiceController extends Service {
-  sync() {
-    return "success";
+  get SongWords() {
+    return this.app.model.SongWords;
   }
 };

@@ -20,6 +20,9 @@ module.exports = (app) => {
   registerRouter(songWordsRouter, "get", "/:id", songWords.getSongWords, {
     auth: true,
   });
+  registerRouter(songWordsRouter, "post", "/upload", songWords.uploadWords, {
+    auth: true,
+  });
 
   const serviceRouter = router.namespace("/api/service");
   registerRouter(serviceRouter, "get", "/verify-code", service.getVerifyCode);

@@ -7,7 +7,7 @@ const { pick } = require("lodash");
 const idGenerator = customAlphabet("0123456789", 9);
 const avatarGenerator = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", 10);
 
-module.exports = class UserService extends Service {
+module.exports = class ServiceController extends Service {
   genUserId() {
     return `2${idGenerator()}`;
   }
