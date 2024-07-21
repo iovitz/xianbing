@@ -27,6 +27,26 @@ module.exports = class ServiceController extends Service {
     });
   }
 
+  async findUserByName(page, perPage, content) {
+    const { Op } = this.app.Sequelize;
+    return this.User.findAll({
+      where: {
+        [Op.or]: [
+          {
+            nickname: {
+              [Op.like]: "%ar%",
+            },
+          },
+          {
+            uid: content,
+          },
+        ],
+      },
+      limit: perPage,
+      offset: (page - 1) * perPage,
+    });
+  }
+
   findByUsername(uname) {
     return this.User.findOne({
       where: {
