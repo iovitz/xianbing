@@ -42,9 +42,12 @@ module.exports = class ServiceController extends Service {
   }
 
   createToken(data) {
-    return jwt.sign(data, this.app.config.jwt.secret, {
-      expiresIn: this.app.config.jwt.expiresIn,
-    });
+    return (
+      "Bearer " +
+      jwt.sign(data, this.app.config.jwt.secret, {
+        expiresIn: this.app.config.jwt.expiresIn,
+      })
+    );
   }
 
   getUserInfoByModel(userModel) {
