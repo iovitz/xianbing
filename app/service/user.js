@@ -17,10 +17,10 @@ module.exports = class ServiceController extends Service {
   }
 
   async createUser(data) {
-    const uid = this.genUserId();
+    const userId = this.genUserId();
     return this.User.create({
       nickname: this.genRandomNickname(),
-      uid,
+      userId,
       avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${this.app.config.multiavatar_key}`,
       uname: data.uname,
       pwd: data.pwd,
@@ -38,7 +38,7 @@ module.exports = class ServiceController extends Service {
             },
           },
           {
-            uid: content,
+            userId: content,
           },
         ],
       },
@@ -73,7 +73,7 @@ module.exports = class ServiceController extends Service {
   getUserInfoByModel(userModel) {
     return {
       user: {
-        ...pick(userModel, ["uid", "nickname", "uname", "avatar", "state"]),
+        ...pick(userModel, ["userId", "nickname", "uname", "avatar", "state"]),
       },
     };
   }

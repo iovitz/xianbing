@@ -3,36 +3,36 @@
 module.exports = (app) => {
   const { STRING, INTEGER, BOOLEAN } = app.Sequelize;
 
-  const Model = app.model.define("user", {
+  const Model = app.model.define("lyric", {
     id: {
       field: "id",
       type: INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    userId: {
-      field: "user_id",
-      type: STRING(10),
-      allowNull: false,
-    },
-    nickname: {
-      field: "nickname",
-      type: STRING(10),
-      allowNull: false,
-    },
-    avatar: {
-      field: "avatar",
+    name: {
+      field: "name",
       type: STRING(100),
       allowNull: false,
     },
-    uname: {
-      field: "uname",
-      type: STRING(20),
+    lyric: {
+      field: "lyric",
+      type: STRING(100),
       allowNull: false,
     },
-    pwd: {
-      field: "pwd",
-      type: STRING(60),
+    cover: {
+      field: "cover",
+      type: STRING(100),
+      allowNull: true,
+    },
+    use: {
+      field: "use",
+      type: INTEGER,
+      allowNull: true,
+    },
+    authorId: {
+      field: "authorId",
+      type: STRING(20),
       allowNull: false,
     },
     state: {

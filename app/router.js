@@ -3,7 +3,7 @@
 module.exports = (app) => {
   const { router, controller, middleware } = app;
   const { io } = app;
-  const { home, verify, user, songWords, github, search } = controller;
+  const { home, verify, user, lyric, github, search } = controller;
 
   // Socket.IO
   io.of("/duuk").route("chat", io.controller.chat.ping);
@@ -16,9 +16,9 @@ module.exports = (app) => {
   registerRouter(userRouter, "post", "/register", user.register);
   registerRouter(userRouter, "post", "/login", user.login);
 
-  const songWordsRouter = router.namespace("/api/song_words");
-  registerRouter(songWordsRouter, "get", "/", songWords.getSongWords);
-  registerRouter(songWordsRouter, "post", "/upload", songWords.uploadWords, {
+  const lyricRouter = router.namespace("/api/lyric");
+  registerRouter(lyricRouter, "get", "/", lyric.getLyric);
+  registerRouter(lyricRouter, "post", "/upload", lyric.upload, {
     auth: true,
   });
 

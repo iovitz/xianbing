@@ -3,24 +3,24 @@ const { pick } = require("lodash");
 const Service = require("egg").Service;
 
 module.exports = class ServiceController extends Service {
-  get SongWords() {
-    return this.app.model.SongWords;
+  get Lyric() {
+    return this.app.model.Lyric;
   }
 
-  getSongWords(page, perPage) {
-    return this.SongWords.findAll({
+  getLyric(page, perPage) {
+    return this.Lyric.findAll({
       while: {},
       limit: perPage,
       offset: (page - 1) * perPage,
     });
   }
 
-  createSongWords(authorId, name, words) {
-    return this.SongWords.create(
+  createLyric(authorId, name, lyric) {
+    return this.Lyric.create(
       {
         authorId,
         name,
-        words,
+        lyric,
       },
       {
         raw: true,
@@ -29,7 +29,7 @@ module.exports = class ServiceController extends Service {
     );
   }
 
-  getSongWordInfoByModel(userModel) {
-    return pick(userModel, ["id", "name", "words", "state"]);
+  getLyricInfoByModel(model) {
+    return pick(model, ["id", "name", "lyric", "state"]);
   }
 };

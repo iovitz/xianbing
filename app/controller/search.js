@@ -8,7 +8,7 @@ class BizController extends Controller {
     ctx.validate(
       {
         content: { type: "string", required: true, max: 100, min: 1 },
-        type: { type: "enum", values: ["all", "user", "song", "song_words", "user", "group"] },
+        type: { type: "enum", values: ["all", "user", "voice", "lyric", "user", "group"] },
         ...pagination,
       },
       body,

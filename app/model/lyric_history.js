@@ -3,7 +3,10 @@
 module.exports = (app) => {
   const { STRING, INTEGER, BOOLEAN } = app.Sequelize;
 
-  const Song = app.model.define("song", {
+  /**
+   * 用户ID
+   */
+  const Model = app.model.define("lyric_history", {
     id: {
       field: "id",
       type: INTEGER,
@@ -15,18 +18,8 @@ module.exports = (app) => {
       type: STRING(100),
       allowNull: false,
     },
-    voiceUrl: {
-      field: "voiceUrl",
-      type: STRING(100),
-      allowNull: false,
-    },
-    wordId: {
-      field: "wordId",
-      type: INTEGER,
-      allowNull: false,
-    },
-    authorId: {
-      field: "authorId",
+    lyricId: {
+      field: "lyric_id",
       type: INTEGER,
       allowNull: false,
     },
@@ -36,5 +29,5 @@ module.exports = (app) => {
     },
   });
 
-  return Song;
+  return Model;
 };
