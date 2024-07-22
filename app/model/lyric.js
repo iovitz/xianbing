@@ -25,8 +25,8 @@ module.exports = (app) => {
       type: STRING(100),
       allowNull: true,
     },
-    use: {
-      field: "use",
+    useCount: {
+      field: "use_count",
       type: INTEGER,
       allowNull: true,
     },

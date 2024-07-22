@@ -30,6 +30,13 @@ module.exports = (app) => {
       type: INTEGER,
       allowNull: false,
     },
+    // 播放次数
+    playCount: {
+      field: "play_count",
+      type: INTEGER,
+      default: 0,
+      allowNull: false,
+    },
     state: {
       field: "state",
       type: BOOLEAN,

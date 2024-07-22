@@ -35,6 +35,13 @@ module.exports = (app) => {
       type: STRING(60),
       allowNull: false,
     },
+    // 粉丝数
+    fansNumber: {
+      field: "fans_number",
+      type: INTEGER,
+      default: 0,
+      allowNull: false,
+    },
     state: {
       field: "state",
       type: BOOLEAN,
