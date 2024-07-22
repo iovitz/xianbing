@@ -4,9 +4,9 @@ module.exports = (app) => {
     try {
       await next();
     } catch (err) {
-      ctx.logger.error("##服务器内部错误", err);
       if (!err) {
         ctx.serverError();
+        ctx.logger.error("###服务器内部错误");
         return;
       }
       const { status, code } = err;
@@ -14,10 +14,11 @@ module.exports = (app) => {
       // 422客户端参数错误
       if (status === 422) {
         if (!isProd) {
-          ctx.logger.error(err);
+          ctx.logger.error("###参数校验失败", JSON.stringify(err.errors, null, 2));
         }
         return ctx.paramsError(err.errors ?? err.message);
       }
+      ctx.logger.error("###服务器内部错误", err);
 
       const message = status === 500 && isProd ? "Internal Server Error" : (err.message ?? err.msg);
 
