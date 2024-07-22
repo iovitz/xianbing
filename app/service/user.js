@@ -22,8 +22,8 @@ module.exports = class ServiceController extends Service {
       nickname: this.genRandomNickname(),
       userId,
       avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${this.app.config.multiavatar_key}`,
-      uname: data.uname,
-      pwd: data.pwd,
+      username: data.username,
+      password: data.password,
     });
   }
 
@@ -47,10 +47,10 @@ module.exports = class ServiceController extends Service {
     });
   }
 
-  findByUsername(uname) {
+  findByUsername(username) {
     return this.User.findOne({
       where: {
-        uname,
+        username,
       },
     }).then((r) => {
       return r;
@@ -73,7 +73,7 @@ module.exports = class ServiceController extends Service {
   getUserInfoByModel(userModel) {
     return {
       user: {
-        ...pick(userModel, ["userId", "nickname", "uname", "avatar", "state"]),
+        ...pick(userModel, ["userId", "nickname", "username", "avatar", "state"]),
       },
     };
   }

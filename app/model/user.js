@@ -25,13 +25,13 @@ module.exports = (app) => {
       type: STRING(100),
       allowNull: false,
     },
-    uname: {
-      field: "uname",
+    username: {
+      field: "username",
       type: STRING(20),
       allowNull: false,
     },
-    pwd: {
-      field: "pwd",
+    password: {
+      field: "password",
       type: STRING(60),
       allowNull: false,
     },

@@ -5,17 +5,17 @@ class BizController extends Controller {
     const { ctx } = this;
     const body = ctx.$body;
     ctx.validate({
-      uname: { type: "string", max: 16, min: 6, format: /\S+/ },
-      pwd: { type: "string", max: 16, min: 6, format: /\S+/ },
+      username: { type: "string", max: 16, min: 6, format: /\S+/ },
+      password: { type: "string", max: 16, min: 6, format: /\S+/ },
       vcode: { type: "string", max: 4, min: 4 },
     });
     ctx.service.code.checkVerifyCode("register", ctx.$body.vcode);
 
     const userService = this.service.user;
-    if (await userService.findByUsername(body.uname)) {
+    if (await userService.findByUsername(body.username)) {
       return ctx.throw(422, "用户名已存在");
     }
-    body.pwd = await userService.encryptPassword(body.pwd);
+    body.password = await userService.encryptPassword(body.password);
     const user = await userService.createUser(body);
 
     const token = userService.createToken({
@@ -32,15 +32,15 @@ class BizController extends Controller {
     const { ctx } = this;
     const body = ctx.$body;
     ctx.validate({
-      uname: { type: "string", max: 16, min: 6, format: /\S+/ },
-      pwd: { type: "string", max: 16, min: 6, format: /\S+/ },
-      // vcode: { type: "string", max: 4, min: 4 },
+      username: { type: "string", max: 16, min: 6, format: /\S+/ },
+      password: { type: "string", max: 16, min: 6, format: /\S+/ },
+      vcode: { type: "string", max: 4, min: 4 },
     });
-    // ctx.service.code.checkVerifyCode("login", ctx.$body.vcode);
+    ctx.service.code.checkVerifyCode("login", ctx.$body.vcode);
 
     const userService = this.service.user;
-    const user = await userService.findByUsername(body.uname);
-    if (user && (await ctx.service.user.comparePassword(body.pwd, user.pwd))) {
+    const user = await userService.findByUsername(body.username);
+    if (user && (await ctx.service.user.comparePassword(body.password, user.password))) {
       const token = userService.createToken({
         userid: user.userId,
       });
