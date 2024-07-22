@@ -10,6 +10,7 @@ module.exports = () => {
   config.logger = {
     consoleLevel: "DEBUG",
     allowDebugAtProd: true,
+    outputJSON: false,
   };
 
   config.jwt = {

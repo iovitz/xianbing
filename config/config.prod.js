@@ -19,6 +19,8 @@ module.exports = () => {
     dialect: "sqlite",
     // 工作目录是根目录，不是config文件所在目录
     storage: "./data.db",
+
+    logging: false,
   };
 
   return {

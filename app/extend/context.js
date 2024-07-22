@@ -18,7 +18,6 @@ module.exports = {
       code: 0,
       data,
       msg,
-      tid: this.tid,
     };
   },
   paramsError(message = "Params Validation Failed") {
@@ -26,7 +25,6 @@ module.exports = {
     this.body = {
       code: 40022,
       message: Array.isArray(message) ? message.map((info) => `${info.field} ${info.message}`) : message,
-      tid: this.tid,
     };
   },
   authError(message = "Login Request") {
@@ -34,7 +32,6 @@ module.exports = {
     this.body = {
       code: 40003,
       message,
-      tid: this.tid,
     };
   },
   serverError(message = "Internal Server Error", status = 500, code = 50000) {
@@ -42,7 +39,6 @@ module.exports = {
     this.body = {
       code,
       message,
-      tid: this.tid,
     };
   },
 };
