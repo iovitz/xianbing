@@ -1,5 +1,5 @@
 {
-  "name": "@duke/backend",
+  "name": "duke-server",
   "version": "1.0.0",
   "description": "Memories are powerful things.",
   "private": true,

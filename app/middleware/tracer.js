@@ -6,18 +6,11 @@ module.exports = () => {
     ctx.tracer = {
       traceId: tid,
     };
-    ctx.logger.info(
-      `收到请求`,
-      JSON.stringify(
-        {
-          body: ctx.$body,
-          query: ctx.$query,
-          params: ctx.$params,
-        },
-        null,
-        2,
-      ),
-    );
+    ctx.logger.info(`收到请求`, {
+      body: ctx.$body,
+      query: ctx.$query,
+      params: ctx.$params,
+    });
 
     await next();
 

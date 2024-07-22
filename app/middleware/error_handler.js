@@ -14,7 +14,7 @@ module.exports = (app) => {
       // 422客户端参数错误
       if (status === 422) {
         if (!isProd) {
-          ctx.logger.error("###参数校验失败", JSON.stringify(err.errors, null, 2));
+          ctx.logger.warn("###参数校验失败", err.errors);
         }
         return ctx.paramsError(err.errors ?? err.message);
       }
