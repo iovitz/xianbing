@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = (app) => {
-  const { STRING, INTEGER, BOOLEAN } = app.Sequelize;
+  const { STRING, INTEGER, BOOLEAN, TEXT } = app.Sequelize;
 
   const Model = app.model.define("lyric", {
     id: {
@@ -15,9 +15,9 @@ module.exports = (app) => {
       type: STRING(100),
       allowNull: false,
     },
-    lyric: {
+    content: {
       field: "lyric",
-      type: STRING(100),
+      type: TEXT,
       allowNull: false,
     },
     cover: {

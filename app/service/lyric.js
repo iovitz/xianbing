@@ -15,12 +15,12 @@ module.exports = class ServiceController extends Service {
     });
   }
 
-  createLyric(authorId, name, lyric) {
+  createLyric(authorId, name, content) {
     return this.Lyric.create(
       {
         authorId,
         name,
-        lyric,
+        content,
       },
       {
         raw: true,
@@ -30,6 +30,6 @@ module.exports = class ServiceController extends Service {
   }
 
   getLyricInfoByModel(model) {
-    return pick(model, ["id", "name", "lyric", "state"]);
+    return pick(model, ["id", "name", "content", "state"]);
   }
 };

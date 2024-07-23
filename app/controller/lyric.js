@@ -24,7 +24,7 @@ class BizController extends Controller {
     ctx.validate(
       {
         name: { type: "string", max: 100, min: 0 },
-        lyric: { type: "string", max: 1000, min: 0 },
+        content: { type: "string", max: 1000, min: 0 },
       },
       body,
     );

@@ -40,7 +40,6 @@ module.exports = (app) => {
       field: "fans_number",
       type: INTEGER,
       default: 0,
-      allowNull: false,
     },
     state: {
       field: "state",
