@@ -22,9 +22,14 @@ module.exports = class AppBootHook {
 
   async willReady() {
     // All plugins have started, can do some thing before app ready
-    this.app.model.sync({ alter: true }).then(() => {
-      this.app.logger.info("同步DB Model成功");
-    });
+    this.app.model
+      .sync({ alter: true })
+      .then(() => {
+        this.app.logger.info("同步DB Model成功");
+      })
+      .catch((e) => {
+        this.app.logger.error("同步DB数据失败", e);
+      });
   }
 
   async didReady() {
