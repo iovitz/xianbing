@@ -14,4 +14,3 @@ run/
 typings/
 .nyc_output/
 config/*.secret.json
-/data.db

@@ -28,6 +28,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
+    "@iovitz-images/duuk-server": "^20240724.15.748",
     "egg-bin": "^5",
     "egg-ci": "^2",
     "egg-mock": "^5",

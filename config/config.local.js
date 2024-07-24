@@ -30,7 +30,7 @@ module.exports = () => {
   config.sequelize = {
     dialect: "sqlite",
     // 工作目录是根目录，不是config文件所在目录
-    storage: "./data.db",
+    storage: "./node_modules/@iovitz-images/duuk-server/data.db",
   };
 
   return {
