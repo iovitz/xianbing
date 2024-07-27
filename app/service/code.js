@@ -36,6 +36,10 @@ module.exports = class ServiceController extends Service {
       return ctx.throw(422, "验证码过期");
     }
     if (text.toLowerCase() !== code.toLowerCase()) {
+      ctx.logger.warn("验证码校验失败", {
+        input: text.toLowerCase(),
+        right: code.toLowerCase(),
+      });
       return ctx.throw(422, "验证码错误");
     }
     delete ctx.session[`#c_${field}`];
