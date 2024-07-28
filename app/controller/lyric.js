@@ -1,17 +1,10 @@
 const { Controller } = require("egg");
-const { pagination } = require("../common/dto/dto");
 
 class BizController extends Controller {
   // 获取歌词
   getLyric() {
     const { ctx } = this;
     const query = ctx.$query;
-    ctx.validate(
-      {
-        ...pagination,
-      },
-      query,
-    );
     ctx.success({
       data: query,
     });
