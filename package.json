@@ -12,6 +12,7 @@
     "crypto-js": "^4.2.0",
     "egg": "^3",
     "egg-cors": "^3.0.0",
+    "egg-redis": "^2.6.0",
     "egg-router-plus": "^2.0.0",
     "egg-scripts": "^2",
     "egg-sequelize": "^6.0.0",

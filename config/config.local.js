@@ -1,3 +1,5 @@
+const secretConf = require("./config.secret.json");
+
 module.exports = () => {
   const config = {};
 
@@ -14,16 +16,25 @@ module.exports = () => {
   };
 
   config.jwt = {
-    secret: "wNCj-FMP9Q",
+    secret: secretConf["jwt-secret"],
     expiresIn: "30d",
   };
 
-  config.keys = "BeEby5uY6xRRueJxFHfv9";
-  config.multiavatar_key = "cseDKi8S9hnyRa";
+  config.keys = secretConf.keys;
+  config.multiavatar_key = secretConf.multiavatar_key;
 
   config.cluster = {
     listen: {
       port: "9293",
+    },
+  };
+
+  config.redis = {
+    client: {
+      port: 6379, // Redis port
+      host: secretConf.redis.host, // Redis host
+      password: secretConf.redis.password,
+      db: secretConf.redis.db,
     },
   };
 
