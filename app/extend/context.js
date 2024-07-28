@@ -1,15 +1,30 @@
 module.exports = {
   get $body() {
-    return this.request.body;
+    return this.request.body ?? {};
   },
   get $query() {
-    return this.request.query;
+    return this.request.query ?? {};
   },
   get $params() {
-    return this.params;
+    return this.params ?? [];
   },
   get $header() {
     return this.request.header;
+  },
+
+  getPagination(defaultPage = 1, defaultPerPage = 20) {
+    const query = this.$query;
+    this.validate(
+      {
+        page: { type: "number", min: 1, convertType: "number" },
+        per_page: { type: "number", min: 1, max: 500, convertType: "number" },
+      },
+      query,
+    );
+    return {
+      page: Number(query.page ?? defaultPage),
+      perPage: Number(query.per_page ?? defaultPerPage),
+    };
   },
 
   success(data, msg = "success") {

@@ -23,7 +23,9 @@ module.exports = (app) => {
   });
 
   const searchRouter = router.namespace("/api/search");
-  registerRouter(searchRouter, "post", "/content", search.searchContent);
+  registerRouter(searchRouter, "post", "/content", search.searchContent, {
+    auth: true,
+  });
 
   const serviceRouter = router.namespace("/api/verify");
   registerRouter(serviceRouter, "get", "/verify-code", verify.getVerifyCode);

@@ -24,17 +24,19 @@ module.exports = class ServiceController extends Service {
       avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${this.app.config.multiavatar_key}`,
       username: data.username,
       password: data.password,
+      fansNumber: 0,
+      voiceNumber: 0,
     });
   }
 
-  async findUserByName(page, perPage, content) {
+  async searchUser(page, perPage, content) {
     const { Op } = this.app.Sequelize;
     return this.User.findAll({
       where: {
         [Op.or]: [
           {
             nickname: {
-              [Op.like]: "%ar%",
+              [Op.like]: `%${content}%`,
             },
           },
           {
@@ -42,15 +44,20 @@ module.exports = class ServiceController extends Service {
           },
         ],
       },
+      raw: true,
       limit: perPage,
       offset: (page - 1) * perPage,
+      attributes: ["user_id", "nickname", "avatar", "fans_number", "voice_number", "state"],
     });
   }
 
-  findByUsername(username) {
+  findByUsername(username, withPassword = false) {
     return this.User.findOne({
       where: {
         username,
+      },
+      attributes: {
+        include: withPassword ? ["password"] : [],
       },
     }).then((r) => {
       return r;
@@ -79,6 +86,7 @@ module.exports = class ServiceController extends Service {
   }
 
   comparePassword(password, hash) {
+    console.log(password, hash);
     return bcrypt.compare(password, hash);
   }
 

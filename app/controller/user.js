@@ -7,9 +7,9 @@ class BizController extends Controller {
     ctx.validate({
       username: { type: "string", max: 16, min: 6, format: /\S+/ },
       password: { type: "string", max: 16, min: 6, format: /\S+/ },
-      vcode: { type: "string", max: 4, min: 4 },
+      // vcode: { type: "string", max: 4, min: 4 },
     });
-    ctx.service.code.checkVerifyCode("register", ctx.$body.vcode);
+    // ctx.service.code.checkVerifyCode("register", ctx.$body.vcode);
 
     const userService = this.service.user;
     if (await userService.findByUsername(body.username)) {
@@ -39,7 +39,7 @@ class BizController extends Controller {
     ctx.service.code.checkVerifyCode("login", ctx.$body.vcode);
 
     const userService = this.service.user;
-    const user = await userService.findByUsername(body.username);
+    const user = await userService.findByUsername(body.username, true);
     if (user && (await ctx.service.user.comparePassword(body.password, user.password))) {
       const token = userService.createToken({
         userid: user.userId,
