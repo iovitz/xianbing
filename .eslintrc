@@ -25,7 +25,7 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2024
   },
   "extends": [
     "airbnb-base"
@@ -48,6 +48,7 @@
     "func-names": "off",
     "no-underscore-dangle": "off",
     "import/no-extraneous-dependencies": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "class-methods-use-this": "off"
   }
 }
