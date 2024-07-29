@@ -11,10 +11,9 @@
  */
 
 const { createLogger, format, transports } = require('winston');
+const chalk = require('chalk');
+require('winston-daily-rotate-file');
 
-const {
-  combine, timestamp, colorize, printf,
-} = format;
 const { SPLAT } = require('triple-beam');
 
 function formatObject(param) {
@@ -40,14 +39,60 @@ const all = format((info) => {
   return info;
 });
 
-const customLogger = createLogger({
-  format: combine(
+const consoleTransport = new transports.Console({
+  level: 'debug',
+  // 使用时间戳和nest样式
+  format: format.combine(
     all(),
-    timestamp({ format: 'MM-DD:HH:HH:ss:SSS' }),
-    colorize(),
-    printf((info) => `${info.timestamp} ${info.level}: ${formatObject(info.message)}`),
+    format.timestamp({ format: 'MM-DD HH:mm:ss:SSS' }),
+    format.printf((i) => {
+      const t = chalk.gray(i.timestamp);
+      const message = chalk.blue(i.message);
+      return `${[t]} ${i.level} ${message} ${i.context || ''}`;
+    }),
   ),
-  transports: [new transports.Console()],
+});
+
+const infoTransport = new transports.DailyRotateFile({
+  dirname: 'logs/info',
+  filename: '%DATE%.log',
+  datePattern: 'YYYY-MM-DD',
+  zippedArchive: true,
+  maxSize: '20m',
+  maxFiles: '14d',
+  level: 'info',
+  format: format.combine(
+    all(),
+    format.timestamp({ format: 'MM-DD HH:mm:ss:SSS' }),
+    format.printf((i) => {
+      const t = i.timestamp;
+      const { message } = i;
+      return `${[t]} ${i.level} ${message} ${i.context || ''}`;
+    }),
+  ),
+});
+
+const errorTransport = new transports.DailyRotateFile({
+  dirname: 'logs/error',
+  filename: '%DATE%.log',
+  datePattern: 'YYYY-MM-DD',
+  zippedArchive: true,
+  maxSize: '20m',
+  maxFiles: '14d',
+  level: 'error',
+  format: format.combine(
+    all(),
+    format.timestamp({ format: 'MM-DD HH:mm:ss:SSS' }),
+    format.printf((i) => {
+      const t = i.timestamp;
+      const { message } = i;
+      return `${[t]} ${i.level} ${message} ${i.context || ''}`;
+    }),
+  ),
+});
+
+const customLogger = createLogger({
+  transports: [consoleTransport, infoTransport, errorTransport],
 });
 
 module.exports.log = {

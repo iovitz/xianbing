@@ -46,6 +46,7 @@
     "no-undef": "off",
     "global-require": "off",
     "func-names": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
