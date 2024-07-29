@@ -10,7 +10,51 @@
  * https://sailsjs.com/docs/concepts/logging
  */
 
+const { createLogger, format, transports } = require('winston');
+
+const {
+  combine, timestamp, colorize, printf,
+} = format;
+const { SPLAT } = require('triple-beam');
+
+function formatObject(param) {
+  if (param instanceof Error) {
+    return param.stack.split('\n').join('\\n');
+  }
+  if (_.isObject(param)) {
+    return JSON.stringify(param);
+  }
+  return param;
+}
+
+// Ignore log messages if they have { private: true }
+const all = format((info) => {
+  const splat = info[SPLAT] || [];
+  const message = formatObject(info.message);
+  const rest = splat.map(formatObject).join('\\n');
+
+  info.message = `${message}`;
+  if (!_.isEmpty(rest)) {
+    info.message += ` ${rest}`;
+  }
+  return info;
+});
+
+const customLogger = createLogger({
+  format: combine(
+    all(),
+    timestamp({ format: 'MM-DD:HH:HH:ss:SSS' }),
+    colorize(),
+    printf((info) => `${info.timestamp} ${info.level}: ${formatObject(info.message)}`),
+  ),
+  transports: [new transports.Console()],
+});
+
 module.exports.log = {
+
+  custom: customLogger,
+
+  inspect: false,
 
   /** *************************************************************************
   *                                                                          *
@@ -25,5 +69,4 @@ module.exports.log = {
   ************************************************************************** */
 
   // level: 'info'
-
 };
