@@ -34,4 +34,14 @@ module.exports.routes = {
   'GET /api/status': { action: 'status' },
 
   'GET /api/user/login': { action: 'user/login' },
+  'POST /api/v1/user/register': { action: 'user/register' },
+
+  'POST /api/v1/search/content': { action: 'search/content' },
+
+  'POST /api/v1/varify/verify-code': { action: 'varify/verify-code' },
+
+  'POST /api/v1/lyric/list': { action: 'lyric/list' },
+  'POST /api/v1/lyric/upload': { action: 'lyric/upload' },
+
+  'POST /api/v1/github/commits': { action: 'github/commits' },
 };
