@@ -13,6 +13,9 @@ module.exports = async function defineSequelizeHook(sails) {
   const sequelize = new Sequelize('duuk_server', 'duuk_server', 'WC4CdduthwFTigRJ', {
     host: 'mysql.sqlpub.com',
     dialect: 'mysql',
+    logging(sql) {
+      sails.log.info(sql);
+    },
   });
 
   user(sequelize);
