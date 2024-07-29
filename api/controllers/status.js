@@ -13,9 +13,10 @@ module.exports = {
   },
 
   async fn() {
-    if (3 > 2) {
-      throw new Error('niubi');
-    }
+    await sails.mysql.user.create({
+      name: '123',
+      age: 18,
+    });
     this.res.ok(123123);
   },
 

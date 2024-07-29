@@ -5,7 +5,22 @@
  * @docs        :: https://sailsjs.com/docs/concepts/extending-sails/hooks
  */
 
-module.exports = function defineSequelizeHook(sails) {
+const Sequelize = require('sequelize');
+const user = require('./user');
+
+module.exports = async function defineSequelizeHook(sails) {
+// 配置连接参数
+  const sequelize = new Sequelize('duuk_server', 'duuk_server', 'WC4CdduthwFTigRJ', {
+    host: 'mysql.sqlpub.com',
+    dialect: 'mysql',
+  });
+
+  user(sequelize);
+
+  sails.mysql = sequelize.models;
+
+  await sequelize.sync(); // 同步模型和数据库
+
   return {
 
     /**
