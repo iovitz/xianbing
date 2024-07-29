@@ -1,20 +1,61 @@
 const { DataTypes } = require('sequelize');
 
-module.exports = (sequelize) => sequelize.define('user', {
-  id: {
-    type: DataTypes.INTEGER(10),
-    primaryKey: true,
-    allowNull: false,
-    autoIncrement: true,
+module.exports = (sequelize) => sequelize.define(
+  'user',
+  {
+    id: {
+      field: 'id',
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    userId: {
+      field: 'user_id',
+      type: DataTypes.STRING(10),
+      allowNull: false,
+    },
+    nickname: {
+      field: 'nickname',
+      type: DataTypes.STRING(10),
+      allowNull: false,
+    },
+    avatar: {
+      field: 'avatar',
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    username: {
+      field: 'username',
+      type: DataTypes.STRING(20),
+      allowNull: false,
+    },
+    password: {
+      field: 'password',
+      type: DataTypes.STRING(60),
+      allowNull: false,
+    },
+    // 粉丝数
+    fansNumber: {
+      field: 'fans_number',
+      type: DataTypes.INTEGER,
+      default: 0,
+    },
+    // 粉丝数
+    voiceNumber: {
+      field: 'voice_number',
+      type: DataTypes.INTEGER,
+      default: 0,
+    },
+    state: {
+      field: 'state',
+      type: DataTypes.BOOLEAN,
+    },
   },
-  name: {
-    field: 'name',
-    type: DataTypes.STRING(50),
-    allowNull: false,
+  {
+    defaultScope: {
+      attributes: {
+        exclude: ['password'],
+      },
+    },
   },
-  age: {
-    field: 'age', // 自定义字段名称及数据表中对应字段
-    type: DataTypes.INTEGER(10),
-    allowNull: false,
-  },
-});
+);

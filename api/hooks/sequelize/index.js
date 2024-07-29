@@ -6,7 +6,6 @@
  */
 
 const Sequelize = require('sequelize');
-const user = require('./user');
 
 module.exports = async function defineSequelizeHook(sails) {
 // 配置连接参数
@@ -18,7 +17,11 @@ module.exports = async function defineSequelizeHook(sails) {
     },
   });
 
-  user(sequelize);
+  require('./user')(sequelize);
+  require('./lyric')(sequelize);
+  require('./lyric_history')(sequelize);
+  require('./voice')(sequelize);
+  require('./fans')(sequelize);
 
   sails.mysql = sequelize.models;
 
