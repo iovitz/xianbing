@@ -18,9 +18,7 @@ module.exports = async function defineSequelizeHook(sails) {
 
   sails.mysql = sequelize.models;
 
-  // const {} = sails.mysql;
-
-  await sequelize.sync(); // 同步模型和数据库
+  // await sequelize.sync(); // 同步模型和数据库
 
   return {
 
