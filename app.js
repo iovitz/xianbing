@@ -1,48 +1,54 @@
-module.exports = class AppBootHook {
-  constructor(app) {
-    this.app = app;
-  }
+/**
+ * app.js
+ *
+ * Use `app.js` to run your app without `sails lift`.
+ * To start the server, run: `node app.js`.
+ *
+ * This is handy in situations where the sails CLI is not relevant or useful,
+ * such as when you deploy to a server, or a PaaS like Heroku.
+ *
+ * For example:
+ *   => `node app.js`
+ *   => `npm start`
+ *   => `forever start app.js`
+ *   => `node debug app.js`
+ *
+ * The same command-line arguments and env vars are supported, e.g.:
+ * `NODE_ENV=production node app.js --port=80 --verbose`
+ *
+ * For more information see:
+ *   https://sailsjs.com/anatomy/app.js
+ */
 
-  configWillLoad() {
-    // Ready to call configDidLoad,
-    // Config, plugin files are referred,
-    // this is the last chance to modify the config.
-  }
 
-  configDidLoad() {
-    // Config, plugin files have been loaded.
-  }
+// Ensure we're in the project directory, so cwd-relative paths work as expected
+// no matter where we actually lift from.
+// > Note: This is not required in order to lift, but it is a convenient default.
+process.chdir(__dirname);
 
-  async didLoad() {
-    // All files have loaded, start plugin here.
-    // 引入validate目录，并注入app实例
-    // const directory = path.join(this.app.config.baseDir, "app/validate");
-    // this.app.loader.loadToApp(directory, "validate");
-  }
 
-  async willReady() {
-    // All plugins have started, can do some thing before app ready
-    // this.app.model
-    //   .sync({ alter: true })
-    //   .then(() => {
-    //     this.app.logger.info("同步DB Model成功");
-    //   })
-    //   .catch((e) => {
-    //     this.app.logger.error("同步DB数据失败", e);
-    //   });
-  }
 
-  async didReady() {
-    // Worker is ready, can do some things
-    // don't need to block the app boot.
-  }
+// Attempt to import `sails` dependency, as well as `rc` (for loading `.sailsrc` files).
+var sails;
+var rc;
+try {
+  sails = require('sails');
+  rc = require('sails/accessible/rc');
+} catch (err) {
+  console.error('Encountered an error when attempting to require(\'sails\'):');
+  console.error(err.stack);
+  console.error('--');
+  console.error('To run an app using `node app.js`, you need to have Sails installed');
+  console.error('locally (`./node_modules/sails`).  To do that, just make sure you\'re');
+  console.error('in the same directory as your app and run `npm install`.');
+  console.error();
+  console.error('If Sails is installed globally (i.e. `npm install -g sails`) you can');
+  console.error('also run this app with `sails lift`.  Running with `sails lift` will');
+  console.error('not run this file (`app.js`), but it will do exactly the same thing.');
+  console.error('(It even uses your app directory\'s local Sails install, if possible.)');
+  return;
+}//-•
 
-  async serverDidReady() {
-    // Server is listening.
-    this.app.logger.info(`Server running in http://localhost:${this.app.config.cluster.listen.port}`);
-  }
 
-  async beforeClose() {
-    // Do some thing before app close.
-  }
-};
+// Start server
+sails.lift(rc('sails'));

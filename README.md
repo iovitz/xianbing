@@ -1,92 +1,26 @@
-# 项目文档
+# duuk-server
 
-[TOC]
+a [Sails v1](https://sailsjs.com) application
 
-## 开发启动
 
-STEP 1：安装pnpm，项目使用pnpm管理依赖包，需要先安装pnpm
+### Links
 
-```shell
-npm i pnpm -g
-```
++ [Sails framework documentation](https://sailsjs.com/get-started)
++ [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
++ [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
++ [Community support options](https://sailsjs.com/support)
++ [Professional / enterprise options](https://sailsjs.com/enterprise)
 
-STEP 2：使用pnpm安装依赖
 
-```shell
-pnpm install
-```
+### Version info
 
-STEP 3：准备数据文件
+This app was originally generated on Mon Jul 29 2024 10:14:26 GMT+0800 (China Standard Time) using Sails v1.5.11.
 
-STEP 4：运行项目
+<!-- Internally, Sails used [`sails-generate@2.0.11`](https://github.com/balderdashy/sails-generate/tree/v2.0.11/lib/core-generators/new). -->
 
-```shell
-pnpm dev
-```
 
-## 技术选型
 
-* Egg.JS
-  * [egg](https://eggjs.github.io/zh/guide/)
-  * [egg-cors](https://www.npmjs.com/package/egg-cors)
-  * [egg-router-plus](https://www.npmjs.com/package/egg-router-plus)
-  * [egg-scripts](https://www.npmjs.com/package/egg-scripts)
-  * [egg-sequelize](https://www.npmjs.com/package/egg-sequelize)
-  * [egg-socket.io](https://www.npmjs.com/package/egg-socket.io)
-  * [egg-validate](https://www.npmjs.com/package/egg-validate)
-  * [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-* 数据库
-  * [sqlite3](https://doc.yonyoucloud.com/doc/wiki/project/sqlite/sqlite-intro.html)
-  * [sequelize模型基础](https://sequelize.org/docs/v6/core-concepts/model-basics/)
-  * [sequelize模型实例](https://sequelize.org/docs/v6/core-concepts/model-instances/)
-  * [sequelize模型查找基础](https://bytedance.larkoffice.com/base/CXdZbP45Oa48XdsFA0OcT7UMnff?table=tblHRFovMdEBWfPX&view=vewGfISRsr)
-  * [sequelize模型查找器](https://sequelize.org/docs/v6/core-concepts/model-querying-finders/)
-* 其他
-  * [lodash工具库](https://www.npmjs.com/package/lodash)
-  * [nanoid生成唯一ID](https://www.npmjs.com/package/nanoid)
-  * [svg-captcha生成验证码](https://www.npmjs.com/package/svg-captcha)
-  * [crypto-js字符串加密](https://www.npmjs.com/package/crypto-js)
-  * [bcryptjs密码加密](https://www.npmjs.com/package/bcryptjs)
-  * [octokit](https://www.npmjs.com/package/octokit)
+<!--
+Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
+-->
 
-## 项目规范
-
-### 代码规范
-
----
-
-### 日志
-
-单条日志尽量不要分多行打印，不利于日志查看排查
-
-### 数据库定义规范
-
-思考数据量的大小
-
-### 依赖规范
-
-所有的依赖必须指定版本
-
-### Git规范
-
-#### 分支模型
-
-##### 开发分支develop
-
-主要代码分支
-
-##### 线上分支release-XX
-
-线上代码分支
-
-##### 需求分支feat-xx
-
-##### BUG修复分支fix-xx
-
-##### 重构分支refactor-xx
-
-#### 提交信息规范
-
-> [提交信息规范文档](https://www.conventionalcommits.org/zh-hans/v1.0.0/)
-
-### 发版规范

@@ -1,2 +1,3 @@
-coverage
-*.html
+assets/dependencies/**/*.js
+views/**/*.ejs
+
