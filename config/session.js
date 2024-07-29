@@ -20,6 +20,8 @@ module.exports.session = {
   ************************************************************************** */
   secret: '67cbbc89da0629fbe72f6d6e8a730053',
 
+  name: '__Host-sails.sid',
+
   /** *************************************************************************
   *                                                                          *
   * Customize when built-in session support will be skipped.                 *

@@ -27,7 +27,7 @@ module.exports.sockets = {
   *                                                                          *
   ************************************************************************** */
 
-  // transports: [ 'websocket' ],
+  transports: ['websocket'],
 
   /** *************************************************************************
   *                                                                          *
@@ -41,13 +41,11 @@ module.exports.sockets = {
   *                                                                          *
   ************************************************************************** */
 
-  // beforeConnect: function(handshake, proceed) {
-  //
-  //   // `true` allows the socket to connect.
-  //   // (`false` would reject the connection)
-  //   return proceed(undefined, true);
-  //
-  // },
+  beforeConnect(io, proceed) {
+    // `true` allows the socket to connect.
+    // (`false` would reject the connection)
+    return proceed(undefined, true);
+  },
 
   /** *************************************************************************
   *                                                                          *
@@ -58,13 +56,12 @@ module.exports.sockets = {
   *                                                                          *
   ************************************************************************** */
 
-  // afterDisconnect: function(session, socket, done) {
-  //
-  //   // By default: do nothing.
-  //   // (but always trigger the callback)
-  //   return done();
-  //
-  // },
+  afterDisconnect(session, socket, done) {
+    // By default: do nothing.
+    // (but always trigger the callback)
+    console.log('断开链接');
+    return done();
+  },
 
   /** *************************************************************************
   *                                                                          *
