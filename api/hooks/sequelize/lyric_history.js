@@ -1,13 +1,22 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 
-module.exports = (sequelize) => sequelize.define(
-  'lyric_history',
-  {
-    id: {
-      field: 'id',
+module.exports = (sequelize) => {
+  class LyricHistory extends Model {
+    static associate() {
+    }
+  }
+  LyricHistory.init({
+    idx: {
+      field: 'idx',
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    id: {
+      field: 'id',
+      type: DataTypes.STRING(10),
+      allowNull: false,
+      unique: true,
     },
     name: {
       field: 'name',
@@ -16,12 +25,19 @@ module.exports = (sequelize) => sequelize.define(
     },
     lyricId: {
       field: 'lyric_id',
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(10),
       allowNull: false,
+      references: {
+        model: 'Lyric',
+        key: 'id',
+      },
     },
     state: {
       field: 'state',
       type: DataTypes.BOOLEAN,
     },
-  },
-);
+  }, {
+    tableName: 'lyric_history',
+    sequelize,
+  });
+};

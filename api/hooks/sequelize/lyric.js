@@ -1,13 +1,22 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 
-module.exports = (sequelize) => sequelize.define(
-  'lyric',
-  {
-    id: {
-      field: 'id',
+module.exports = (sequelize) => {
+  class Lyric extends Model {
+    associate() {
+    }
+  }
+  Lyric.init({
+    idx: {
+      field: 'idx',
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    id: {
+      field: 'id',
+      type: DataTypes.STRING(10),
+      allowNull: false,
+      unique: true,
     },
     name: {
       field: 'name',
@@ -31,12 +40,19 @@ module.exports = (sequelize) => sequelize.define(
     },
     authorId: {
       field: 'authorId',
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(10),
       allowNull: false,
+      references: {
+        model: 'User',
+        key: 'id',
+      },
     },
     state: {
       field: 'state',
       type: DataTypes.BOOLEAN,
     },
-  },
-);
+  }, {
+    tableName: 'lyric',
+    sequelize,
+  });
+};

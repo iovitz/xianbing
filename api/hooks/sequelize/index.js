@@ -1,11 +1,4 @@
-/**
- * sequelize hook
- *
- * @description :: A hook definition.  Extends Sails by adding shadow routes, implicit actions, and/or initialization logic.
- * @docs        :: https://sailsjs.com/docs/concepts/extending-sails/hooks
- */
-
-const Sequelize = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 module.exports = async function defineSequelizeHook(sails) {
 // 配置连接参数
@@ -24,6 +17,8 @@ module.exports = async function defineSequelizeHook(sails) {
   require('./fans')(sequelize);
 
   sails.mysql = sequelize.models;
+
+  // const {} = sails.mysql;
 
   await sequelize.sync(); // 同步模型和数据库
 
