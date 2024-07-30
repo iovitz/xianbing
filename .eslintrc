@@ -51,6 +51,7 @@
     "max-len": "off",
     "class-methods-use-this": "off",
     "import/no-unresolved": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "import/no-dynamic-require": "off"
   }
 }
