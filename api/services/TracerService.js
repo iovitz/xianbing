@@ -23,6 +23,11 @@ module.exports = {
     sails.log.info(`${requestId}(${cost.toString()}) - ${message}`, ...rest);
   },
 
+  warn(req, message = '', ...rest) {
+    const { requestId, cost } = this.getLogInfo(req);
+    sails.log.warn(`${requestId}(${cost.toString()}) - ${message}`, ...rest);
+  },
+
   error(req, message = '', ...rest) {
     const { requestId, cost } = this.getLogInfo(req);
     sails.log.error(`${requestId}(${cost.toString()}) - ${message}`, ...rest);
