@@ -9,9 +9,7 @@ module.exports = function defineSequelizeHook(sails) {
       sails.log.info(sql);
     },
     dialectOptions: {
-      charset: 'utf8mb4',
-      collate: 'utf8_general_ci',
-      allowNull: false,
+      timezone: '+08:00',
     },
   });
 
@@ -20,6 +18,7 @@ module.exports = function defineSequelizeHook(sails) {
   require('./lyric_history')(sequelize);
   require('./voice')(sequelize);
   require('./fans')(sequelize);
+  require('./voice_history')(sequelize);
 
   sails.mysql = sequelize.models;
 

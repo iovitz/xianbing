@@ -1,9 +1,11 @@
 const { DataTypes, Model } = require('sequelize');
 
 module.exports = (sequelize) => {
-  class Voice extends Model {
+  class VoiceHistory extends Model {
+    static associate() {
+    }
   }
-  Voice.init({
+  VoiceHistory.init({
     idx: {
       field: 'idx',
       type: DataTypes.INTEGER.UNSIGNED,
@@ -18,50 +20,25 @@ module.exports = (sequelize) => {
       allowNull: false,
       comment: '雪花ID',
     },
-    name: {
-      field: 'name',
-      type: DataTypes.STRING(100),
-      allowNull: false,
-      comment: '歌曲名',
-    },
-    description: {
-      field: 'description',
-      type: DataTypes.STRING(1000),
-      allowNull: false,
-      comment: '歌曲描述',
-    },
-    voiceUrl: {
-      field: 'voiceUrl',
-      type: DataTypes.STRING(100),
-      allowNull: false,
-      comment: '歌曲名',
-    },
-    authorId: {
-      field: 'authorId',
+    userId: {
+      field: 'userId',
       type: DataTypes.STRING(10),
-      allowNull: false,
       references: {
         model: 'User',
         key: 'id',
       },
-      comment: '作者ID',
-    },
-    lyricId: {
-      field: 'lyricId',
-      type: DataTypes.STRING(10),
       allowNull: false,
+      comment: '用户ID',
+    },
+    voiceId: {
+      field: 'voiceId',
+      type: DataTypes.STRING(10),
       references: {
-        model: 'Lyric',
+        model: 'Voice',
         key: 'id',
       },
-      comment: '歌词ID',
-    },
-    playNumber: {
-      field: 'playNumber',
-      type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0,
-      comment: '播放次数',
+      comment: '声音ID',
     },
     state: {
       field: 'state',
@@ -71,8 +48,8 @@ module.exports = (sequelize) => {
       comment: '状态',
     },
   }, {
+    tableName: 'VoiceHistory',
     sequelize,
-    tableName: 'voice',
     charset: 'utf8mb4',
     collate: 'utf8mb4_0900_ai_ci',
     updatedAt: 'updatedAt',
