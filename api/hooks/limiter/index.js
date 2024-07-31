@@ -8,6 +8,7 @@
 module.exports = function defineLimiterHook(sails) {
   // Request Limiter
   sails.limiter = new Map();
+  sails.limiterTimer = new Set();
   return {
     /**
      * Runs when this Sails app loads/lifts.

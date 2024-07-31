@@ -8,6 +8,7 @@ module.exports = function (req, res, next) {
     return res.badRequest();
   }
 
+  const { limiterTimer } = sails;
   const limiter = sails.limiter.get(clientid) ?? new RateLimiter({
     tokensPerInterval: 5,
     interval: 'minute',
@@ -19,7 +20,11 @@ module.exports = function (req, res, next) {
   const enableRequest = limiter.tryRemoveTokens(1);
 
   if (Math.random() < 0.01) {
-    // 清理内存
+    limiterTimer.keys().forEach((clientId) => {
+      if (limiterTimer.get(clientId) === 0) {
+        console.log('123');
+      }
+    });
   }
 
   // 判断是否可以请求
