@@ -8,36 +8,36 @@ module.exports = (sequelize) => {
   LyricHistory.init({
     idx: {
       field: 'idx',
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
+      comment: '自增ID',
     },
     id: {
       field: 'id',
       type: DataTypes.STRING(10),
-      allowNull: false,
       unique: true,
-    },
-    name: {
-      field: 'name',
-      type: DataTypes.STRING(100),
-      allowNull: false,
+      comment: '雪花ID',
     },
     lyricId: {
       field: 'lyric_id',
       type: DataTypes.STRING(10),
-      allowNull: false,
       references: {
         model: 'Lyric',
         key: 'id',
       },
+      comment: '歌词ID',
     },
     state: {
       field: 'state',
       type: DataTypes.BOOLEAN,
+      comment: '状态',
     },
   }, {
     tableName: 'lyric_history',
     sequelize,
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt',
+    deletedAt: 'deletedAt',
   });
 };

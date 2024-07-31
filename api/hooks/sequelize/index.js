@@ -8,6 +8,11 @@ module.exports = function defineSequelizeHook(sails) {
     logging(sql) {
       sails.log.info(sql);
     },
+    dialectOptions: {
+      charset: 'utf8mb4',
+      collate: 'utf8_general_ci',
+      allowNull: false,
+    },
   });
 
   require('./user')(sequelize);
@@ -28,7 +33,7 @@ module.exports = function defineSequelizeHook(sails) {
     async initialize() {
       // 开发环境下按需同步
       if (sails.config.environment === 'development') {
-        // await sequelize.sync(); // 同步模型和数据库
+        await sequelize.sync(); // 同步模型和数据库
       }
       sails.log.info('Initializing custom hook (`sequelize`)');
     },

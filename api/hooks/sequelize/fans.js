@@ -11,32 +11,37 @@ module.exports = function (sequelize) {
   Fans.init({
     idx: {
       field: 'idx',
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
+      comment: '自增ID',
     },
     id: {
       field: 'id',
       type: DataTypes.STRING(10),
-      allowNull: false,
       unique: true,
+      comment: '雪花ID',
     },
     userId: {
       field: 'user_id',
       type: DataTypes.STRING(10),
-      allowNull: false,
+      comment: '被关注的用户ID',
     },
     fansId: {
       field: 'fans_id',
       type: DataTypes.STRING(10),
-      allowNull: false,
+      comment: '关注者的ID',
     },
     state: {
       field: 'state',
       type: DataTypes.BOOLEAN,
+      comment: '状态',
     },
   }, {
     tableName: 'fans',
     sequelize,
+    updatedAt: 'updatedAt',
+    createdAt: 'createdAt',
+    deletedAt: 'deletedAt',
   });
 };
