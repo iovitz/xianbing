@@ -1,8 +1,8 @@
 module.exports = {
 
-  friendlyName: '<API>',
+  friendlyName: 'Register',
 
-  description: '<API Description>',
+  description: 'Register auth.',
 
   inputs: {
     nickname: {
@@ -19,7 +19,6 @@ module.exports = {
       custom() {
         return true;
       },
-
     },
     password: {
       type: 'string',

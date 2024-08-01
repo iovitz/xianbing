@@ -33,8 +33,8 @@ module.exports.routes = {
   ************************************************************************** */
   'GET /api/status': { action: 'status' },
 
-  'GET /api/user/login': { action: 'user/login' },
-  'POST /api/v1/user/register': { action: 'user/register' },
+  'POST /api/v1/auth/login': { action: 'auth/login' },
+  'POST /api/v1/auth/register': { action: 'auth/register' },
 
   'POST /api/v1/search/content': { action: 'search/content' },
 

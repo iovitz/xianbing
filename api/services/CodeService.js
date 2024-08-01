@@ -1,10 +1,10 @@
 const moment = require('moment');
-const pako = require('pako');
+const Pako = require('pako');
 const svgCaptcha = require('svg-captcha');
 
 module.exports = {
   ungzip(gzipBase64Str) {
-    return JSON.parse(pako.ungzip(Buffer.from(gzipBase64Str, 'base64'), { to: 'string' }));
+    return JSON.parse(Pako.ungzip(Buffer.from(gzipBase64Str, 'base64'), { to: 'string' }));
   },
 
   gzip(data) {

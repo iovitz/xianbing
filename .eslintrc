@@ -52,6 +52,7 @@
     "class-methods-use-this": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
-    "import/no-dynamic-require": "off"
+    "import/no-dynamic-require": "off",
+    "no-throw-literal": "off"
   }
 }

@@ -9,10 +9,13 @@
       "esnext",
       "dom"
     ],
+    "types": [
+      "./index.d.ts"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./api/*"
+        "./*"
       ]
     }
   },
@@ -23,5 +26,6 @@
   ],
   "exclude": [
     "node_modules",
+    "./api/services/**.*.js"
   ]
 }

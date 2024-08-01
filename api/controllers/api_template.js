@@ -1,16 +1,10 @@
 module.exports = {
 
-  friendlyName: '<API>',
+  friendlyName: '<API Name>',
 
   description: '<API Description>',
 
   inputs: {
-    nickname: {
-      type: 'string',
-      example: 'Zhangsan',
-      description: '昵称',
-      required: true,
-    },
     email: {
       type: 'string',
       example: 'iovitz@qq.com',
@@ -19,13 +13,6 @@ module.exports = {
       custom() {
         return true;
       },
-
-    },
-    password: {
-      type: 'string',
-      example: '123456',
-      description: '登录密码',
-      required: true,
     },
   },
 
@@ -39,7 +26,7 @@ module.exports = {
   },
 
   async fn(input, exits) {
-    exits.badRequest('niubi');
+    exits.ok(input);
   },
 
 };

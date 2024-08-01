@@ -1,0 +1,19 @@
+meta {
+  name: 注册
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "nickname": "zhangsan",
+    "email": "18",
+    "password": "29"
+  }
+}

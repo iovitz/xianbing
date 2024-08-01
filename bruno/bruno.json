@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Duuk图书API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
