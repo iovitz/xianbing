@@ -5,9 +5,13 @@ meta {
 }
 
 post {
-  url: {{baseUrl}}/api/v1/auth/register
+  url: {{baseUrl}}/api/v1/auth/register?page=123
   body: json
   auth: none
+}
+
+params:query {
+  page: 123
 }
 
 body:json {

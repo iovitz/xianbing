@@ -38,7 +38,10 @@ module.exports = {
   },
 
   async fn(input, exits) {
-    exits.badRequest('niubi');
+    const { req } = this;
+
+    const res = sails.models.pagination.validate('page', 'aewfaf');
+    return exits.badRequest('niubi');
   },
 
 };
