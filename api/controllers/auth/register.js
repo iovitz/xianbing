@@ -7,7 +7,7 @@ module.exports = {
   inputs: {
     nickname: {
       type: 'string',
-      example: 'Zhangsan',
+      example: 'zhangsan',
       description: '昵称',
       required: true,
     },
