@@ -21,20 +21,19 @@ const Service = {
     });
   },
 
-  checkVerifyCode(field, text) {
+  checkVerifyCode(session, field, text) {
     // 获取验证码
-    const { ctx } = this;
-    const code = ctx.session[`#c_${field}`] ?? '';
-    const codeTime = ctx.session[`#t_${field}`] ?? '';
+    const code = session[`#c_${field}`] ?? '';
+    const codeTime = session[`#t_${field}`] ?? '';
     if (moment(codeTime).add(30, 'M') < moment(Date.now())) {
-      return ctx.throw(422, '验证码过期');
+      throw { basRequest: '123' };
     }
     if (text.toLowerCase() !== code.toLowerCase()) {
-      ctx.logger.warn('验证码校验失败', {
+      sails.log.warn('验证码校验失败', {
         input: text.toLowerCase(),
         right: code.toLowerCase(),
       });
-      return ctx.throw(422, '验证码错误');
+      throw { basRequest: '验证码错误' };
     }
     delete ctx.session[`#c_${field}`];
     delete ctx.session[`#t_${field}`];

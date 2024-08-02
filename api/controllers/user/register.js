@@ -42,6 +42,15 @@ module.exports = {
         return /^\w{6,16}$/.test(v);
       },
     },
+    code: {
+      type: 'string',
+      example: 'aaaa',
+      description: '验证码',
+      required: true,
+      custom(v) {
+        return v.length === 4;
+      },
+    },
   },
 
   exits: {
@@ -54,6 +63,7 @@ module.exports = {
   },
 
   async fn(input, exits) {
+    VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
     const data = 'success';
 
     exits.ok(data);
