@@ -1,6 +1,12 @@
 const { Sequelize } = require('sequelize');
 
-module.exports = function defineSequelizeHook(sails) {
+/**
+ * sequelize hook
+ *
+ * @description :: 初始刷MySQL的Sequelize链接
+ */
+
+module.exports = function (sails) {
   // 配置连接参数
   const sequelize = new Sequelize('duuk_server', 'duuk_server', 'WC4CdduthwFTigRJ', {
     host: 'mysql.sqlpub.com',

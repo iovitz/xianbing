@@ -105,11 +105,34 @@ module.exports = function (plop) {
       // 替换名字
       data.name = convertFileName(data.name);
       data.friendlyName = data.name.split('/').pop();
-      data.usage = `await sails.helpers.${data.name.split('/').map((name) => camelcase(name)).join('.')}(…, …)`;
+      data.usage = `await sails.helpers.${data.name.split('/').map((name) => camelcase(name)).join('.')}.with({})`;
       return [{
         type: 'add',
         path: 'api/helpers/{{name}}.js',
         templateFile: 'generators/helper.hbs',
+      }];
+    },
+  });
+
+  plop.setGenerator('hook', {
+    description: 'App hook',
+    prompts: [{
+      type: 'input',
+      name: 'name',
+      message: 'Hook name please',
+      required: true,
+    }, {
+      type: 'input',
+      name: 'description',
+      message: 'Hook description please',
+    }],
+    actions: (data) => {
+      // 替换名字
+      data.name = camelcase(data.name);
+      return [{
+        type: 'add',
+        path: 'api/hooks/{{name}}/index.js',
+        templateFile: 'generators/hook.hbs',
       }];
     },
   });

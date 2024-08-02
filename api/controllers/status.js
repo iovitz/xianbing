@@ -1,14 +1,17 @@
+/**
+ * status action
+ *
+ * @description :: 获取服务运行状态
+ * @usage       :: 'GET /api/v1/status': { action: 'status' },
+ */
+
 module.exports = {
-
-  friendlyName: '{{friendlyName}}',
-
-  description: '{{name}}',
 
   inputs: {
     // name: {
     //   type: 'string',
     //   example: 'zhangsan',
-    //   description: 'username',
+    //   description: 'Someone\'s name',
     //   required: true,
     //   custom() {
     //     return true;
@@ -26,7 +29,7 @@ module.exports = {
   },
 
   async fn(input, exits) {
-    exits.badRequest('niubi');
+    exits.ok(await sails.helpers.request.getPaging.with({}));
   },
 
 };

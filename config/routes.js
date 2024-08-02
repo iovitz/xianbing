@@ -31,17 +31,5 @@ module.exports.routes = {
   * not match any of those, it is matched against static assets.             *
   *                                                                          *
   ************************************************************************** */
-  'GET /api/status': { action: 'status' },
-
-  'POST /api/v1/auth/login': { action: 'auth/login' },
-  'POST /api/v1/auth/register': { action: 'auth/register' },
-
-  'POST /api/v1/search/content': { action: 'search/content' },
-
-  'POST /api/v1/varify/verify-code': { action: 'varify/verify-code' },
-
-  'POST /api/v1/lyric/list': { action: 'lyric/list' },
-  'POST /api/v1/lyric/upload': { action: 'lyric/upload' },
-
-  'POST /api/v1/github/commits': { action: 'github/commits' },
+  'GET /api/v1/status': { action: 'status' },
 };

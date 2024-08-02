@@ -1,3 +1,17 @@
+/**
+ * serverError response
+ *
+ * @description :: 服务端内部错误
+ * @usage       ::
+ * ```
+ *     exits: {
+ *       somethingHappened: {
+ *         responseType: 'serverError'
+ *       }
+ *     }
+ * ```
+ */
+
 const statuses = require('statuses');
 
 module.exports = function (err) {

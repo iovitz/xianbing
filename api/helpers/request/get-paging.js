@@ -1,8 +1,8 @@
 /**
- * {{friendlyName}} helper
+ * get-paging helper
  *
- * @description :: {{description}}
- * @usage       :: {{usage}}
+ * @description :: 从Query参数中获取分页配置
+ * @usage       :: await sails.helpers.request.getPaging.with({})
  */
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   async fn(inputs, exits) {
-    const data = '{{friendlyName}}';
+    const data = 'get-paging';
 
     return exits.success(data);
   },

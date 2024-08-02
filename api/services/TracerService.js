@@ -1,8 +1,15 @@
+/**
+ * TracerService
+ *
+ * @description :: 追踪请求日志
+ * @usage       :: TracerService.[methodName]()
+ */
+
 const { customAlphabet } = require('nanoid');
 
 const nanoidGenerator = customAlphabet('0123456789', 7);
 
-const ServiceObject = {
+const Service = {
 
   getLogInfo(req) {
     const requestId = _.get(req, 'tracer.id') || 'UNKNOWN';
@@ -38,4 +45,4 @@ const ServiceObject = {
   },
 };
 
-module.exports = ServiceObject;
+module.exports = Service;

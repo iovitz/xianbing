@@ -1,10 +1,24 @@
+/**
+ * badRequest response
+ *
+ * @description :: 错误请求
+ * @usage       ::
+ * ```
+ *     exits: {
+ *       somethingHappened: {
+ *         responseType: 'badRequest'
+ *       }
+ *     }
+ * ```
+ */
+
 const statuses = require('statuses');
 
-module.exports = function (err, customCode) {
-  const code = customCode ?? 40000;
-  const message = err instanceof Error ? _.get(err, 'message') : err;
-  return this.res.status(400).send({
-    code,
-    msg: message || statuses(400),
+module.exports = function (err) {
+  const code = _.get(err, 'code');
+  const message = _.get(err, 'message');
+  return this.res.status(404).send({
+    code: code || 40004,
+    msg: message || statuses(404),
   });
 };

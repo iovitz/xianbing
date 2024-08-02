@@ -1,3 +1,10 @@
+/**
+ * UserService
+ *
+ * @description :: 处理User表的CRUD
+ * @usage       :: UserService.[methodName]()
+ */
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { nanoid, customAlphabet } = require('nanoid');
@@ -91,6 +98,7 @@ const Service = {
     const pass = bcrypt.hash(password, salt);
     return pass;
   },
+
 };
 
 module.exports = Service;
