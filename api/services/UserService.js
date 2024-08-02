@@ -6,7 +6,7 @@ const { Op } = require('sequelize');
 const idGenerator = customAlphabet('0123456789', 9);
 const avatarGenerator = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 10);
 
-module.exports = {
+const Service = {
   genUserId() {
     return `2${idGenerator()}`;
   },
@@ -50,6 +50,7 @@ module.exports = {
   },
 
   findByUsername(username, withPassword = false) {
+    // TracerService.aef
     return this.User.findOne({
       where: {
         username,
@@ -91,3 +92,5 @@ module.exports = {
     return pass;
   },
 };
+
+module.exports = Service;

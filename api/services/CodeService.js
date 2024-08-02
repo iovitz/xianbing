@@ -2,7 +2,7 @@ const moment = require('moment');
 const Pako = require('pako');
 const svgCaptcha = require('svg-captcha');
 
-module.exports = {
+const Service = {
   ungzip(gzipBase64Str) {
     return JSON.parse(Pako.ungzip(Buffer.from(gzipBase64Str, 'base64'), { to: 'string' }));
   },
@@ -46,3 +46,5 @@ module.exports = {
     return true;
   },
 };
+
+module.exports = Service;

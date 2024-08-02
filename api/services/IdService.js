@@ -2,8 +2,10 @@ const { customAlphabet } = require('nanoid');
 
 const idGenerator = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789', 9);
 
-module.exports = {
+const Service = {
   genId(prefix) {
     return prefix + idGenerator();
   },
 };
+
+module.exports = Service;

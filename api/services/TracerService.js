@@ -2,7 +2,7 @@ const { customAlphabet } = require('nanoid');
 
 const nanoidGenerator = customAlphabet('0123456789', 7);
 
-module.exports = {
+const ServiceObject = {
 
   getLogInfo(req) {
     const requestId = _.get(req, 'tracer.id') || 'UNKNOWN';
@@ -37,3 +37,5 @@ module.exports = {
     return Date.now() + nanoidGenerator();
   },
 };
+
+module.exports = ServiceObject;
