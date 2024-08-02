@@ -5,18 +5,19 @@ meta {
 }
 
 post {
-  url: {{baseUrl}}/api/v1/auth/register?page=123
+  url: {{baseUrl}}/api/v1/auth/register?page=1&perPage=20
   body: json
   auth: none
 }
 
 params:query {
-  page: 123
+  page: 1
+  perPage: 20
 }
 
 body:json {
   {
-    "nickname": "zhangsan",
+    "nickname": 123,
     "email": "18",
     "password": "29"
   }

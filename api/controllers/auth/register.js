@@ -39,9 +39,9 @@ module.exports = {
 
   async fn(input, exits) {
     const { req } = this;
+    const paging = await sails.helpers.request.getPaging.with(req.query);
 
-    const res = sails.models.pagination.validate('page', 'aewfaf');
-    return exits.badRequest('niubi');
+    return exits.badRequest(paging);
   },
 
 };
