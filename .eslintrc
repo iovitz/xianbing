@@ -53,6 +53,7 @@
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/no-dynamic-require": "off",
-    "no-throw-literal": "off"
+    "no-throw-literal": "off",
+    "no-useless-escape": "off"
   }
 }

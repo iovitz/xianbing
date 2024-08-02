@@ -32,4 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ************************************************************************** */
   'GET /api/v1/status': { action: 'status' },
+
+  'POST /api/v1/user/register': { action: 'user/register' },
 };

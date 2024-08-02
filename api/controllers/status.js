@@ -29,7 +29,7 @@ module.exports = {
   },
 
   async fn(input, exits) {
-    exits.ok(await sails.helpers.request.getPaging.with({}));
+    exits.ok('Running');
   },
 
 };
