@@ -1,0 +1,21 @@
+/**
+ * {{name}} hook
+ *
+ * @description :: {{description}}
+ */
+
+module.exports = function defineLimiterHook(sails) {
+
+  // ...Your Code
+
+  return {
+
+    /**
+     * Runs when this Sails app loads/lifts.
+     */
+    async initialize() {
+      sails.log.info('Initializing custom hook (`{{name}}`)');
+    },
+
+  };
+};

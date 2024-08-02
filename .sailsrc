@@ -1,8 +1,6 @@
 {
   "generators": {
-    "modules": {
-      "test": "./generators/action"
-    }
+    "modules": {}
   },
   "_generatedWith": {
     "sails": "1.5.11",

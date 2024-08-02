@@ -1,14 +1,17 @@
+/**
+ * {{friendlyName}} action
+ *
+ * @description :: {{description}}
+ * @usage       :: '{{method}} /api/v1/{{name}}': { action: '{{name}}' },
+ */
+
 module.exports = {
-
-  friendlyName: '{{friendlyName}}',
-
-  description: '{{name}}',
 
   inputs: {
     // name: {
     //   type: 'string',
     //   example: 'zhangsan',
-    //   description: 'username',
+    //   description: 'Someone\'s name',
     //   required: true,
     //   custom() {
     //     return true;
@@ -26,7 +29,10 @@ module.exports = {
   },
 
   async fn(input, exits) {
-    exits.badRequest('niubi');
+
+    const data = 'success'
+
+    exits.ok(data);
   },
 
 };

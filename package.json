@@ -29,10 +29,12 @@
     "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
-    "ejs": "^3.1.10",
+    "camelcase": "^6.3.0",
+    "decamelize": "^5.0.1",
     "eslint": "8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "plop": "^4.0.1"
   },
   "scripts": {
     "dev": "NODE_ENV=development ./node_modules/.bin/nodemon app.js",
