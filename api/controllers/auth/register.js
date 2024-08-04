@@ -64,14 +64,19 @@ module.exports = {
 
   async fn(input, exits) {
     // 校验验证码
-    const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
+    const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'register', input.code);
     if (!isVerifyCodeRight) {
       return exits.badRequest('验证码错误');
     }
-    UserService.createUser();
-    const data = 'success';
+    const res = await AuthService.createUser({
+      ...input,
+    });
+    const session = await AuthService.createSession(res.id);
 
-    return exits.ok(data);
+    return exits.ok({
+      ...res,
+      session,
+    });
   },
 
 };

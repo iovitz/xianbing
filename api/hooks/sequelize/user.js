@@ -29,15 +29,14 @@ module.exports = (sequelize) => {
       platform: {
         field: 'platform',
         type: DataTypes.STRING(10),
-        unique: true,
-        allowNull: false,
+        allowNull: true,
         comment: '三方登录平台类型',
       },
       platformId: {
         field: 'platformId',
         type: DataTypes.STRING(10),
         unique: true,
-        allowNull: false,
+        allowNull: true,
         comment: '三方平台ID',
       },
       email: {

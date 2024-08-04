@@ -8,9 +8,9 @@
 const { DataTypes, Model } = require('sequelize');
 
 module.exports = (sequelize) => {
-  class User extends Model {
+  class UserProfile extends Model {
   }
-  User.init(
+  UserProfile.init(
     {
       idx: {
         field: 'idx',
@@ -70,6 +70,11 @@ module.exports = (sequelize) => {
       updatedAt: 'updatedAt',
       createdAt: 'createdAt',
       deletedAt: 'deletedAt',
+      defaultScope: {
+        attributes: {
+          exclude: ['createdAt', 'updatedAt', 'deletedAt'],
+        },
+      },
     },
   );
 };

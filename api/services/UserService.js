@@ -5,13 +5,11 @@
  * @usage       :: UserService.[methodName]()
  */
 
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { nanoid, customAlphabet } = require('nanoid');
+const { customAlphabet } = require('nanoid');
 const { Op } = require('sequelize');
 
 const idGenerator = customAlphabet('0123456789', 9);
-const avatarGenerator = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 10);
 
 const Service = {
   genUserId() {
@@ -20,19 +18,6 @@ const Service = {
 
   get User() {
     return sails.mysql.User;
-  },
-
-  async createUser(data) {
-    const userId = this.genUserId();
-    return this.User.create({
-      nickname: this.genRandomNickname(),
-      userId,
-      avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${this.app.config.multiavatar_key}`,
-      username: data.username,
-      password: data.password,
-      fansNumber: 0,
-      voiceNumber: 0,
-    });
   },
 
   async searchUser(page, perPage, content) {
@@ -68,15 +53,11 @@ const Service = {
     }).then((r) => r);
   },
 
-  genRandomNickname() {
-    return `用户${nanoid(5)}`;
-  },
-
   createToken(data) {
     return (
       `Bearer ${
         jwt.sign(data, this.app.config.jwt.secret, {
-          expiresIn: this.app.config.jwt.expiresIn,
+          expiresIn: '30d',
         })}`
     );
   },
@@ -88,17 +69,6 @@ const Service = {
       },
     };
   },
-
-  comparePassword(password, hash) {
-    return bcrypt.compare(password, hash);
-  },
-
-  async encryptPassword(password) {
-    const salt = await bcrypt.genSalt(10);
-    const pass = bcrypt.hash(password, salt);
-    return pass;
-  },
-
 };
 
 module.exports = Service;

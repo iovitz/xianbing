@@ -5,6 +5,7 @@
  * @usage       :: EcryptService.[methodName]()
  */
 
+const bcrypt = require('bcryptjs');
 const Pako = require('pako');
 
 const Service = {
@@ -20,6 +21,17 @@ const Service = {
   strToGzipBase64(str) {
     return Buffer.from(pako.gzip(str, { level: 9 })).toString('base64');
   },
+
+  comparePassword(password, hash) {
+    return bcrypt.compare(password, hash);
+  },
+
+  async encryptPassword(password) {
+    const salt = await bcrypt.genSalt(10);
+    const pass = bcrypt.hash(password, salt);
+    return pass;
+  },
+
 };
 
 module.exports = Service;

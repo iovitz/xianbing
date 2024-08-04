@@ -21,10 +21,10 @@ const Service = {
     });
   },
 
-  checkVerifyCode(session, field, text) {
+  checkVerifyCode(session, type, text) {
     // 获取验证码
-    const code = session[`#c_${field}`] ?? '';
-    const codeTime = session[`#t_${field}`] ?? '';
+    const code = session[`#c_${type}`] ?? '';
+    const codeTime = session[`#t_${type}`] ?? '';
     // 判断验证码是不是30Min内下发的
     if (moment(codeTime).add(30, 'M') < moment(Date.now())) {
       sails.log.warn('验证码过期', codeTime);
@@ -37,8 +37,8 @@ const Service = {
       });
       return false;
     }
-    delete ctx.session[`#c_${field}`];
-    delete ctx.session[`#t_${field}`];
+    delete session[`#c_${type}`];
+    delete session[`#t_${type}`];
     return true;
   },
 
