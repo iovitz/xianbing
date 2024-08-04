@@ -28,7 +28,7 @@ module.exports = {
     },
   },
 
-  async fn(input, exits) {
+  async fn(input, exit) {
     console.log(sails.config);
     exits.ok('Running');
   },

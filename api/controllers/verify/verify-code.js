@@ -46,7 +46,7 @@ module.exports = {
     },
   },
 
-  async fn(input, exits) {
+  async fn(input, exit) {
     const { data, text: code } = VerifyService.getVerifyCode(input.width, input.height);
 
     // TODO 直接存入Session，需要主动清除

@@ -1,8 +1,8 @@
 /**
- * EcryptService
+ * EncryptService
  *
  * @description :: 负责处理一些字符串加密逻辑
- * @usage       :: EcryptService.[methodName]()
+ * @usage       :: EncryptService.[methodName]()
  */
 
 const bcrypt = require('bcryptjs');

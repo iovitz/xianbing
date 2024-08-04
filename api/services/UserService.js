@@ -5,19 +5,11 @@
  * @usage       :: UserService.[methodName]()
  */
 
-const jwt = require('jsonwebtoken');
-const { customAlphabet } = require('nanoid');
 const { Op } = require('sequelize');
 
-const idGenerator = customAlphabet('0123456789', 9);
-
 const Service = {
-  genUserId() {
-    return `2${idGenerator()}`;
-  },
-
-  get User() {
-    return sails.mysql.User;
+  get UserProfile() {
+    return sails.mysql.models.UserProfile;
   },
 
   async searchUser(page, perPage, content) {
@@ -41,32 +33,18 @@ const Service = {
     });
   },
 
-  findByUsername(username, withPassword = false) {
+  findUserProfileById(id) {
     // TracerService.aef
-    return this.User.findOne({
+    return this.UserProfile.findOne({
       where: {
-        username,
+        id,
       },
-      attributes: {
-        include: withPassword ? ['password'] : [],
-      },
-    }).then((r) => r);
+    });
   },
 
-  createToken(data) {
-    return (
-      `Bearer ${
-        jwt.sign(data, this.app.config.jwt.secret, {
-          expiresIn: '30d',
-        })}`
-    );
-  },
-
-  getUserInfoByModel(userModel) {
+  getUserProfileInfo(userProfileModel) {
     return {
-      user: {
-        ..._.pick(userModel, ['userId', 'nickname', 'username', 'avatar', 'state']),
-      },
+      ..._.pick(userProfileModel, ['id', 'avatar', 'nickname', 'fansNumber', 'voiceNumber']),
     };
   },
 };
