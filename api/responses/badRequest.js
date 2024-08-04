@@ -14,11 +14,10 @@
 
 const statuses = require('statuses');
 
-module.exports = function (err) {
-  const code = _.get(err, 'code');
-  const message = _.get(err, 'message');
-  return this.res.status(404).send({
-    code: code || 40004,
-    msg: message || statuses(404),
+module.exports = function (err, code = 40000, statusCode = 400) {
+  const message = typeof err === 'object' ? _.get(err, 'message') : err;
+  return this.res.status(statusCode).send({
+    code,
+    msg: message ?? statuses(404),
   });
 };

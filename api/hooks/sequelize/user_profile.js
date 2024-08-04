@@ -1,8 +1,8 @@
 /**
  * User
  *
- * @description :: 用户账号表
- * @usage       :: sails.models.User
+ * @description :: 用户信息表
+ * @usage       :: sails.models.UserProfile
  */
 
 const { DataTypes, Model } = require('sequelize');
@@ -26,31 +26,33 @@ module.exports = (sequelize) => {
         allowNull: false,
         comment: '雪花ID',
       },
-      platform: {
-        field: 'platform',
+      nickname: {
+        field: 'nickname',
         type: DataTypes.STRING(10),
-        unique: true,
         allowNull: false,
-        comment: '三方登录平台类型',
+        comment: '用户昵称',
       },
-      platformId: {
-        field: 'platformId',
-        type: DataTypes.STRING(10),
-        unique: true,
-        allowNull: false,
-        comment: '三方平台ID',
+      avatar: {
+        field: 'avatar',
+        type: DataTypes.STRING(100),
+        allowNull: true,
+        comment: '头像URL',
       },
-      email: {
-        field: 'email',
-        type: DataTypes.STRING(30),
+      // 粉丝数
+      fansNumber: {
+        field: 'fansNumber',
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
-        comment: '用户邮箱',
+        defaultValue: 0,
+        comment: '粉丝数',
       },
-      password: {
-        field: 'password',
-        type: DataTypes.STRING(60),
+      // 粉丝数
+      voiceNumber: {
+        field: 'voiceNumber',
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
-        comment: 'Bcrypt加密的密码',
+        defaultValue: 0,
+        comment: '发布的声音数量',
       },
       state: {
         field: 'state',
@@ -62,7 +64,7 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      tableName: 'user',
+      tableName: 'user_profile',
       charset: 'utf8mb4',
       collate: 'utf8mb4_0900_ai_ci',
       updatedAt: 'updatedAt',

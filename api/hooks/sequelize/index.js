@@ -20,6 +20,7 @@ module.exports = function (sails) {
   });
 
   require('./user')(sequelize);
+  require('./user_profile')(sequelize);
   require('./lyric')(sequelize);
   require('./lyric_history')(sequelize);
   require('./voice')(sequelize);
@@ -36,7 +37,7 @@ module.exports = function (sails) {
     async initialize() {
       // 开发环境下按需同步
       if (sails.config.environment === 'development') {
-        // await sequelize.sync(); // 同步模型和数据库
+        await sequelize.sync(); // 同步模型和数据库
       }
       sails.log.info('Initializing custom hook (`sequelize`)');
     },

@@ -63,10 +63,15 @@ module.exports = {
   },
 
   async fn(input, exits) {
-    VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
+    // 校验验证码
+    const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
+    if (!isVerifyCodeRight) {
+      return exits.badRequest('验证码错误');
+    }
+    UserService.createUser();
     const data = 'success';
 
-    exits.ok(data);
+    return exits.ok(data);
   },
 
 };

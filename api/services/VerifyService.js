@@ -25,15 +25,17 @@ const Service = {
     // 获取验证码
     const code = session[`#c_${field}`] ?? '';
     const codeTime = session[`#t_${field}`] ?? '';
+    // 判断验证码是不是30Min内下发的
     if (moment(codeTime).add(30, 'M') < moment(Date.now())) {
-      throw { basRequest: '123' };
+      sails.log.warn('验证码过期', codeTime);
+      return false;
     }
     if (text.toLowerCase() !== code.toLowerCase()) {
       sails.log.warn('验证码校验失败', {
         input: text.toLowerCase(),
         right: code.toLowerCase(),
       });
-      throw { basRequest: '验证码错误' };
+      return false;
     }
     delete ctx.session[`#c_${field}`];
     delete ctx.session[`#t_${field}`];
