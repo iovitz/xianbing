@@ -34,7 +34,6 @@ const Service = {
   },
 
   findUserProfileById(id) {
-    // TracerService.aef
     return this.UserProfile.findOne({
       where: {
         id,

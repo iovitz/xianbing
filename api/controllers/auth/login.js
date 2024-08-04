@@ -52,10 +52,10 @@ module.exports = {
 
   async fn(input, exits) {
     // 校验验证码
-    // const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'register', input.code);
-    // if (!isVerifyCodeRight) {
-    //   return exits.badRequest('验证码错误');
-    // }
+    const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
+    if (!isVerifyCodeRight) {
+      return exits.badRequest('验证码错误');
+    }
 
     const existsUser = await AuthService.findUserByEmail(input.email);
 
