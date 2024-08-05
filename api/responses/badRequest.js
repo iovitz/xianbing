@@ -18,6 +18,6 @@ module.exports = function (err, code = 40000, statusCode = 400) {
   const message = typeof err === 'object' ? _.get(err, 'message') : err;
   return this.res.status(statusCode).send({
     code,
-    msg: message ?? statuses(404),
+    message: message ?? statuses(404),
   });
 };

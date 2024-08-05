@@ -19,6 +19,6 @@ module.exports = function (err) {
   const message = _.get(err, 'message');
   return this.res.status(404).send({
     code: code || 40004,
-    msg: message || statuses(404),
+    message: message || statuses(404),
   });
 };

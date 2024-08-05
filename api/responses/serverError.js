@@ -21,6 +21,6 @@ module.exports = function (err) {
 
   return this.res.status(500).send({
     code: code || 50000,
-    msg: message || statuses(500),
+    message: message || statuses(500),
   });
 };
