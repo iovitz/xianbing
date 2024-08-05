@@ -8,15 +8,6 @@
 module.exports = {
 
   inputs: {
-    // name: {
-    //   type: 'string',
-    //   example: 'zhangsan',
-    //   description: 'Someone\'s name',
-    //   required: true,
-    //   custom() {
-    //     return true;
-    //   },
-    // },
   },
 
   exits: {
@@ -28,9 +19,8 @@ module.exports = {
     },
   },
 
-  async fn(input, exit) {
-    console.log(sails.config);
-    exits.ok('Running');
+  async fn(input, exits) {
+    return exits.ok('Success');
   },
 
 };

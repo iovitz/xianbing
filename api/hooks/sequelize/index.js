@@ -1,15 +1,18 @@
-const { Sequelize } = require('sequelize');
-
 /**
- * sequelize hook
+ * MySQL hook
  *
  * @description :: 初始刷MySQL的Sequelize链接
  */
 
+const { Sequelize } = require('sequelize');
+const cryptoJS = require('crypto-js');
+
 module.exports = function (sails) {
+  const { mysql, encrypt } = sails.config.secret;
+
   // 配置连接参数
-  const sequelize = new Sequelize('duuk_server', 'duuk_server', 'WC4CdduthwFTigRJ', {
-    host: 'mysql.sqlpub.com',
+  const sequelize = new Sequelize(mysql.dbName, mysql.user, cryptoJS.AES.decrypt(mysql.aesPassword, encrypt.aes).toString(cryptoJS.enc.Utf8), {
+    host: mysql.host,
     dialect: 'mysql',
     logging(sql) {
       sails.log.info(sql);

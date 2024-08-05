@@ -20,6 +20,9 @@ dependencies:
   chalk:
     specifier: 4.1.2
     version: 4.1.2
+  crypto-js:
+    specifier: ^4.2.0
+    version: 4.2.0
   grunt:
     specifier: 1.0.4
     version: 1.0.4
@@ -1699,6 +1702,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
+    dev: false
 
   /csrf@3.1.0:
     resolution: {integrity: sha512-uTqEnCvWRk042asU6JtapDTcJeeailFy4ydOQS28bj1hcLnYRiqi8SsD2jS412AY1I/4qdOwWZun774iqywf9w==}
