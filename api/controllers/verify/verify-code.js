@@ -46,14 +46,14 @@ module.exports = {
     },
   },
 
-  async fn(input, exit) {
+  async fn(input, exits) {
     const { data, text: code } = VerifyService.getVerifyCode(input.width, input.height);
 
     // TODO 直接存入Session，需要主动清除
     this.req.session[`#c_${input.type}`] = code;
     this.req.session[`#t_${input.type}`] = Date.now();
 
-    exits.ok(data);
+    return exits.ok(data);
   },
 
 };
