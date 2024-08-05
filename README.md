@@ -23,14 +23,13 @@ module.exports = {
       host: 'mysql.sqlpub.com',
       dbName: 'duuk_server',
       user: 'duuk_server',
-      // 用下面的 `encrypt.aes` 进行AES加密之后的password，避免明文展示密码
+      // 用 `encrypt.aes` 进行AES加密之后的password，避免明文展示密码
       aesPassword: 'U2FsdGVkX1+prMWzXmqIsNyV1X4svmDjqhTvHKZbGiQAK2D/w6M76fbEVsHqWlY1',
     },
 
     // https://multiavatar.com/ 申请的头像Key
-    multiavatar: {
-      secretKey: 'DZedWIB9UxGjm8',
-    },
+    // 用 `encrypt.aes` 进行AES加密之后的key，避免明文展示
+    aesMultiAvatarKey: 'U2FsdGVkX18WZxy00fKmcEz26pqoJ6N+mvkQWRwvkqc=',
 
     encrypt: {
       // 随机生成的nanoid

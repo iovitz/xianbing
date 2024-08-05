@@ -7,10 +7,12 @@
 
 const { customAlphabet } = require('nanoid');
 const { v4: uuidv4 } = require('uuid');
+const cryptoJS = require('crypto-js');
 
 const avatarGenerator = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', 10);
 
 const Service = {
+  multiAvatarToken: cryptoJS.AES.decrypt(sails.config.secret.aesMultiAvatarKey, sails.config.secret.encrypt.aes).toString(cryptoJS.enc.Utf8),
 
   get User() {
     return sails.mysql.models.User;
@@ -38,7 +40,7 @@ const Service = {
       const userProfile = await this.UserProfile.create({
         id,
         nickname: data.nickname,
-        avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${355}`,
+        avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${this.multiAvatarToken}`,
       }, {
         transaction: t,
       });
