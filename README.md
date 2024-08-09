@@ -1,5 +1,7 @@
 # duuk-server
 
+## 项目概述
+
 ## 准备`config/local.js`文件
 
 ```js

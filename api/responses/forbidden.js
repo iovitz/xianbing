@@ -14,10 +14,13 @@
 
 const statuses = require('statuses');
 
-module.exports = function (err) {
+module.exports = async function (err) {
   const code = _.get(err, 'code');
   const message = _.get(err, 'message');
+  TracerService.info(this.res, '请求无权限', err);
+
   return this.res.status(403).send({
+    ...(sails.config.environment === 'development' ? await sails.helpers.request.getRequestInfo(this.res) : {}),
     code: code || 40003,
     message: message || statuses(403),
   });

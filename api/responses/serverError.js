@@ -14,12 +14,13 @@
 
 const statuses = require('statuses');
 
-module.exports = function (err) {
+module.exports = async function (err) {
   const code = _.get(err, 'code');
   const message = _.get(err, 'message');
   TracerService.error(this.res, '服务端内部错误', err);
 
   return this.res.status(500).send({
+    ...(sails.config.environment === 'development' ? await sails.helpers.request.getRequestInfo(this.res) : {}),
     code: code || 50000,
     message: message || statuses(500),
   });

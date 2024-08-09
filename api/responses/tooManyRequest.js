@@ -14,9 +14,10 @@
 
 const statuses = require('statuses');
 
-module.exports = function () {
+module.exports = async function () {
   TracerService.warn(this.req, '请求过多');
   return this.res.status(429).send({
+    ...(sails.config.environment === 'development' ? await sails.helpers.request.getRequestInfo(this.res) : {}),
     code: 0,
     message: statuses(429),
   });

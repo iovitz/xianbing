@@ -20,7 +20,8 @@ module.exports = {
   },
 
   async fn(input, exits) {
-    return exits.ok('Success');
+    return exits.badRequest(123);
+    // return exits.ok('Success');
   },
 
 };
