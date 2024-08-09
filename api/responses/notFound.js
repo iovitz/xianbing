@@ -20,7 +20,7 @@ module.exports = async function (err) {
   TracerService.info(this.res, '请求404', err);
 
   return this.res.status(404).send({
-    ...(sails.config.environment === 'development' ? await sails.helpers.request.getRequestInfo(this.res) : {}),
+    ...(sails.config.isProd ? {} : await sails.helpers.request.getRequestInfo(this.res)),
     code: code || 40004,
     message: message || statuses(404),
   });

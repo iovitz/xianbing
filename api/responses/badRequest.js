@@ -19,7 +19,7 @@ module.exports = async function (err, code = 40000, statusCode = 400) {
   TracerService.info(this.res, '客户端请求错误', err);
 
   return this.res.status(statusCode).send({
-    ...(sails.config.environment === 'development' ? await sails.helpers.request.getRequestInfo(this.res) : {}),
+    ...(sails.config.isProd ? {} : await sails.helpers.request.getRequestInfo(this.res)),
     code,
     message: message ?? statuses(404),
   });

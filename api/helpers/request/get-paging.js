@@ -8,18 +8,15 @@
 module.exports = {
 
   inputs: {
-    // name: {
-    //   type: 'string',
-    //   example: 'zhangsan',
-    //   description: 'Someone\'s name',
-    //   required: true,
-    //   custom() {
-    //     return true;
-    //   },
-    // },
+    req: {
+      type: 'ref',
+      example: {},
+      description: 'request object',
+      required: true,
+    },
   },
 
-  async fn(inputs, exits) {
+  async fn({ req }, exits) {
     const data = 'get-paging';
 
     return exits.success(data);

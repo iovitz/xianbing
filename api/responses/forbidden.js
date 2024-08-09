@@ -20,7 +20,7 @@ module.exports = async function (err) {
   TracerService.info(this.res, '请求无权限', err);
 
   return this.res.status(403).send({
-    ...(sails.config.environment === 'development' ? await sails.helpers.request.getRequestInfo(this.res) : {}),
+    ...(sails.config.isProd ? {} : await sails.helpers.request.getRequestInfo(this.res)),
     code: code || 40003,
     message: message || statuses(403),
   });
