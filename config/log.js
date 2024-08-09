@@ -44,7 +44,7 @@ const consoleTransport = new transports.Console({
   // 使用时间戳和nest样式
   format: format.combine(
     all(),
-    format.timestamp({ format: 'MM-DD HH:mm:ss:SSS' }),
+    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
     format.printf((i) => {
       const t = chalk.gray(i.timestamp);
       const message = chalk.blue(i.message);
@@ -63,7 +63,7 @@ const infoTransport = new transports.DailyRotateFile({
   level: 'info',
   format: format.combine(
     all(),
-    format.timestamp({ format: 'MM-DD HH:mm:ss:SSS' }),
+    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
     format.printf((i) => {
       const t = i.timestamp;
       const { message } = i;
@@ -82,7 +82,7 @@ const errorTransport = new transports.DailyRotateFile({
   level: 'error',
   format: format.combine(
     all(),
-    format.timestamp({ format: 'MM-DD HH:mm:ss:SSS' }),
+    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
     format.printf((i) => {
       const t = i.timestamp;
       const { message } = i;
