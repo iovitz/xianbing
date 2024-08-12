@@ -27,6 +27,7 @@ module.exports = {
     "react/function-component-definition": 0,
     "import/extensions": 0,
     "import/no-unresolved": 0,
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "react/jsx-no-bind": 0,
   },
 };
