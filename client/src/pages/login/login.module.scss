@@ -1,0 +1,25 @@
+.login-page {
+  padding: 20px;
+  .icon-wrapper {
+    font-size: 150px;
+    text-align: center;
+    color: var(--rv-gray-5);
+  }
+  .input-container {
+    padding: 10px 20px;
+    background-color: var(--rv-gray-3);
+    border-radius: var(--rv-border-radius-lg);
+    margin-bottom: var(--rv-padding-md);
+  }
+  .tip-text {
+    text-align: center;
+    margin-top: var(--rv-padding-lg);
+  }
+  .notive-bar {
+    --rv-notice-bar-font-size: var(--rv-font-size-sm);
+    margin-bottom: var(--rv-padding-md);
+  }
+  .link {
+    text-decoration: underline;
+  }
+}

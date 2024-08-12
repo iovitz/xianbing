@@ -29,8 +29,9 @@ import "@ionic/react/css/display.css";
 import "@ionic/react/css/palettes/dark.system.css";
 
 import "react-vant/es/styles/base.css";
-// vant主题色需要在 react-vant/es/styles/base.css 之后导入，否则会被覆盖
 import "./theme/variables.scss";
+import "./theme/component.scss";
+import "./theme/global.scss";
 
 import App from "./App";
 

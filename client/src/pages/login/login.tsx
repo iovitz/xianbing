@@ -1,51 +1,69 @@
-import { IonContent, IonPage } from "@ionic/react";
+import { IonContent, IonPage, useIonToast } from "@ionic/react";
 import { useHistory } from "react-router";
-import { NavBar, Input, Button, Form } from "react-vant";
+import { Input, Button, Typography, NoticeBar } from "react-vant";
+
+import { Edit, Volume } from "@react-vant/icons";
+import { closeSharp } from "ionicons/icons";
+import style from "./login.module.scss";
 
 export default function Login() {
   const history = useHistory();
-  const [form] = Form.useForm();
+  const [present] = useIonToast();
+  function login() {
+    const pass = false;
+    if (pass) {
+      present({
+        message: "登录成功",
+        duration: 15000,
+        position: "top",
+        mode: "ios",
+        cssClass: "success",
+      });
+    } else {
+      present({
+        message: "校验失败",
+        duration: 1500,
+        position: "top",
+        mode: "ios",
+        icon: closeSharp,
+      });
+    }
+  }
 
-  const onFinish = (values: unknown) => {
-    console.log(values);
-  };
   return (
     <IonPage>
-      <IonContent fullscreen>
-        <NavBar
-          title="登录"
-          leftText="返回"
-          onClickLeft={() => {
-            history.replace("/index/setting");
-          }}
-        />
-        <Form
-          form={form}
-          onFinish={onFinish}
-          footer={
-            <div style={{ margin: "16px 16px 0" }}>
-              <Button round nativeType="submit" type="primary" block>
-                提交
-              </Button>
-            </div>
-          }
-        >
-          <Form.Item
-            tooltip={{
-              message:
-                "A prime is a natural number greater than 1 that has no positive divisors other than 1 and itself.",
-            }}
-            intro="确保这是唯一的用户名"
-            rules={[{ required: true, message: "请填写用户名" }]}
-            name="username"
-            label="用户名"
-          >
-            <Input placeholder="请输入用户名" />
-          </Form.Item>
-          <Form.Item rules={[{ required: true, message: "请填写密码" }]} name="password" label="密码">
-            <Input placeholder="请输入密码" />
-          </Form.Item>
-        </Form>
+      <IonContent fullscreen color="light">
+        <div className={style["login-page"]}>
+          <div className={style["icon-wrapper"]}>
+            <Edit />
+          </div>
+          <NoticeBar
+            leftIcon={<Volume />}
+            scrollable={false}
+            wrapable
+            className={style["notive-bar"]}
+            text="首先这是个学习项目，然后我数据库运维技术比较差，所以你们使用的过程中数据安全是完全没有保障的，我意思是说可能你们的账户数据会被我不小心搞没，然后等我哪天能确保数据安全了那我就移除这条公告"
+          />
+          <div className={style["input-container"]}>
+            <Input placeholder="请输入昵称" />
+          </div>
+          <div className={style["input-container"]}>
+            <Input placeholder="请输入邮箱（用于找回密码）" />
+          </div>
+          <div className={style["input-container"]}>
+            <Input placeholder="请输入密码" type="password" />
+          </div>
+
+          <Button type="primary" onClick={login} block>
+            登录
+          </Button>
+
+          <div className={style["tip-text"]}>
+            <Typography.Text size="sm" type="secondary">
+              登录则视为同意 <span className={style.link}>用户使用协议</span>
+            </Typography.Text>
+          </div>
+        </div>
       </IonContent>
     </IonPage>
   );
