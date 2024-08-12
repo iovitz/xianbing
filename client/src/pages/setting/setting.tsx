@@ -3,7 +3,7 @@ import { IonContent, IonPage } from "@ionic/react";
 import { useHistory } from "react-router";
 import { Button } from "react-vant";
 
-export default function Mine() {
+export default function Setting() {
   const history = useHistory();
   function goLogin() {
     history.push("/login");

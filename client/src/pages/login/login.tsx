@@ -16,7 +16,7 @@ export default function Login() {
           title="登录"
           leftText="返回"
           onClickLeft={() => {
-            history.goBack();
+            history.replace("/index/setting");
           }}
         />
         <Form

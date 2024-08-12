@@ -1,11 +1,11 @@
 import React from "react";
 import { IonContent, IonPage } from "@ionic/react";
 
-export default function Sing() {
+export default function Dashboard() {
   return (
     <IonPage>
       <IonContent fullscreen>
-        <h1>Sing</h1>
+        <h1>Dashboard</h1>
       </IonContent>
     </IonPage>
   );
