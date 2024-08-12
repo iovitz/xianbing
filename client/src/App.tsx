@@ -41,6 +41,7 @@ import "@ionic/react/css/palettes/dark.system.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import "./styles/theme.scss";
 import Login from "./pages/login/login";
 import Home from "./pages/home/home";
 import Sing from "./pages/sing/sing";

@@ -1,6 +1,7 @@
 import React from "react";
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 import { useHistory } from "react-router";
+import { Button } from "react-vant";
 
 export default function Mine() {
   const history = useHistory();
@@ -9,14 +10,11 @@ export default function Mine() {
   }
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Mine</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
         <h1>Mine</h1>
-        <IonButton onClick={goLogin}>123</IonButton>
+        <Button onClick={goLogin} type="primary" block round>
+          点击进行登录
+        </Button>
       </IonContent>
     </IonPage>
   );
