@@ -12,7 +12,6 @@ export default function Dashboard() {
       </IonHeader>
 
       <IonContent fullscreen>
-        <h1>Dashboard</h1>
       </IonContent>
     </IonPage>
   );

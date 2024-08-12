@@ -30,5 +30,6 @@ module.exports = {
     "react/prop-types": 0,
     "react/jsx-no-bind": 0,
     "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
   },
 };

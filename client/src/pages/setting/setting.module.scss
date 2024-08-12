@@ -5,6 +5,10 @@
     background-color: var(--rv-gray-3);
     border-radius: var(--rv-border-radius-lg);
     margin-bottom: var(--rv-padding-md);
+    transition: all ease 300;
+    &:hover {
+      background-color: var(--rv-gray-4);
+    }
     &.menu-item {
       padding: 20px 20px;
       display: flex;
