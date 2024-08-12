@@ -8,6 +8,7 @@ export default function Dashboard() {
       <IonHeader>
         <div className="global-header-wrapper">
           <Typography.Text size="xxl">仪表盘</Typography.Text>
+
         </div>
       </IonHeader>
 

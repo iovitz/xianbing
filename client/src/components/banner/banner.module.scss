@@ -1,0 +1,47 @@
+.banner {
+  padding: 20px 20px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  margin-top: 20px;
+  color: var(--rv-white);
+  &,
+  &::before,
+  &::after {
+    background-color: var(--rv-primary-color);
+    border-radius: var(--rv-border-radius-lg);
+    margin-bottom: var(--rv-padding-md);
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    opacity: 0.5;
+    z-index: -10;
+  }
+  &::before {
+    top: -8px;
+    left: 10px;
+    right: 10px;
+  }
+  &::after {
+    top: -16px;
+    left: 20px;
+    right: 20px;
+  }
+  .summary {
+    margin: 5px 0;
+    font-size: 40px;
+  }
+  .secondary-text {
+    font-size: 14px;
+    opacity: 0.5;
+  }
+  .detail {
+    display: flex;
+    .detail-item {
+      margin-right: 10px;
+    }
+  }
+}
