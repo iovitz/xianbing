@@ -21,7 +21,6 @@ module.exports = {
 
   async fn(input, exits) {
     return exits.badRequest(123);
-    // return exits.ok('Success');
   },
 
 };

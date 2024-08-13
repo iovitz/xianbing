@@ -20,15 +20,15 @@ module.exports = {
 
   exits: {
     ok: {
-      responseType: "ok",
+      responseType: 'ok',
     },
     badRequest: {
-      responseType: "badRequest",
+      responseType: 'badRequest',
     },
   },
 
   async fn(input, exits) {
-    const data = "success";
+    const data = 'success';
 
     return exits.ok(data);
   },

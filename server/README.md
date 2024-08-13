@@ -30,7 +30,7 @@ module.exports = {
     },
 
     // https://multiavatar.com/ 申请的头像Key
-    // 用 `encrypt.aes` 进行AES加密之后的key，避免明文展示
+    // 用 `encrypt.aes` 进行AES加密之后的key，**避免明文展示**
     aesMultiAvatarKey: 'U2FsdGVkX18WZxy00fKmcEz26pqoJ6N+mvkQWRwvkqc=',
 
     encrypt: {
@@ -44,5 +44,9 @@ module.exports = {
 ```
 
 ## 开发规范
+
+### 数据库
+
+DB名称以及字段名称统一使用小驼峰，并且在使用Sequelize开发时，确保Sequelize的Model中的字段名和DB中的字段名保持一致
 
 ## 变量命名

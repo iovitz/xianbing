@@ -23,13 +23,7 @@ module.exports = function (sails) {
   });
 
   require('./user')(sequelize);
-  require('./lyric')(sequelize);
-  require('./lyric_history')(sequelize);
-  require('./voice')(sequelize);
-  require('./fans')(sequelize);
-  require('./voice_history')(sequelize);
   require('./user_profile')(sequelize);
-  require('./session')(sequelize);
 
   sails.mysql = sequelize;
 
