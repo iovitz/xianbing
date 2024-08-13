@@ -21,6 +21,7 @@
   // you would visit `http://eslint.org/docs/rules/no-sequences`.  If you're unsure
   // or could use some advice, come by https://sailsjs.com/support.
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  "root": true,
   "env": {
     "node": true
   },
