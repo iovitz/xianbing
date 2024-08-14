@@ -2,7 +2,10 @@ import React from "react";
 import { IonContent, IonHeader, IonPage } from "@ionic/react";
 import { Typography } from "react-vant";
 import style from "./home.module.scss";
-import Banner from "../../components/banner/banner";
+import Banner from "@/components/banner/banner";
+import Heading from "@/components/heading/heading";
+import QuickTag from "@/components/quick-tag/quick-tag";
+import MoneyDetail from "@/components/money-detail/money-detail";
 
 export default function Home() {
   return (
@@ -14,7 +17,11 @@ export default function Home() {
       </IonHeader>
       <IonContent fullscreen>
         <div className={style["home-page"]}>
-          <Banner />
+          <Banner text1="本月支出" value1="1030.30" text2="本月收入" value2="304" text3="本月结余" value3="300" />
+          <Heading title="快速标签" />
+          <QuickTag />
+          <Heading title="明细" />
+          <MoneyDetail />
         </div>
       </IonContent>
     </IonPage>
