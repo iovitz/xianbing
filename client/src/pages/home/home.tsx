@@ -1,11 +1,12 @@
 import React from "react";
-import { IonContent, IonHeader, IonPage } from "@ionic/react";
+import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonPage } from "@ionic/react";
 import { Typography } from "react-vant";
 import style from "./home.module.scss";
 import Banner from "@/components/banner/banner";
 import Heading from "@/components/heading/heading";
 import QuickTag from "@/components/quick-tag/quick-tag";
 import MoneyDetail from "@/components/money-detail/money-detail";
+import { add } from 'ionicons/icons';
 
 export default function Home() {
   return (
@@ -22,6 +23,12 @@ export default function Home() {
           <QuickTag />
           <Heading title="明细" />
           <MoneyDetail />
+
+          <IonFab slot="fixed" horizontal="end">
+            <IonFabButton>
+              <IonIcon icon={add}></IonIcon>
+            </IonFabButton>
+          </IonFab>
         </div>
       </IonContent>
     </IonPage>

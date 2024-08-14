@@ -8,6 +8,7 @@ import Login from "./pages/login/login";
 import Home from "./pages/home/home";
 import Dashboard from "./pages/dashboard/dashboard";
 import Setting from "./pages/setting/setting";
+import Add from './pages/add/add';
 
 setupIonicReact();
 
@@ -18,6 +19,9 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route exact path="/login">
             <Login />
+          </Route>
+          <Route exact path="/add">
+            <Add />
           </Route>
           <Route exact path="/index/*">
             <IonTabs>
