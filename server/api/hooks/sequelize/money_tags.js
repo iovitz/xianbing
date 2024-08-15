@@ -29,6 +29,12 @@ module.exports = (sequelize) => {
         },
         comment: '二级Tag对应的一级Tag的ID',
       },
+      icon: {
+        field: 'icon',
+        type: DataTypes.STRING,
+        allowNull: true,
+        comment: '一级Tag对应的Icon',
+      },
       rank: {
         field: 'parentId',
         type: DataTypes.FLOAT.UNSIGNED,
