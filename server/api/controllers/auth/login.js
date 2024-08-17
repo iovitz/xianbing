@@ -8,17 +8,22 @@
 module.exports = {
 
   inputs: {
+    nickname: {
+      type: 'string',
+      example: 'zhangsan',
+      description: 'nickname',
+      required: true,
+      async custom(v) {
+        return ValidateService.nickname(v);
+      },
+    },
     email: {
       type: 'string',
       example: 'my@qq.com',
       description: 'Email',
       required: true,
-      custom(v) {
-        if (v.length > 30) {
-          // 邮箱最多30位
-          return false;
-        }
-        return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v);
+      async custom(v) {
+        return ValidateService.email(v);
       },
     },
     password: {
@@ -27,7 +32,7 @@ module.exports = {
       description: '字母开头的六到16位密码',
       required: true,
       custom(v) {
-        return /^\w{6,16}$/.test(v);
+        return ValidateService.password(v);
       },
     },
     code: {
@@ -36,8 +41,14 @@ module.exports = {
       description: '验证码',
       required: true,
       custom(v) {
-        return v.length === 4;
+        return ValidateService.verifyCode(v);
       },
+    },
+    register: {
+      type: 'boolean',
+      example: true,
+      description: '注册并登录',
+      require: false,
     },
   },
 
@@ -52,15 +63,27 @@ module.exports = {
 
   async fn(input, exits) {
     // 校验验证码
-    const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
-    if (!isVerifyCodeRight) {
-      return exits.badRequest('验证码错误');
-    }
+    // const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
 
-    const existsUser = await AuthService.findUserByEmail(input.email);
+    // if (!isVerifyCodeRight) {
+    //   return exits.badRequest('验证码错误');
+    // }
 
-    if (!existsUser || !EncryptService.comparePassword(input.password, existsUser.password)) {
-      return exits.badRequest('账号或密码错误');
+    let existsUser = await AuthService.findUserByEmail(input.email);
+
+    if (input.register) {
+      // 注册用户
+      if (existsUser) {
+        return exits.badRequest('邮箱已被注册');
+      }
+      existsUser = await AuthService.createUser({
+        ...input,
+      });
+    } else {
+      // 登录
+      if (!existsUser || !EncryptService.comparePassword(input.password, existsUser.password)) {
+        return exits.badRequest('账号或密码错误');
+      }
     }
 
     const [userProfile, sessionId] = await Promise.all([

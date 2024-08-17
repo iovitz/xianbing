@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
         field: 'id',
         type: DataTypes.STRING(10),
         unique: true,
+        references: {
+          model: 'User',
+          key: 'id',
+        },
         allowNull: false,
         comment: '雪花ID',
       },
@@ -37,22 +41,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING(100),
         allowNull: true,
         comment: '头像URL',
-      },
-      // 粉丝数
-      fansNumber: {
-        field: 'fansNumber',
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        defaultValue: 0,
-        comment: '粉丝数',
-      },
-      // 粉丝数
-      voiceNumber: {
-        field: 'voiceNumber',
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-        defaultValue: 0,
-        comment: '发布的声音数量',
       },
       state: {
         field: 'state',

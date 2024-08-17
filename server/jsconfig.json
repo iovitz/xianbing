@@ -22,7 +22,7 @@
   "include": [
     "api/**/*.js",
     "config/**/*.js",
-    "tasks/**/*.js",
+    "tasks/**/*.js", "api/helpers/validator/password.js",
   ],
   "exclude": [
     "node_modules",

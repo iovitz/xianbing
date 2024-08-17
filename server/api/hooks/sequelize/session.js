@@ -1,11 +1,11 @@
 const { DataTypes, Model } = require('sequelize');
 
 module.exports = (sequelize) => {
-  class MoneyFlow extends Model {
+  class Session extends Model {
     associate() {
     }
   }
-  MoneyFlow.init({
+  Session.init({
     id: {
       field: 'id',
       type: DataTypes.INTEGER.UNSIGNED,
@@ -13,18 +13,23 @@ module.exports = (sequelize) => {
       autoIncrement: true,
       comment: '自增ID',
     },
-    type: {
-      field: 'type',
-      type: DataTypes.BOOLEAN,
+    sessionId: {
+      field: 'sessionId',
+      type: DataTypes.STRING(36),
+      unique: true,
       allowNull: false,
-      comment: 'true: 收入， false：支出',
+      comment: 'sessionID(UUID生成)',
     },
-    money: {
-      field: 'money',
-      type: DataTypes.INTEGER.UNSIGNED,
-      unique: false,
+    userId: {
+      field: 'userId',
+      type: DataTypes.STRING(10),
+      unique: true,
+      references: {
+        model: 'User',
+        key: 'id',
+      },
       allowNull: false,
-      comment: '金额',
+      comment: '雪花ID',
     },
     state: {
       field: 'state',
@@ -35,7 +40,7 @@ module.exports = (sequelize) => {
     },
   }, {
     sequelize,
-    tableName: 'moneyFlow',
+    tableName: 'session',
     charset: 'utf8mb4',
     collate: 'utf8mb4_0900_ai_ci',
     updatedAt: 'updatedAt',

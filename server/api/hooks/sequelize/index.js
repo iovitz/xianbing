@@ -24,6 +24,7 @@ module.exports = function (sails) {
 
   require('./user')(sequelize);
   require('./user_profile')(sequelize);
+  require('./session')(sequelize);
 
   sails.mysql = sequelize;
 

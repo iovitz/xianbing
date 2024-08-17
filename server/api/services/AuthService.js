@@ -26,20 +26,27 @@ const Service = {
     return sails.mysql.models.Session;
   },
 
-  createUser(data) {
+  async checkRegister(email) {
+    const existsUser = await this.User.findOne({
+      email,
+    });
+    return !!existsUser;
+  },
+
+  createUser({ email, password, nickname }) {
     const id = IdService.genId('u');
     return sails.mysql.transaction(async (t) => {
       // 用户账户数据
       await this.User.create({
         id,
-        email: data.email,
-        password: await EcryptService.encryptPassword(data.password),
+        email,
+        password: await EncryptService.encryptPassword(password),
       }, { transaction: t });
 
       // 用户信息表数据
       const userProfile = await this.UserProfile.create({
         id,
-        nickname: data.nickname,
+        nickname,
         avatar: `https://api.multiavatar.com/${avatarGenerator()}.png?apikey=${this.multiAvatarToken}`,
       }, {
         transaction: t,

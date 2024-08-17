@@ -55,6 +55,7 @@
     "import/extensions": "off",
     "import/no-dynamic-require": "off",
     "no-throw-literal": "off",
-    "no-useless-escape": "off"
+    "no-useless-escape": "off",
+    "no-lonely-if": "off"
   }
 }

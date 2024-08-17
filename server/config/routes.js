@@ -34,8 +34,8 @@ module.exports.routes = {
   'GET /api/v1/status': { action: 'status' },
 
   // Auth
-  'POST /api/v1/auth/register': { action: 'auth/register' },
   'POST /api/v1/auth/login': { action: 'auth/login' },
+  'POST /api/v1/auth/check-register': { action: 'auth/check-register' },
 
   'GET /api/v1/verify/verify-code': { action: 'verify/verify-code' },
 };
