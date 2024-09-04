@@ -94,7 +94,6 @@ const errorTransport = new transports.DailyRotateFile({
 const customLogger = createLogger({
   transports: [consoleTransport, infoTransport, errorTransport],
 });
-
 module.exports.log = {
 
   custom: customLogger,

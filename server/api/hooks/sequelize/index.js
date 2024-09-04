@@ -10,6 +10,7 @@ const cryptoJS = require('crypto-js');
 module.exports = function (sails) {
   const { mysql, encrypt } = sails.config.secret;
 
+  console.log(cryptoJS.AES.decrypt(mysql.aesPassword, encrypt.aes).toString(cryptoJS.enc.Utf8));
   // 配置连接参数
   const sequelize = new Sequelize(mysql.dbName, mysql.user, cryptoJS.AES.decrypt(mysql.aesPassword, encrypt.aes).toString(cryptoJS.enc.Utf8), {
     host: mysql.host,
