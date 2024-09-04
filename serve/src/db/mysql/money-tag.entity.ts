@@ -3,17 +3,18 @@ import { Entity } from './base.entity';
 
 interface ModelAttribute {
   id: number;
-  sessionId: string;
+  parentId: number;
+  icon: string;
+  rank: number;
   userId: string;
   state?: number;
 }
 
-export type Session = typeof Entity<ModelAttribute>;
-export const useSessionEntity = (sequelize: Sequelize): Session => {
-  class Session extends Entity<ModelAttribute> {
-    associate() {}
-  }
-  Session.init(
+export type MoneyTag = typeof Entity<ModelAttribute>;
+
+export const useMoneyTagEntity = (sequelize: Sequelize): MoneyTag => {
+  class MoneyTag extends Entity<ModelAttribute> {}
+  MoneyTag.init(
     {
       id: {
         field: 'id',
@@ -22,19 +23,29 @@ export const useSessionEntity = (sequelize: Sequelize): Session => {
         autoIncrement: true,
         comment: '自增ID',
       },
-      sessionId: {
-        field: 'sessionId',
-        type: DataTypes.STRING(36),
-        unique: true,
-        allowNull: false,
-        comment: 'sessionID(UUID生成)',
+      parentId: {
+        field: 'parentId',
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: true,
+        comment: '二级Tag对应的一级Tag的ID',
+      },
+      icon: {
+        field: 'icon',
+        type: DataTypes.STRING,
+        allowNull: true,
+        comment: '一级Tag对应的Icon',
+      },
+      rank: {
+        field: 'rank',
+        type: DataTypes.FLOAT.UNSIGNED,
+        allowNull: true,
+        comment: '二级Tag对应的一级Tag的ID',
       },
       userId: {
         field: 'userId',
         type: DataTypes.STRING(10),
-        unique: true,
         allowNull: false,
-        comment: '雪花ID',
+        comment: '作者ID',
       },
       state: {
         field: 'state',
@@ -46,7 +57,7 @@ export const useSessionEntity = (sequelize: Sequelize): Session => {
     },
     {
       sequelize,
-      tableName: 'session',
+      tableName: 'tags',
       charset: 'utf8mb4',
       collate: 'utf8mb4_0900_ai_ci',
       updatedAt: 'updatedAt',
@@ -54,5 +65,5 @@ export const useSessionEntity = (sequelize: Sequelize): Session => {
       deletedAt: 'deletedAt',
     }
   );
-  return Session;
+  return MoneyTag;
 };

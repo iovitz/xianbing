@@ -4,18 +4,16 @@ import { Entity } from './base.entity';
 interface ModelAttribute {
   idx: number;
   id: string;
-  platform?: string;
-  platformId?: string;
-  email: string;
-  password: string;
+  nickname: string;
+  avatar?: string;
   state?: number;
 }
 
-export type User = typeof Entity<ModelAttribute>;
+export type UserProfile = typeof Entity<ModelAttribute>;
 
-export const useUserEntity = (sequelize: Sequelize): User => {
-  class User extends Entity<ModelAttribute> {}
-  User.init(
+export const useUserProfileEntity = (sequelize: Sequelize): UserProfile => {
+  class UserProfile extends Entity<ModelAttribute> {}
+  UserProfile.init(
     {
       idx: {
         field: 'idx',
@@ -31,30 +29,17 @@ export const useUserEntity = (sequelize: Sequelize): User => {
         allowNull: false,
         comment: '雪花ID',
       },
-      platform: {
-        field: 'platform',
+      nickname: {
+        field: 'nickname',
         type: DataTypes.STRING(10),
-        allowNull: true,
-        comment: '三方登录平台类型',
-      },
-      platformId: {
-        field: 'platformId',
-        type: DataTypes.STRING(10),
-        unique: true,
-        allowNull: true,
-        comment: '三方平台ID',
-      },
-      email: {
-        field: 'email',
-        type: DataTypes.STRING(30),
         allowNull: false,
-        comment: '用户邮箱',
+        comment: '用户昵称',
       },
-      password: {
-        field: 'password',
-        type: DataTypes.STRING(60),
-        allowNull: false,
-        comment: 'Bcrypt加密的密码',
+      avatar: {
+        field: 'avatar',
+        type: DataTypes.STRING(100),
+        allowNull: true,
+        comment: '头像URL',
       },
       state: {
         field: 'state',
@@ -66,13 +51,18 @@ export const useUserEntity = (sequelize: Sequelize): User => {
     },
     {
       sequelize,
-      tableName: 'user',
+      tableName: 'user_profile',
       charset: 'utf8mb4',
       collate: 'utf8mb4_0900_ai_ci',
       updatedAt: 'updatedAt',
       createdAt: 'createdAt',
       deletedAt: 'deletedAt',
+      defaultScope: {
+        attributes: {
+          exclude: ['createdAt', 'updatedAt', 'deletedAt'],
+        },
+      },
     }
   );
-  return User;
+  return UserProfile;
 };

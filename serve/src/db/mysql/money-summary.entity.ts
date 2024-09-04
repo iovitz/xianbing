@@ -3,17 +3,15 @@ import { Entity } from './base.entity';
 
 interface ModelAttribute {
   id: number;
-  sessionId: string;
-  userId: string;
+  money: number;
   state?: number;
 }
 
-export type Session = typeof Entity<ModelAttribute>;
-export const useSessionEntity = (sequelize: Sequelize): Session => {
-  class Session extends Entity<ModelAttribute> {
-    associate() {}
-  }
-  Session.init(
+export type MoneySummary = typeof Entity<ModelAttribute>;
+
+export const useMoneySummaryEntity = (sequelize: Sequelize): MoneySummary => {
+  class MoneySummary extends Entity<ModelAttribute> {}
+  MoneySummary.init(
     {
       id: {
         field: 'id',
@@ -22,31 +20,23 @@ export const useSessionEntity = (sequelize: Sequelize): Session => {
         autoIncrement: true,
         comment: '自增ID',
       },
-      sessionId: {
-        field: 'sessionId',
-        type: DataTypes.STRING(36),
-        unique: true,
+      money: {
+        field: 'money',
+        type: DataTypes.INTEGER.UNSIGNED,
+        unique: false,
         allowNull: false,
-        comment: 'sessionID(UUID生成)',
-      },
-      userId: {
-        field: 'userId',
-        type: DataTypes.STRING(10),
-        unique: true,
-        allowNull: false,
-        comment: '雪花ID',
+        comment: '金额',
       },
       state: {
         field: 'state',
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: 0,
         comment: '状态',
       },
     },
     {
       sequelize,
-      tableName: 'session',
+      tableName: 'moneySummary',
       charset: 'utf8mb4',
       collate: 'utf8mb4_0900_ai_ci',
       updatedAt: 'updatedAt',
@@ -54,5 +44,5 @@ export const useSessionEntity = (sequelize: Sequelize): Session => {
       deletedAt: 'deletedAt',
     }
   );
-  return Session;
+  return MoneySummary;
 };
