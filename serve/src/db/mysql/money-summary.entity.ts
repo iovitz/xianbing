@@ -1,11 +1,11 @@
 import { DataTypes, Sequelize } from 'sequelize';
 import { Entity } from './base.entity';
 
-interface ModelAttribute {
+type ModelAttribute = {
   id: number;
   money: number;
   state?: number;
-}
+};
 
 export type MoneySummary = typeof Entity<ModelAttribute>;
 

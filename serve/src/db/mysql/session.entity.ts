@@ -1,12 +1,12 @@
 import { DataTypes, Sequelize } from 'sequelize';
 import { Entity } from './base.entity';
 
-interface ModelAttribute {
+type ModelAttribute = {
   id: number;
   sessionId: string;
   userId: string;
   state?: number;
-}
+};
 
 export type Session = typeof Entity<ModelAttribute>;
 export const useSessionEntity = (sequelize: Sequelize): Session => {

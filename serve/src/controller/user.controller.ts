@@ -4,15 +4,15 @@ import { CheckRegisterDTO } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
 
 @Controller('/api/user')
-export class APIController {
+export class UserController {
   @Inject()
   ctx: Context;
 
   @Inject()
   userService: UserService;
 
-  @Get('/check-register')
-  async checkRegister(@Query() query: CheckRegisterDTO) {
+  @Get('/info')
+  async getInfo(@Query() query: CheckRegisterDTO) {
     return query;
   }
 }

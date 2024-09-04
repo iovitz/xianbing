@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from 'sequelize';
 import { Entity } from './base.entity';
 
-interface ModelAttribute {
+type ModelAttribute = {
   idx: number;
   id: string;
   platform?: string;
@@ -9,7 +9,7 @@ interface ModelAttribute {
   email: string;
   password: string;
   state?: number;
-}
+};
 
 export type User = typeof Entity<ModelAttribute>;
 
