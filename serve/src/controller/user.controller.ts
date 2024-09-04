@@ -1,6 +1,6 @@
 import { Inject, Controller, Get, Query } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
-import { CheckRegisterDTO } from '../dto/user.dto';
+import { CheckRegisterDTO } from '../dto/auth.dto';
 import { UserService } from '../service/user.service';
 
 @Controller('/api/user')

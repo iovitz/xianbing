@@ -1,6 +1,6 @@
 import { App, ILogger, Logger, Provide } from '@midwayjs/core';
 import { Application } from '@midwayjs/koa';
-import { Sequelize } from 'sequelize';
+import { Sequelize, TransactionOptions } from 'sequelize';
 import { User, useUserEntity } from './user.entity';
 import { Session, useSessionEntity } from './session.entity';
 import { MoneySummary, useMoneySummaryEntity } from './money-summary.entity';
@@ -15,7 +15,7 @@ export class MysqlService {
   @Logger()
   logger: ILogger;
 
-  private sequelize: Sequelize;
+  public sequelize: Sequelize;
 
   User: User;
   Session: Session;
@@ -90,5 +90,9 @@ export class MysqlService {
       foreignKey: 'parentId',
       targetKey: 'id',
     });
+  }
+
+  transaction(options: TransactionOptions) {
+    return this.sequelize.transaction(options);
   }
 }
