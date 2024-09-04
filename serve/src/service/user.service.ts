@@ -1,15 +1,15 @@
-import { App, Inject, Provide } from '@midwayjs/core';
+import { App, Provide } from '@midwayjs/core';
 import { Application } from '@midwayjs/koa';
-import { MysqlService } from '../db/mysql/mysql.service';
 import { IUserOptions } from '../interface';
 import { pick } from 'lodash';
-
-type UserParams = Parameters<MysqlService['UserProfile']['findOne']>[0];
+import { InjectEntityModel } from '@midwayjs/typeorm';
+import { UserProfile } from '../entity/user-profile.entity';
+import { FindOptionsSelect, FindOptionsWhere, Repository } from 'typeorm';
 
 @Provide()
 export class UserService {
-  @Inject()
-  mysql: MysqlService;
+  @InjectEntityModel(UserProfile)
+  userProfileModel: Repository<UserProfile>;
 
   @App()
   app: Application;
@@ -23,10 +23,13 @@ export class UserService {
     };
   }
 
-  getUserProfileBy(where: UserParams['where'], attributes: string[]) {
-    return this.mysql.UserProfile.findOne({
+  getUserProfileBy(
+    where: FindOptionsWhere<UserProfile>,
+    select: FindOptionsSelect<UserProfile>
+  ) {
+    return this.userProfileModel.findOne({
       where,
-      attributes,
+      select,
     });
   }
 

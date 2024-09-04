@@ -22,7 +22,7 @@ export class APIController {
 
   @Get('/api/auth/check')
   async checkRegister(@Query() query: CheckRegisterDTO) {
-    const exists = await this.auth.findUserByEmail(query.email);
+    const exists = await this.auth.findUserBy({ email: query.email }, ['id']);
     return !!exists;
   }
 
@@ -35,26 +35,21 @@ export class APIController {
     //   return exits.badRequest('验证码错误');
     // }
 
-    let existsUser = await this.auth.findUserByEmail(body.email);
+    const existsUser = await this.auth.findUserBy({ email: body.email }, [
+      'id',
+      'password',
+    ]);
 
     if (body.register) {
       // 注册用户
       if (existsUser) {
         throw new BadRequestError('用户已存在');
       }
-      [existsUser] = await this.auth.createUser({
-        email: body.email,
-        nickname: body.nickname,
-        password: body.password,
-      });
     } else {
       // 登录
       if (
         !existsUser ||
-        !this.encrypt.comparePassword(
-          body.password,
-          existsUser.dataValues.password
-        )
+        !this.encrypt.md5Match(body.password, existsUser.password)
       ) {
         throw new BadRequestError('密码错误');
       }
@@ -63,11 +58,13 @@ export class APIController {
     const [userProfile, sessionId] = await Promise.all([
       this.user.getUserProfileBy(
         {
-          id: existsUser.dataValues.id,
+          id: existsUser.id,
         },
-        ['id', 'avatar']
+        {
+          id: true,
+        }
       ),
-      this.auth.createSession(existsUser.dataValues.id),
+      this.auth.createSession(existsUser.id),
     ]);
 
     return {

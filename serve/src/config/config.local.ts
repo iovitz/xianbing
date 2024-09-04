@@ -1,4 +1,6 @@
-import { MidwayConfig } from '@midwayjs/core';
+import { MidwayConfig, Session } from '@midwayjs/core';
+import { UserProfile } from '../entity/user-profile.entity';
+import { User } from '../entity/user.entity';
 
 const env = process.env;
 
@@ -12,13 +14,22 @@ export default {
       return `${info.LEVEL} ${ctx.traceId ?? ''} ${info.message}`;
     },
   },
-  db: {
-    mysql: {
-      host: env.DB_MYSQL_HOST,
-      dbName: env.DB_MYSQL_DB_NAME,
-      user: env.DB_MYSQL_USER,
-      // 用 `encrypt.aes` 进行AES加密之后的password，避免明文展示密码
-      password: env.DB_MYSQL_PASSWORD,
+  typeorm: {
+    defaultDataSourceName: 'mysql',
+    dataSource: {
+      mysql: {
+        type: 'mysql',
+        host: env.DB_MYSQL_HOST,
+        port: 3306,
+        username: env.DB_MYSQL_USER,
+        password: env.DB_MYSQL_PASSWORD,
+        database: env.DB_MYSQL_DB_NAME,
+        // synchronize: true, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
+        logging: true,
+
+        // 配置实体模型
+        entities: [User, Session, UserProfile],
+      },
     },
   },
   midwayLogger: {

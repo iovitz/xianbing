@@ -1,6 +1,6 @@
 import { App, Provide } from '@midwayjs/core';
 import { Application } from '@midwayjs/koa';
-import cryptoJS from 'crypto-js';
+import * as cryptoJS from 'crypto-js';
 import * as pako from 'pako';
 
 @Provide()
@@ -28,7 +28,16 @@ export class EncryptService {
   async encryptPassword(password) {
     return password;
   }
-  aesEncrypt(message) {
+
+  md5(str: string) {
+    return cryptoJS.MD5(str).toString();
+  }
+
+  md5Match(str: string, md5Str: string) {
+    return cryptoJS.MD5(str).toString() === md5Str;
+  }
+
+  aesEncrypt(message: string) {
     return cryptoJS.AES.encrypt(message, '').toString();
   }
 

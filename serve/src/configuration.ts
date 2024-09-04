@@ -12,16 +12,23 @@ import { join } from 'path';
 import { DefaultErrorFilter } from './filter/default.filter';
 import { NotFoundFilter } from './filter/notfound.filter';
 import { TracerMiddleware } from './middleware/tracer.middleware';
-import { MysqlService } from './db/mysql/mysql.service';
 import * as dotenv from 'dotenv';
+import * as orm from '@midwayjs/typeorm';
+import * as swagger from '@midwayjs/swagger';
 import { FormatMiddleware } from './middleware/format.middleware';
+import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
 
 dotenv.config();
 
 @Configuration({
   imports: [
     koa,
+    orm,
     validate,
+    {
+      component: swagger,
+      enabledEnvironment: ['local'],
+    },
     {
       component: info,
       enabledEnvironment: ['local'],
@@ -46,7 +53,15 @@ export class MainConfiguration {
   async onServerReady(container: IMidwayContainer): Promise<void> {
     const port = this.app.getConfig('koa.port');
 
-    await (await container.getAsync(MysqlService)).connect();
+    const typeormDataSourceManager = await container.getAsync(
+      TypeORMDataSourceManager
+    );
+
+    const mysqlConnection = typeormDataSourceManager.getDataSource('mysql');
+    if (mysqlConnection.isConnected) {
+      this.logger.info('Data Source has been initialized!');
+    }
+
     this.logger.info(`Server Running Success: http://localhost:${port}`);
   }
 
