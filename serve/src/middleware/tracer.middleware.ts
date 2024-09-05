@@ -25,7 +25,7 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
       } finally {
         const cost = process.hrtime.bigint() - stime;
 
-        ctx.logger.info(`---Request Finish, cost: ${cost}ns`);
+        ctx.logger.info(`---Request Finish, cost: ${cost}us`);
       }
     };
   }

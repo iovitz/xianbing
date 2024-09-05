@@ -2,7 +2,7 @@ import { Controller, Get } from '@midwayjs/core';
 
 @Controller('/api')
 export class HomeController {
-  @Get('/status')
+  @Get('/verify-code')
   async home(): Promise<string> {
     return 'Hey Bro.';
   }
