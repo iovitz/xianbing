@@ -53,7 +53,6 @@ export class MainConfiguration {
 
   async onServerReady(container: IMidwayContainer): Promise<void> {
     const port = this.app.getConfig('koa.port');
-
     const typeormDataSourceManager = await container.getAsync(
       TypeORMDataSourceManager
     );

@@ -7,19 +7,21 @@ export abstract class BaseErrorFilter {
 
   async catch(err: Error, ctx: Context) {
     const { status } = this;
-    console.log(status);
-    console.log(this);
 
     ctx.status = status;
 
     const message = statuses(status);
 
-    ctx.logger.error(message, err);
+    this.log(message, err, ctx);
 
     return {
       code: status * 100,
       success: false,
       message: message,
     };
+  }
+
+  protected log(message: string, err: Error, ctx: Context) {
+    ctx.logger.error(message, err);
   }
 }

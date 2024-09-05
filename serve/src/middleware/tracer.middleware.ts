@@ -16,18 +16,17 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
         `+++Incoming Info：${ctx.userId ?? 'UNKNOWN'} ${ctx.method} ${ctx.url}`,
         {}
       );
+      try {
+        const result = await next();
+        return result;
+      } catch (e) {
+        // ...
+        throw e;
+      } finally {
+        const cost = process.hrtime.bigint() - stime;
 
-      const result = await next();
-
-      const cost = process.hrtime.bigint() - stime;
-
-      ctx.logger.info(`---Request Finish, cost: ${cost}ns`);
-
-      // 响应头上带上traceId
-      ctx.set('request-id', ctx.traceId);
-
-      // 返回给上一个中间件的结果
-      return result;
+        ctx.logger.info(`---Request Finish, cost: ${cost}ns`);
+      }
     };
   }
 

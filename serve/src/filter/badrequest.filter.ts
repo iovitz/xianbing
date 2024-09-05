@@ -6,4 +6,8 @@ export class BadRequestFilter extends BaseErrorFilter {
   constructor() {
     super(HttpStatus.BAD_REQUEST);
   }
+
+  override log() {
+    // DO NOTHING
+  }
 }

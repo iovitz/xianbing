@@ -6,4 +6,6 @@ export class NotFoundFilter extends BaseErrorFilter {
   constructor() {
     super(HttpStatus.NOT_FOUND);
   }
+
+  protected log() {}
 }
