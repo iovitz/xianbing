@@ -1,14 +1,11 @@
 import { IonCol, IonContent, IonGrid, IonPage, IonRow, IonToast, useIonToast } from "@ionic/react";
 import { useHistory } from "react-router";
 import { closeSharp } from "ionicons/icons";
-import style from "./login.module.scss";
 import { IonHeader } from '@ionic/react';
 import { IonTitle } from '@ionic/react';
 import { IonToolbar } from '@ionic/react';
 import { IonInput } from '@ionic/react';
 import { IonButton } from '@ionic/react';
-import { IonList } from '@ionic/react';
-import { IonItem } from '@ionic/react';
 import { useState } from 'react';
 
 export default function Login() {

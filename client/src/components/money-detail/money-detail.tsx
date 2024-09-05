@@ -1,3 +1,4 @@
+import { key } from 'ionicons/icons';
 import React from "react";
 
 export default function MoneyDetail() {
@@ -39,9 +40,9 @@ export default function MoneyDetail() {
   ];
   return (
     <>
-      {moneyFlow.map((dayItem) => {
+      {moneyFlow.map((dayItem, i) => {
         return (
-          <div>
+          <div key={i}>
             <div className="summary">
               {dayItem.date}
 
@@ -49,9 +50,9 @@ export default function MoneyDetail() {
               <span>支出{dayItem.expenditure}</span>
             </div>
             <div className="detail-list">
-              {dayItem.detail.map((item) => {
+              {dayItem.detail.map((item, i) => {
                 return (
-                  <div>
+                  <div key={i}>
                     <span>{item.type}</span>
                     <span>{item.tag}</span>
                     <span>{item.money}</span>

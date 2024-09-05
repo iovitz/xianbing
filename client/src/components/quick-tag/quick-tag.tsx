@@ -1,5 +1,4 @@
 import React from "react";
-import style from "./quick-tag.module.scss";
 
 export default function QuickTag() {
   const tags = [

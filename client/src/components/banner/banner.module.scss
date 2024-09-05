@@ -4,13 +4,12 @@
   position: relative;
   box-sizing: border-box;
   margin-top: 20px;
-  color: var(--rv-white);
+  color: var(--ion-color-light);
   &,
   &::before,
   &::after {
-    background-color: var(--rv-primary-color);
-    border-radius: var(--rv-border-radius-lg);
-    margin-bottom: var(--rv-padding-md);
+    background-color: var(--ion-color-primary);
+    border-radius: var(--ion-border-radius);
   }
   &::before,
   &::after {
