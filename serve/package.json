@@ -12,6 +12,7 @@
     "@midwayjs/swagger": "^3.17.1",
     "@midwayjs/typeorm": "^3.17.1",
     "@midwayjs/validate": "^3.12.0",
+    "@types/statuses": "^2.0.5",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "lodash": "^4.17.21",
@@ -19,6 +20,7 @@
     "nanoid": "^3.3.7",
     "pako": "^2.1.0",
     "sequelize": "^6.37.3",
+    "statuses": "^2.0.1",
     "swagger-ui-dist": "^5.17.14",
     "typeorm": "^0.3.20",
     "uuid": "^10.0.0"

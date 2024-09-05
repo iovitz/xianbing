@@ -1,10 +1,9 @@
-import { Catch, httpError, MidwayHttpError } from '@midwayjs/core';
-import { Context } from '@midwayjs/koa';
+import { Catch, httpError, HttpStatus } from '@midwayjs/core';
+import { BaseErrorFilter } from './base.filter';
 
 @Catch(httpError.NotFoundError)
-export class NotFoundFilter {
-  async catch(err: MidwayHttpError, ctx: Context) {
-    // 404 错误会到这里
-    ctx.redirect('/404.html');
+export class NotFoundFilter extends BaseErrorFilter {
+  constructor() {
+    super(HttpStatus.NOT_FOUND);
   }
 }

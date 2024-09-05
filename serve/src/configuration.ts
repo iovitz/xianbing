@@ -17,6 +17,7 @@ import * as orm from '@midwayjs/typeorm';
 import * as swagger from '@midwayjs/swagger';
 import { FormatMiddleware } from './middleware/format.middleware';
 import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
+import { BadRequestFilter } from './filter/badrequest.filter';
 
 dotenv.config();
 
@@ -47,7 +48,7 @@ export class MainConfiguration {
     // add middleware
     this.app.useMiddleware([TracerMiddleware, FormatMiddleware]);
     // add filter
-    this.app.useFilter([NotFoundFilter, DefaultErrorFilter]);
+    this.app.useFilter([NotFoundFilter, DefaultErrorFilter, BadRequestFilter]);
   }
 
   async onServerReady(container: IMidwayContainer): Promise<void> {

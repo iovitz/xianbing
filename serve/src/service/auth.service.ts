@@ -58,8 +58,12 @@ export class AuthService {
     return id;
   }
 
-  async createSession(userId) {
+  async createSession(userId: string) {
     const sessionId = uuid.v4();
+    await this.sessionModel.insert({
+      userId,
+      sessionId,
+    });
     return sessionId;
   }
 }
