@@ -1,5 +1,4 @@
 import React from "react";
-import { Typography } from "react-vant";
 import style from "./banner.module.scss";
 
 interface Props {
@@ -20,9 +19,7 @@ export default function Banner(props: Props) {
         <div className={style["detail-item"]}>
           <span className={style["secondary-text"]}>{props.text2}</span>
           <div>
-            <Typography.Text size="xl" type="light">
-              {props.value2}
-            </Typography.Text>
+            123
           </div>
         </div>
         <div className={style["detail-item"]}>
@@ -30,9 +27,7 @@ export default function Banner(props: Props) {
             <span className={style["secondary-text"]}>{props.text3}</span>
           </div>
           <div>
-            <Typography.Text size="xl" type="light">
-              {props.value3}
-            </Typography.Text>
+            123
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Swiper } from "react-vant";
 import style from "./quick-tag.module.scss";
 
 export default function QuickTag() {
@@ -14,20 +13,7 @@ export default function QuickTag() {
     ],
   ];
   return (
-    <Swiper>
-      {tags.map((tagsGroup, groupIndex) => {
-        return (
-          <Swiper.Item key={groupIndex}>
-            <div className={style["tags-wrapper"]}>
-              {tagsGroup.map(({ name, id }) => (
-                <div className={style.tag} key={id}>
-                  #{name}
-                </div>
-              ))}
-            </div>
-          </Swiper.Item>
-        );
-      })}
-    </Swiper>
+    <>
+      123123</>
   );
 }

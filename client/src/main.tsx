@@ -28,9 +28,7 @@ import "@ionic/react/css/display.css";
 /* import '@ionic/react/css/palettes/dark.class.css'; */
 import "@ionic/react/css/palettes/dark.system.css";
 
-import "react-vant/es/styles/base.css";
 import "./theme/variables.scss";
-import "./theme/component.scss";
 import "./theme/global.scss";
 
 import App from "./App";

@@ -1,6 +1,5 @@
 import React from "react";
 import { IonContent, IonHeader, IonPage } from "@ionic/react";
-import { Typography } from "react-vant";
 import style from './dashboard.module.scss'
 import Banner from '@/components/banner/banner';
 
@@ -9,7 +8,7 @@ export default function Dashboard() {
     <IonPage>
       <IonHeader>
         <div className="global-header-wrapper">
-          <Typography.Text size="xxl">仪表盘</Typography.Text>
+          仪表盘
         </div>
       </IonHeader>
 

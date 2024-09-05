@@ -1,6 +1,5 @@
 import React from "react";
 import { IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonPage } from "@ionic/react";
-import { Typography } from "react-vant";
 import style from "./home.module.scss";
 import Banner from "@/components/banner/banner";
 import Heading from "@/components/heading/heading";
@@ -13,7 +12,7 @@ export default function Home() {
     <IonPage>
       <IonHeader>
         <div className="global-header-wrapper">
-          <Typography.Text size="xxl">记账</Typography.Text>
+          123123
         </div>
       </IonHeader>
       <IonContent fullscreen>
