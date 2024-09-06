@@ -1,0 +1,18 @@
+{
+  "cwd": "/Users/bytedance/Desktop/github/ollah/ollah-client",
+  "type": [
+    "web"
+  ],
+  "name": "Ollah",
+  "framework": "react",
+  "template": "tabs",
+  "cssPreProcessor": "scss",
+  "bundler": "vite",
+  "theming": {
+    "customColor": true,
+    "color": "#2ab78d",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
