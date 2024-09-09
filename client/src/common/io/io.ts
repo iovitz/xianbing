@@ -7,7 +7,7 @@ import axios, {
 } from "axios";
 import { IOConfig } from "./types";
 import WebSocket from "./socket";
-import { InferParamaters } from "../types/utils";
+import { InferParamaters } from "@/common/types/utils";
 
 class IO {
   socket: WebSocket;
