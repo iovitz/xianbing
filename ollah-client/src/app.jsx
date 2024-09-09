@@ -150,7 +150,7 @@ const MyApp = () => {
               <BlockFooter>
                 Some text about login information.
                 <br />
-                Click "Sign In" to close Login Screen
+                123
               </BlockFooter>
             </List>
           </Page>

@@ -1,17 +1,5 @@
 import React from "react";
-import {
-  Page,
-  Navbar,
-  List,
-  ListInput,
-  Button,
-  ListItem,
-  NavLeft,
-  Link,
-  NavTitle,
-  NavRight,
-  NavTitleLarge,
-} from "framework7-react";
+import { Page, Navbar, Button, NavTitle, NavRight } from "framework7-react";
 
 const DashboardPage = () => (
   <Page noToolbar>

@@ -6,7 +6,12 @@ module.exports = {
     es6: true,
   },
   // 一个配置文件可以被基础配置中的已启用的规则继承。
-  extends: ["plugin:react/recommended", "eslint:recommended", "airbnb", "plugin:prettier/recommended"],
+  extends: [
+    "plugin:react/recommended",
+    "eslint:recommended",
+    "airbnb",
+    "plugin:prettier/recommended",
+  ],
   // 自定义全局变量
   globals: {
     Atomics: "readonly",
@@ -33,5 +38,7 @@ module.exports = {
     "jsx-a11y/no-static-element-interactions": 0,
     "react/destructuring-assignment": 0,
     "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "react/jsx-props-no-spreading": 0,
   },
 };

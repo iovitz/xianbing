@@ -10,6 +10,7 @@ import RequestAndLoad from "../pages/request-and-load.jsx";
 import NotFoundPage from "../pages/404.jsx";
 import LoginPage from "../pages/login/login.jsx";
 import DashboardPage from "../pages/dashboard/dashboard.jsx";
+import NewPage from "../pages/new/new.jsx";
 
 const routes = [
   {
@@ -19,6 +20,10 @@ const routes = [
   {
     path: "/login/",
     component: LoginPage,
+  },
+  {
+    path: "/new/",
+    component: NewPage,
   },
   {
     path: "/dashboard/",

@@ -3,15 +3,9 @@ import {
   Page,
   Navbar,
   List,
-  ListInput,
   ListItem,
-  Toggle,
   BlockTitle,
-  Button,
-  Range,
-  Block,
   Icon,
-  BlockFooter,
 } from "framework7-react";
 
 const SettingsPage = () => (
