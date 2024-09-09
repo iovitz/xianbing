@@ -3,11 +3,7 @@ import { customAlphabet } from 'nanoid';
 import { IdService } from './id.service';
 import * as uuid from 'uuid';
 import { InjectEntityModel } from '@midwayjs/typeorm';
-import {
-  FindOptionsSelectByString,
-  FindOptionsWhere,
-  Repository,
-} from 'typeorm';
+import { FindOptionsSelect, FindOptionsWhere, Repository } from 'typeorm';
 import { User } from '../entity/user.entity';
 import { Session } from '../entity/session.entity';
 
@@ -27,10 +23,7 @@ export class AuthService {
     10
   );
 
-  findUserBy(
-    where: FindOptionsWhere<User>,
-    select: FindOptionsSelectByString<User>
-  ) {
+  findUserBy(where: FindOptionsWhere<User>, select: FindOptionsSelect<User>) {
     return this.userModel.findOne({
       where,
       select,

@@ -10,7 +10,7 @@
     "lodash": "^4.17.21",
     "mysql2": "^3.11.0",
     "nanoid": "^3.3.7",
-    "octokit": "^4.0.2",
+    "octokit": "^3.2.1",
     "pako": "^2.1.0",
     "sequelize": "^6.37.3",
     "statuses": "^2.0.1",

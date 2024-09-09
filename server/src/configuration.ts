@@ -63,6 +63,12 @@ export class MainConfiguration {
     }
 
     this.logger.info(`Server Running Success: http://localhost:${port}`);
+
+    if (this.app.getEnv() === 'local') {
+      this.logger.info(
+        `Swagger Running In: http://localhost:${port}/swagger-ui/index.html`
+      );
+    }
   }
 
   async onStop(): Promise<void> {

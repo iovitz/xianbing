@@ -5,8 +5,10 @@ import { CheckRegisterDTO, LoginDTO } from '../dto/auth.dto';
 import { AuthService } from '../service/auth.service';
 import { EncryptService } from '../service/encrypt.service';
 import { UserService } from '../service/user.service';
+import { ApiTags } from '@midwayjs/swagger';
 
-@Controller()
+@ApiTags('Auth登录鉴权')
+@Controller('/api/auth')
 export class APIController {
   @Inject()
   ctx: Context;
@@ -20,13 +22,18 @@ export class APIController {
   @Inject()
   encrypt: EncryptService;
 
-  @Get('/api/auth/check')
+  @Get('/check')
   async checkRegister(@Query() query: CheckRegisterDTO) {
-    const exists = await this.auth.findUserBy({ email: query.email }, ['id']);
+    const exists = await this.auth.findUserBy(
+      { email: query.email },
+      {
+        id: true,
+      }
+    );
     return !!exists;
   }
 
-  @Post('/api/auth/login')
+  @Post('/login')
   async login(@Body() body: LoginDTO) {
     // 校验验证码
     // const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'login', input.code);
@@ -35,10 +42,13 @@ export class APIController {
     //   return exits.badRequest('验证码错误');
     // }
 
-    const existsUser = await this.auth.findUserBy({ email: body.email }, [
-      'id',
-      'password',
-    ]);
+    const existsUser = await this.auth.findUserBy(
+      { email: body.email },
+      {
+        id: true,
+        password: true,
+      }
+    );
 
     if (body.register) {
       // 注册用户
