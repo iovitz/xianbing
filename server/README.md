@@ -16,7 +16,20 @@ STEP 2：使用pnpm安装依赖
 pnpm install
 ```
 
-STEP 3：准备数据文件
+STEP 3：准备Secret Key
+
+项目中用到了一些三方服务和数据库，使用需要申请这些服务的密钥，项目中用到的密钥统一放在`.env`文件中，如果想使用自己的密钥可以替换`.env`文件中的内容
+
+* Github Token（没有也没关系，只要不访问Github相关接口就不会有问题）
+  * GITHUB_TOKEN：（获取提交信息，读取更新日志）：需要具有读取Commit信息的权限
+* [Multiavatar](https://multiavatar.com/)生成随机头像）
+  * MULTIAVATAR_KEY：Multiavatar的API Access Key
+* MySQL数据库
+  * DB_MYSQL_HOST：数据库主机地址
+  * DB_MYSQL_PORT：数据库主机端口
+  * DB_MYSQL_DB_NAME：数据库名
+  * DB_MYSQL_USER：数据库用户名
+  * DB_MYSQL_PASSWORD：数据库密码
 
 STEP 4：运行项目
 
@@ -44,6 +57,10 @@ pnpm dev
   * [octokit](https://www.npmjs.com/package/octokit)
 
 ## 项目规范
+
+### 项目配置
+
+项目中的SecretKey统一放在环境变量中，开发环境下会使用`dotenv`加载`.env`文件，开发配置可以直接把SecretKey放到`.env`文件里，生产环境不会加载`.env`文件，建议放到Linux的环境变量中进行读取
 
 ### 代码规范
 

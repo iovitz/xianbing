@@ -1,12 +1,8 @@
-import { App, Inject, Provide } from '@midwayjs/core';
-import { Application } from '@midwayjs/koa';
+import { Inject, Provide } from '@midwayjs/core';
 import { customAlphabet } from 'nanoid';
-import { EncryptService } from './encrypt.service';
 import { IdService } from './id.service';
-import { UserService } from './user.service';
 import * as uuid from 'uuid';
 import { InjectEntityModel } from '@midwayjs/typeorm';
-import { UserProfile } from '../entity/user-profile.entity';
 import {
   FindOptionsSelectByString,
   FindOptionsWhere,
@@ -17,26 +13,14 @@ import { Session } from '../entity/session.entity';
 
 @Provide()
 export class AuthService {
-  @App()
-  app: Application;
-
   @Inject()
-  id: IdService;
-
-  @Inject()
-  encrypt: EncryptService;
-
-  @Inject()
-  user: UserService;
-
-  @InjectEntityModel(UserProfile)
-  userProfileModel: Repository<UserProfile>;
+  private id: IdService;
 
   @InjectEntityModel(Session)
-  sessionModel: Repository<Session>;
+  private sessionModel: Repository<Session>;
 
   @InjectEntityModel(User)
-  userModel: Repository<User>;
+  private userModel: Repository<User>;
 
   avatarGenerator = customAlphabet(
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',

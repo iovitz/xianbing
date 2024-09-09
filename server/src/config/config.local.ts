@@ -20,7 +20,7 @@ export default {
       mysql: {
         type: 'mysql',
         host: env.DB_MYSQL_HOST,
-        port: 3306,
+        port: Number(env.DB_MYSQL_PORT),
         username: env.DB_MYSQL_USER,
         password: env.DB_MYSQL_PASSWORD,
         database: env.DB_MYSQL_DB_NAME,

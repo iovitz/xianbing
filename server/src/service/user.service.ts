@@ -1,5 +1,4 @@
-import { App, Provide } from '@midwayjs/core';
-import { Application } from '@midwayjs/koa';
+import { Provide } from '@midwayjs/core';
 import { IUserOptions } from '../interface';
 import { pick } from 'lodash';
 import { InjectEntityModel } from '@midwayjs/typeorm';
@@ -10,9 +9,6 @@ import { FindOptionsSelect, FindOptionsWhere, Repository } from 'typeorm';
 export class UserService {
   @InjectEntityModel(UserProfile)
   userProfileModel: Repository<UserProfile>;
-
-  @App()
-  app: Application;
 
   async getUser(options: IUserOptions) {
     return {
