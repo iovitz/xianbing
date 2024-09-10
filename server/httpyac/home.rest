@@ -1,2 +1,2 @@
-### 获取服务端运行状态
+### status
 GET {{host}}/status
