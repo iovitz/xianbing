@@ -5,7 +5,21 @@ import { CheckRegisterDTO, LoginDTO } from '../dto/auth.dto';
 import { AuthService } from '../service/auth.service';
 import { EncryptService } from '../service/encrypt.service';
 import { UserService } from '../service/user.service';
-import { ApiTags } from '@midwayjs/swagger';
+import { ApiProperty, ApiResponse, ApiTags } from '@midwayjs/swagger';
+import { SuccessResponse } from '../dto/common.dto';
+
+class LoginSuccessType {
+  // console.log(1)
+  @ApiProperty({
+    example: 'peter@gmail.com',
+  })
+  email: string;
+
+  @ApiProperty({
+    example: '张三',
+  })
+  nickname: string;
+}
 
 @ApiTags('Auth登录鉴权')
 @Controller('/api/auth')
@@ -23,6 +37,11 @@ export class APIController {
   encrypt: EncryptService;
 
   @Get('/check')
+  @ApiResponse({
+    status: 200,
+    description: '一条记录',
+    type: SuccessResponse(CheckRegisterDTO),
+  })
   async checkRegister(@Query() query: CheckRegisterDTO) {
     const exists = await this.auth.findUserBy(
       { email: query.email },
@@ -34,6 +53,11 @@ export class APIController {
   }
 
   @Post('/login')
+  @ApiResponse({
+    status: 200,
+    description: '登录成功的用户信息',
+    type: SuccessResponse(LoginSuccessType),
+  })
   async login(@Body() body: LoginDTO) {
     // 校验验证码
     // const isVerifyCodeRight = VerifyService.checkVerifyCode(this.req.session, 'login', input.code);

@@ -9,7 +9,7 @@ import {
 
 @Entity('user')
 export class User {
-  @PrimaryColumn('char', {
+  @PrimaryColumn('varchar', {
     length: 10,
   })
   id: string;

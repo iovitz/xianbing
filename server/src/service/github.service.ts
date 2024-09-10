@@ -1,17 +1,18 @@
 import { App, Provide } from '@midwayjs/core';
 import { Application } from '@midwayjs/koa';
-import { Octokit } from 'octokit';
+import * as octokit from 'octokit';
+import { type Octokit } from 'octokit';
 
 @Provide()
 export class GithubService {
   @App('koa')
   private app: Application;
 
-  private _octokitClient: Octokit;
+  private _octokitClient: octokit.Octokit;
 
-  get octokitClient() {
+  get octokitClient(): Octokit {
     if (!this._octokitClient) {
-      this._octokitClient = new Octokit({
+      this._octokitClient = new octokit.Octokit({
         auth: this.app.getConfig('github.token'),
       });
     }
