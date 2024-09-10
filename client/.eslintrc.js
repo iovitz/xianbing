@@ -26,8 +26,6 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
-    "no-undef": 0,
-    "no-unused-vars": 0,
     "react/jsx-filename-extension": 0,
     "react/react-in-jsx-scope": 0,
     "react/function-component-definition": 0,

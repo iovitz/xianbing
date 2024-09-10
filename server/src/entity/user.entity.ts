@@ -3,9 +3,13 @@ import {
   CreateDateColumn,
   Entity,
   Generated,
+  OneToMany,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Session } from './session.entity';
+import { UserProfile } from './user-profile.entity';
 
 @Entity('user')
 export class User {
@@ -50,4 +54,10 @@ export class User {
     type: 'timestamp',
   })
   createdAt: Date;
+
+  @OneToOne(() => UserProfile, profile => profile.user)
+  profile: UserProfile;
+
+  @OneToMany(() => Session, session => session.user)
+  sessions: Session[];
 }

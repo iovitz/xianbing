@@ -65,6 +65,7 @@ export class MainConfiguration {
     this.logger.info(`Server Running Success: http://localhost:${port}`);
 
     if (this.app.getEnv() === 'local') {
+      // 本地开发时，打印Swagger地址
       this.logger.info(
         `Swagger Running In: http://localhost:${port}/swagger-ui/index.html`
       );

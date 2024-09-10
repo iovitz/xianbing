@@ -25,6 +25,12 @@ export default async () => {
     },
     server: {
       host: true,
+      proxy: {
+        "/api": {
+          target: "http://localhost:13131", // 目标 API 服务器
+          changeOrigin: true, // 允许跨域
+        },
+      },
     },
   };
 };
