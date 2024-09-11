@@ -1,5 +1,5 @@
 import { Controller, Get, Inject, Query } from '@midwayjs/core';
-import { GetVerifyCodeDTO } from '../dto/security.dto';
+import { GetVerifyCodeDTO } from './security.dto';
 import { VerifyService } from '../service/verify.service';
 import { Context } from '@midwayjs/koa';
 import { ApiTags } from '@midwayjs/swagger';
