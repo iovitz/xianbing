@@ -8,6 +8,36 @@ importers:
 
   .:
     dependencies:
+      '@midwayjs/bootstrap':
+        specifier: ^3.12.0
+        version: 3.17.1
+      '@midwayjs/core':
+        specifier: ^3.12.0
+        version: 3.17.1
+      '@midwayjs/info':
+        specifier: ^3.12.0
+        version: 3.17.1
+      '@midwayjs/koa':
+        specifier: ^3.12.0
+        version: 3.17.1
+      '@midwayjs/logger':
+        specifier: ^3.1.0
+        version: 3.4.2
+      '@midwayjs/mock':
+        specifier: ^3.12.0
+        version: 3.17.1
+      '@midwayjs/swagger':
+        specifier: ^3.17.1
+        version: 3.17.1
+      '@midwayjs/typeorm':
+        specifier: ^3.17.1
+        version: 3.17.1
+      '@midwayjs/validate':
+        specifier: ^3.12.0
+        version: 3.17.1
+      '@midwayjs/view-ejs':
+        specifier: ^3.17.1
+        version: 3.17.1
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
@@ -54,33 +84,6 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
     devDependencies:
-      '@midwayjs/bootstrap':
-        specifier: ^3.12.0
-        version: 3.17.1
-      '@midwayjs/core':
-        specifier: ^3.12.0
-        version: 3.17.1
-      '@midwayjs/info':
-        specifier: ^3.12.0
-        version: 3.17.1
-      '@midwayjs/koa':
-        specifier: ^3.12.0
-        version: 3.17.1
-      '@midwayjs/logger':
-        specifier: ^3.1.0
-        version: 3.4.2
-      '@midwayjs/mock':
-        specifier: ^3.12.0
-        version: 3.17.1
-      '@midwayjs/swagger':
-        specifier: ^3.17.1
-        version: 3.17.1
-      '@midwayjs/typeorm':
-        specifier: ^3.17.1
-        version: 3.17.1
-      '@midwayjs/validate':
-        specifier: ^3.12.0
-        version: 3.17.1
       '@types/crypto-js':
         specifier: ^4.2.2
         version: 4.2.2
@@ -525,6 +528,14 @@ packages:
 
   '@midwayjs/validate@3.17.1':
     resolution: {integrity: sha512-mtUAXqpl5gjM3ZA6F6CQBnMad7zPyOuoKPXjmWQ6JvudC8FMVyijo28M06Aom2w3cY00uF/k6sdfIKq/NvGayQ==}
+    engines: {node: '>=12'}
+
+  '@midwayjs/view-ejs@3.17.1':
+    resolution: {integrity: sha512-/mrvi3GaHzclpsB57n5Qb67r5tF7kxvgJ/G/d7X6FLHF0FazRJq8BFm+oKWtbfRblR89nwtpNdkklCukisL9bQ==}
+    engines: {node: '>=12'}
+
+  '@midwayjs/view@3.17.1':
+    resolution: {integrity: sha512-jKM38JEy/Vxkr5yM4b6Y5sewtHysjRO4XDlwWnl70oBl94aKeWzKZqDzAtwc66R8EttuqGppSlH1/Ar79wCpxQ==}
     engines: {node: '>=12'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -4592,6 +4603,13 @@ snapshots:
     dependencies:
       '@midwayjs/i18n': 3.17.1
       joi: 17.13.3
+
+  '@midwayjs/view-ejs@3.17.1':
+    dependencies:
+      '@midwayjs/view': 3.17.1
+      ejs: 3.1.10
+
+  '@midwayjs/view@3.17.1': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:

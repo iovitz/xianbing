@@ -10,4 +10,10 @@ export default {
     key: '_ss',
     httpOnly: true,
   },
+  view: {
+    defaultExtension: '.ejs',
+    mapping: {
+      '.ejs': 'ejs',
+    },
+  },
 } as MidwayConfig;

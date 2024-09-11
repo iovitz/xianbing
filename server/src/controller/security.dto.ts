@@ -17,7 +17,7 @@ export class GetVerifyCodeDTO {
   height: number;
 
   @ApiProperty({
-    examples: ['login', 'register'],
+    example: 'login',
     description: '验证码类型',
   })
   @Rule(RuleType.string().required().max(20).min(1))

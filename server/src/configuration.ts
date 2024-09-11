@@ -7,6 +7,7 @@ import {
 } from '@midwayjs/core';
 import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
+import * as view from '@midwayjs/view-ejs';
 import * as info from '@midwayjs/info';
 import { join } from 'path';
 import { DefaultErrorFilter } from './filter/default.filter';
@@ -26,6 +27,7 @@ dotenv.config();
     koa,
     orm,
     validate,
+    view,
     {
       component: swagger,
       enabledEnvironment: ['local'],
