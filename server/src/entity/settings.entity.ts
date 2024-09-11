@@ -2,24 +2,26 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from './user.entity';
 
-@Entity('session')
-export class Session {
+@Entity('setting')
+export class Setting {
   @PrimaryGeneratedColumn({
     comment: '自增ID',
   })
   id: number;
 
   @Column('varchar', {
-    comment: 'SessionID',
+    comment: '配置名称',
   })
-  sessionId: string;
+  key: string;
+
+  @Column('varchar', {
+    comment: '配置值',
+  })
+  value: string;
 
   @UpdateDateColumn({
     type: 'timestamp',
@@ -30,8 +32,4 @@ export class Session {
     type: 'timestamp',
   })
   createdAt: Date;
-
-  @ManyToOne(() => User, user => user.sessions)
-  @JoinColumn({ name: 'userId' })
-  user: User;
 }

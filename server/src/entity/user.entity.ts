@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Session } from './session.entity';
+import { Tag } from './tags.entity';
 import { UserProfile } from './user-profile.entity';
 
 @Entity('user')
@@ -59,4 +60,7 @@ export class User {
 
   @OneToMany(() => Session, session => session.user)
   sessions: Session[];
+
+  @OneToMany(() => Tag, tag => tag.user)
+  tags: Tag[];
 }

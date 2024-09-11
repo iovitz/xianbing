@@ -25,3 +25,7 @@ content-type: application/json
 ### code
 GET /auth/code?width=200&height=300&type=login
 content-type: application/json
+
+### tag
+GET /tag/list
+content-type: application/json

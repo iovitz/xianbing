@@ -1,41 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 
-import {
-  f7,
-  f7ready,
-  App,
-  Panel,
-  Views,
-  View,
-  Popup,
-  Page,
-  Navbar,
-  Toolbar,
-  NavRight,
-  Link,
-  Block,
-  LoginScreen,
-  LoginScreenTitle,
-  List,
-  ListInput,
-  ListButton,
-  BlockFooter,
-} from "framework7-react";
+import { f7ready, App, Views, View, Toolbar, Link } from "framework7-react";
 
 import routes from "./js/routes";
 import store from "./js/store";
 
 const MyApp = () => {
-  // Login screen demo data
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
   // Framework7 Parameters
   const f7params = {
     name: "Ollah", // App name
     theme: "auto", // Automatic theme detection
     colors: {
-      primary: "#34C569",
+      primary: "#50C3A0",
     },
 
     // App store

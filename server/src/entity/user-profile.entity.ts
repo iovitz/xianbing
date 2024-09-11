@@ -12,7 +12,7 @@ import { User } from './user.entity';
 @Entity('user_profile')
 export class UserProfile {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column('varchar')
   nickname: string;

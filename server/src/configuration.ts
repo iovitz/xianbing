@@ -9,6 +9,7 @@ import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
 import * as view from '@midwayjs/view-ejs';
 import * as info from '@midwayjs/info';
+import * as socketio from '@midwayjs/socketio';
 import { join } from 'path';
 import { DefaultErrorFilter } from './filter/default.filter';
 import { NotFoundFilter } from './filter/notfound.filter';
@@ -28,6 +29,7 @@ dotenv.config();
     orm,
     validate,
     view,
+    socketio,
     {
       component: swagger,
       enabledEnvironment: ['local'],

@@ -1,9 +1,16 @@
 import { Provide } from '@midwayjs/core';
 import * as cryptoJS from 'crypto-js';
+import { customAlphabet } from 'nanoid';
 import * as pako from 'pako';
 
 @Provide()
 export class EncryptService {
+  randomIdGenerator = customAlphabet('abcdefghijklmnopqrstuvwxyz123456789', 9);
+
+  genRandomId(prefix: string) {
+    return prefix + this.randomIdGenerator();
+  }
+
   ungzip(gzipBase64Str: string) {
     return JSON.parse(
       pako.ungzip(Buffer.from(gzipBase64Str, 'base64'), { to: 'string' })

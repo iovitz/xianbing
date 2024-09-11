@@ -1,6 +1,5 @@
 import { App, Inject, Provide } from '@midwayjs/core';
 import { customAlphabet } from 'nanoid';
-import { IdService } from './id.service';
 import * as uuid from 'uuid';
 import { InjectDataSource, InjectEntityModel } from '@midwayjs/typeorm';
 import {
@@ -20,9 +19,6 @@ export class AuthService {
   @App()
   app: Application;
 
-  @Inject()
-  private id: IdService;
-
   @InjectEntityModel(Session)
   private sessionModel: Repository<Session>;
 
@@ -30,10 +26,10 @@ export class AuthService {
   private userModel: Repository<User>;
 
   @InjectDataSource()
-  dataSource: DataSource;
+  private dataSource: DataSource;
 
   @Inject()
-  encrypt: EncryptService;
+  private encrypt: EncryptService;
 
   avatarGenerator = customAlphabet(
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
@@ -48,7 +44,7 @@ export class AuthService {
   }
 
   genUserId() {
-    const id = this.id.genId('u');
+    const id = this.encrypt.genRandomId('u');
     return id;
   }
 

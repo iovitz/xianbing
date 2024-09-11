@@ -4,7 +4,6 @@ import {
   Navbar,
   NavLeft,
   NavTitle,
-  NavTitleLarge,
   NavRight,
   Link,
   Block,
@@ -13,7 +12,6 @@ import {
   ListItem,
   Button,
   Card,
-  Gauge,
   CardHeader,
   CardContent,
   CardFooter,
@@ -24,7 +22,6 @@ import {
 } from "framework7-react";
 
 const HomePage = () => {
-  const handleNew = () => {};
   return (
     <Page name="home">
       {/* Top Navbar */}

@@ -5,6 +5,10 @@ export default {
   koa: {
     port: 7001,
   },
+  socketIO: {
+    // ...
+    transports: ['websocket'],
+  },
   session: {
     maxAge: 24 * 3600 * 1000 * 30,
     key: '_ss',
