@@ -1,7 +1,7 @@
 import { Inject, Controller, Get, Query } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { ApiTags } from '@midwayjs/swagger';
-import { CheckRegisterDTO } from '../dto/auth.dto';
+import { CheckRegisterDTO } from './auth.dto';
 import { UserService } from '../service/user.service';
 
 @ApiTags('User用户数据')

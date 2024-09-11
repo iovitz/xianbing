@@ -1,2 +1,0 @@
-### status
-GET {{host}}/status

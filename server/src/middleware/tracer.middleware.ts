@@ -1,9 +1,12 @@
-import { Middleware, IMiddleware } from '@midwayjs/core';
-import { NextFunction, Context } from '@midwayjs/koa';
+import { Middleware, IMiddleware, App } from '@midwayjs/core';
+import { NextFunction, Context, Application } from '@midwayjs/koa';
 import { customAlphabet } from 'nanoid';
 
 @Middleware()
 export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
+  @App()
+  app: Application;
+
   private tracerIdGenerator = customAlphabet(
     '0123456789abcdefghijklmnopqrstuvwxyz',
     10
@@ -14,7 +17,13 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
       ctx.traceId = this.tracerIdGenerator();
       ctx.logger.info(
         `+++Incoming Info：${ctx.userId ?? 'UNKNOWN'} ${ctx.method} ${ctx.url}`,
-        {}
+        this.app.getEnv() === 'local'
+          ? {
+              body: ctx.body,
+              query: ctx.query,
+              params: ctx.params,
+            }
+          : {}
       );
       try {
         const result = await next();

@@ -39,5 +39,6 @@ module.exports = {
     "import/no-extraneous-dependencies": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "react/jsx-props-no-spreading": 0,
+    "no-param-reassign": 0,
   },
 };

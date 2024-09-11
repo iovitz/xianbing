@@ -2,7 +2,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Generated,
   OneToMany,
   OneToOne,
   PrimaryColumn,
@@ -15,21 +14,21 @@ import { UserProfile } from './user-profile.entity';
 export class User {
   @PrimaryColumn('varchar', {
     length: 10,
+    comment: '雪花ID',
   })
   id: string;
-
-  @Generated('increment')
-  index: number;
 
   @Column('varchar', {
     length: 20,
     comment: '三方登录平台类型',
+    nullable: true,
   })
   platform: string;
 
   @Column('varchar', {
     length: 50,
     comment: '三方平台ID',
+    nullable: true,
   })
   platformId: string;
 
@@ -55,7 +54,7 @@ export class User {
   })
   createdAt: Date;
 
-  @OneToOne(() => UserProfile, profile => profile.user)
+  @OneToOne(() => UserProfile)
   profile: UserProfile;
 
   @OneToMany(() => Session, session => session.user)

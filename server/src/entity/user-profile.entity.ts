@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -12,12 +13,6 @@ import { User } from './user.entity';
 export class UserProfile {
   @PrimaryGeneratedColumn()
   id: string;
-
-  @Column('varchar')
-  userId: string;
-
-  @Column('varchar')
-  sessionId: string;
 
   @Column('varchar')
   nickname: string;
@@ -36,5 +31,6 @@ export class UserProfile {
   createdAt: Date;
 
   @OneToOne(() => User, user => user.profile)
+  @JoinColumn({ name: 'userId' })
   user: User;
 }

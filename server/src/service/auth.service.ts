@@ -1,14 +1,25 @@
-import { Inject, Provide } from '@midwayjs/core';
+import { App, Inject, Provide } from '@midwayjs/core';
 import { customAlphabet } from 'nanoid';
 import { IdService } from './id.service';
 import * as uuid from 'uuid';
-import { InjectEntityModel } from '@midwayjs/typeorm';
-import { FindOptionsSelect, FindOptionsWhere, Repository } from 'typeorm';
+import { InjectDataSource, InjectEntityModel } from '@midwayjs/typeorm';
+import {
+  FindOptionsSelect,
+  FindOptionsWhere,
+  Repository,
+  DataSource,
+} from 'typeorm';
 import { User } from '../entity/user.entity';
 import { Session } from '../entity/session.entity';
+import { UserProfile } from '../entity/user-profile.entity';
+import { Application } from '@midwayjs/koa';
+import { EncryptService } from './encrypt.service';
 
 @Provide()
 export class AuthService {
+  @App()
+  app: Application;
+
   @Inject()
   private id: IdService;
 
@@ -17,6 +28,12 @@ export class AuthService {
 
   @InjectEntityModel(User)
   private userModel: Repository<User>;
+
+  @InjectDataSource()
+  dataSource: DataSource;
+
+  @Inject()
+  encrypt: EncryptService;
 
   avatarGenerator = customAlphabet(
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
@@ -30,16 +47,45 @@ export class AuthService {
     });
   }
 
-  createUser() {
+  genUserId() {
     const id = this.id.genId('u');
     return id;
   }
 
-  async createSession(userId: string) {
+  async createUser(email: string, password: string) {
+    const id = this.genUserId();
+    const profile = await this.dataSource.transaction(async entityManager => {
+      const user = await entityManager.create(User, {
+        id,
+        email,
+        password: this.encrypt.md5(password),
+      });
+      await entityManager.save(user);
+
+      const profile = await entityManager.create(UserProfile, {
+        user,
+        nickname: `用户${id}`,
+        avatar: `https://api.multiavatar.com/Starcrasher.svg?apikey=${this.app.getConfig(
+          'multiAvatar.key'
+        )}`,
+      });
+      await entityManager.save(profile);
+      return profile;
+    });
+    const session = await this.createSession(profile.user);
+    return {
+      nickname: profile.nickname,
+      email: profile.nickname,
+      id: profile.user.id,
+      session,
+    };
+  }
+
+  async createSession(user: User) {
     const sessionId = uuid.v4();
     await this.sessionModel.insert({
-      userId,
       sessionId,
+      user,
     });
     return sessionId;
   }

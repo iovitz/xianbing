@@ -24,18 +24,21 @@ export class CheckRegisterDTO {
   email: string;
 }
 
+export class CheckRegisterResponseDTO {
+  @ApiProperty({
+    example: true,
+    description: '是否需要注册（邮箱在数据库不存在时，需要注册）',
+  })
+  @Rule(RuleType.boolean().required())
+  needRegister: boolean;
+}
+
 export class LoginDTO {
   @ApiProperty({
     example: 'peter@gmail.com',
   })
   @Rule(RuleType.string().email().required().max(30).min(6))
   email: string;
-
-  @ApiProperty({
-    example: '张三',
-  })
-  @Rule(RuleType.string().required().max(20).min(2))
-  nickname: string;
 
   @ApiProperty({
     example: '123123',
@@ -58,4 +61,30 @@ export class LoginDTO {
   })
   @Rule(RuleType.boolean())
   register: boolean;
+}
+
+export class LoginResponseDTO {
+  @ApiProperty({
+    example: 'u123456789',
+    description: '用户的UserID',
+  })
+  id: string;
+
+  @ApiProperty({
+    example: 'peter@gmail.com',
+    description: '用户的邮箱',
+  })
+  email: string;
+
+  @ApiProperty({
+    example: 'peter',
+    description: '用户的昵称',
+  })
+  nickname: string;
+
+  @ApiProperty({
+    example: '<UUID V4>',
+    description: 'SessionID',
+  })
+  session: string;
 }

@@ -3,7 +3,12 @@ import { IUserOptions } from '../interface';
 import { pick } from 'lodash';
 import { InjectEntityModel } from '@midwayjs/typeorm';
 import { UserProfile } from '../entity/user-profile.entity';
-import { FindOptionsSelect, FindOptionsWhere, Repository } from 'typeorm';
+import {
+  FindOptionsRelations,
+  FindOptionsSelect,
+  FindOptionsWhere,
+  Repository,
+} from 'typeorm';
 
 @Provide()
 export class UserService {
@@ -21,11 +26,13 @@ export class UserService {
 
   getUserProfileBy(
     where: FindOptionsWhere<UserProfile>,
-    select: FindOptionsSelect<UserProfile>
+    select: FindOptionsSelect<UserProfile>,
+    relations: FindOptionsRelations<UserProfile> = {}
   ) {
     return this.userProfileModel.findOne({
       where,
       select,
+      relations,
     });
   }
 

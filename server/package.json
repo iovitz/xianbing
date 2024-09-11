@@ -58,7 +58,7 @@
     "lint:fix": "mwts fix",
     "ci": "npm run cov",
     "build": "mwtsc --cleanOutDir",
-    "yac": "node_modules/.bin/httpyac -e dev -o body"
+    "yac": "node_modules/.bin/httpyac -e dev -o body ./http.rest"
   },
   "repository": {
     "type": "git",

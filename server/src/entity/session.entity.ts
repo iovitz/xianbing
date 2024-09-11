@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -10,13 +11,14 @@ import { User } from './user.entity';
 
 @Entity('session')
 export class Session {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({
+    comment: '自增ID',
+  })
   id: string;
 
-  @Column('varchar')
-  userId: string;
-
-  @Column('varchar')
+  @Column('varchar', {
+    comment: 'SessionID',
+  })
   sessionId: string;
 
   @UpdateDateColumn({
@@ -30,5 +32,6 @@ export class Session {
   createdAt: Date;
 
   @ManyToOne(() => User, user => user.sessions)
+  @JoinColumn({ name: 'userId' })
   user: User;
 }

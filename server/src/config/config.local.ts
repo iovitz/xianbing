@@ -29,6 +29,9 @@ export default {
       },
     },
   },
+  multiAvatar: {
+    key: env.MULTIAVATAR_KEY,
+  },
   midwayLogger: {
     default: {
       level: 'debug',
