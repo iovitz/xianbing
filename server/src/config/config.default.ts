@@ -68,7 +68,7 @@ export default {
 } as MidwayConfig;
 
 function logFormater(info) {
-  return `${gray(info.timestamp)} ${yellow(info.LEVEL)} ${info.pid} ${
+  return `${gray(info.timestamp)} ${yellow(info.LEVEL)} ${gray(info.pid)} ${
     info.labelText ?? ''
   }${info.message}`;
 }
