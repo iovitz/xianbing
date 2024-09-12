@@ -3,21 +3,27 @@ import {
   OnWSMessage,
   Inject,
   OnWSConnection,
+  OnWSDisConnection,
 } from '@midwayjs/core';
 import { Context } from '@midwayjs/socketio';
 
-@WSController('socket.io')
+@WSController('ws/socket.io')
 export class HelloSocketController {
   @Inject()
   ctx: Context;
 
   @OnWSConnection()
-  async onConnectionMethod() {
-    this.ctx.logger.info(`Socket connect: ${this.ctx.id}`);
+  async onConnection() {
+    this.ctx.logger.info(`>>>Socket In: ${this.ctx.id}`);
+  }
+
+  @OnWSDisConnection()
+  async onDisconnection() {
+    this.ctx.logger.info(`<<<Socket Out: ${this.ctx.id}`);
   }
 
   @OnWSMessage('niubi')
   async gotMessage(data: unknown) {
-    console.log('on data got', this.ctx.id, data);
+    this.ctx.logger.info(`!!!Socket Message: (${this.ctx.id})`, data);
   }
 }

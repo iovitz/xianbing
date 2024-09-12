@@ -6,11 +6,11 @@
     <title>Ollah</title>
   </head>
   <body>
-    <h1>1111niubi</h1>
+    <h1>11111</h1>
     <script type="module">
       import { io } from 'https://cdn.socket.io/4.7.5/socket.io.esm.min.js';
 
-      const socket = io('ws://127.0.0.1:13131/socket.io', {
+      const socket = io('http://127.0.0.1:13131/ws/socket.io', {
         transports: ['websocket'],
       });
       // 监听连接事件
@@ -18,9 +18,7 @@
         console.log('Connected to server');
 
         // 发送消息到服务器
-        socket.emit('niubi', {
-          name: 'zhangsan',
-        });
+        socket.emit('niubi', 'Hello from client!');
       });
 
       // 监听从服务器发送的消息

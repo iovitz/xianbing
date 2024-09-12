@@ -19,9 +19,18 @@ import "../css/theme.css";
 
 // Import App Component
 import App from "../app.jsx";
+import { http } from "@/common/io/io";
+import { ws } from "@/common/io/socket";
 
 // Init F7 React Plugin
 Framework7.use(Framework7React);
+
+// 初始化Http请求配置
+http.initial({
+  baseURL: "/api",
+});
+// Socket链接
+ws.init();
 
 // Mount React App
 const root = createRoot(document.getElementById("app"));

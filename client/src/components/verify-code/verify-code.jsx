@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import io from "@/common/io/io";
+import { http } from "@/common/io/io";
 
 export default function VerifyCode() {
   const svgContainer = useRef(null);
@@ -10,7 +10,7 @@ export default function VerifyCode() {
     }
     const width = current.offsetWidth;
     const height = current.offsetHeight;
-    const { data } = await io.request({
+    const { data } = await http.request({
       method: "get",
       url: "/security/verify-code",
       params: {

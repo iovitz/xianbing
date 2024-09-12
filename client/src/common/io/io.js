@@ -1,24 +1,17 @@
 import axios from "axios";
-import WebSocket from "./socket";
 
-class IO {
+export class HttpClient {
   socket;
 
   axios;
 
   errorHandler = new Set();
 
-  constructor(config) {
-    const { socketConfig } = config;
-    if (socketConfig) {
-      this.socket = new WebSocket(
-        socketConfig.socketUrl,
-        socketConfig.socketPath,
-        socketConfig.socketAuth,
-      );
-    }
+  initial(config) {
     this.axios = axios.create(config);
+
     this.addResponseInterceptor(({ data }) => data);
+    return this;
   }
 
   addErrorHandler(handler) {
@@ -61,7 +54,4 @@ class IO {
   }
 }
 
-const io = new IO({
-  baseURL: "/api",
-});
-export default io;
+export const http = new HttpClient();

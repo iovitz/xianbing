@@ -1,5 +1,6 @@
 import { Middleware, IMiddleware, App } from '@midwayjs/core';
 import { NextFunction, Context, Application } from '@midwayjs/koa';
+import stringify = require('fast-json-stable-stringify');
 import { customAlphabet } from 'nanoid';
 
 @Middleware()
@@ -16,13 +17,13 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
       const stime = process.hrtime.bigint();
       ctx.traceId = this.tracerIdGenerator();
       ctx.logger.info(
-        `+++Incoming Info：${ctx.userId ?? 'UNKNOWN'} ${ctx.method} ${ctx.url}`,
+        `+++Incoming Info：${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
         this.app.getEnv() === 'local'
-          ? {
+          ? stringify({
               body: ctx.body,
               query: ctx.query,
               params: ctx.params,
-            }
+            })
           : {}
       );
       try {

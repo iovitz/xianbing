@@ -30,6 +30,10 @@ export default async () => {
           target: "http://localhost:13131", // 目标 API 服务器
           changeOrigin: true, // 允许跨域
         },
+        "/ws": {
+          target: "ws://localhost:13131", // 目标 API 服务器
+          changeOrigin: true, // 允许跨域
+        },
       },
     },
   };

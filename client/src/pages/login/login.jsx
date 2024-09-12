@@ -9,7 +9,7 @@ import {
 } from "framework7-react";
 import VerifyCode from "@/components/verify-code/verify-code";
 import store from "@/js/store";
-import io from "@/common/io/io";
+import { http } from "@/common/io/io";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -30,7 +30,7 @@ const LoginPage = () => {
   };
 
   const handleSubmit = () => {
-    io.request({
+    http.request({
       method: "post",
       url: "/auth/login",
       data: {

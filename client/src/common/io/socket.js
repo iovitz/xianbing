@@ -1,7 +1,7 @@
 import SocketClient from "socket.io-client";
 
 // Socket V2文档：https://socket.io/zh-CN/docs/v2/client-initialization/
-class WebSocket {
+export class WsClient {
   isConnected = false;
 
   eventQueue = [];
@@ -12,19 +12,13 @@ class WebSocket {
     return this.connection.id ?? null;
   }
 
-  constructor(url, path, auth) {
-    this.connection = SocketClient(url, {
-      path,
-      query: {
-        room: "demo",
-        userId: `client_${auth}`,
-      },
-      transports: ["websocket", "polling"],
-      timeout: 5000,
-      // 取消自动连接
-      autoConnect: false,
+  init() {
+    this.connection = SocketClient("/", {
+      path: "/ws/socket.io",
+      transports: ["polling", "websocket", "webtransport"],
     });
     this.initEvents();
+    return this;
   }
 
   initEvents() {
@@ -58,4 +52,4 @@ class WebSocket {
   }
 }
 
-export default WebSocket;
+export const ws = new WsClient();
