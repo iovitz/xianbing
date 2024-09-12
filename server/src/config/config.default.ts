@@ -9,6 +9,17 @@ export default {
     // ...
     transports: ['websocket'],
   },
+  staticFile: {
+    dirs: {
+      default: {
+        prefix: '/',
+        dir: 'public',
+        alias: {
+          // '/': '/index.html',
+        },
+      },
+    },
+  },
   session: {
     maxAge: 24 * 3600 * 1000 * 30,
     key: '_ss',
@@ -19,5 +30,8 @@ export default {
     mapping: {
       '.ejs': 'ejs',
     },
+  },
+  ejs: {
+    cache: false,
   },
 } as MidwayConfig;

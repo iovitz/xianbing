@@ -26,7 +26,6 @@ export class SecurityController {
 
     if (query.svg) {
       this.ctx.skipFormat = true;
-      this.ctx.set('Content-Type', 'image/svg+xml');
     }
     return data;
   }

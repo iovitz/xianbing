@@ -10,6 +10,7 @@ import * as validate from '@midwayjs/validate';
 import * as view from '@midwayjs/view-ejs';
 import * as info from '@midwayjs/info';
 import * as socketio from '@midwayjs/socketio';
+import * as staticFile from '@midwayjs/static-file';
 import { join } from 'path';
 import { DefaultErrorFilter } from './filter/default.filter';
 import { NotFoundFilter } from './filter/notfound.filter';
@@ -27,6 +28,7 @@ dotenv.config();
   imports: [
     koa,
     orm,
+    staticFile,
     validate,
     view,
     socketio,

@@ -6,7 +6,8 @@
     "test",
     "jest.config.js",
     "typings",
-    "*.ejs"
+    "*.ejs",
+    "*.html"
   ],
   "env": {
     "jest": true

@@ -28,8 +28,11 @@ export class HomeController {
   @Get('/')
   async getHome() {
     this.ctx.skipFormat = true;
+    this.ctx.set({
+      'Cache-Control': 'no store',
+    });
     await this.ctx.render('index', {
-      data: 'world',
+      data: 'niubi',
     });
   }
 }

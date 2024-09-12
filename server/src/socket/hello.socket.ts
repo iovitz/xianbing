@@ -6,18 +6,18 @@ import {
 } from '@midwayjs/core';
 import { Context } from '@midwayjs/socketio';
 
-@WSController('/')
+@WSController('socket.io')
 export class HelloSocketController {
   @Inject()
   ctx: Context;
 
   @OnWSConnection()
   async onConnectionMethod() {
-    console.log('on client connect', this.ctx.id);
+    this.ctx.logger.info(`Socket connect: ${this.ctx.id}`);
   }
 
-  @OnWSMessage('myEvent')
-  async gotMessage(data) {
+  @OnWSMessage('niubi')
+  async gotMessage(data: unknown) {
     console.log('on data got', this.ctx.id, data);
   }
 }

@@ -18,9 +18,7 @@
         console.log('Connected to server');
 
         // 发送消息到服务器
-        socket.emit('niubi', {
-          name: 'zhangsan',
-        });
+        socket.emit('niubi', 'Hello from client!');
       });
 
       // 监听从服务器发送的消息
