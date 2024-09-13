@@ -29,3 +29,7 @@ content-type: application/json
 ### tag
 GET /tag/list
 content-type: application/json
+
+### setting
+GET /setting
+content-type: application/json

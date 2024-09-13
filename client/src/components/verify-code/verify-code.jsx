@@ -31,6 +31,9 @@ export default function VerifyCode() {
       ref={svgContainer}
       onClick={refreshCode}
       className="w-full h-full flex-1 text-xs"
+      style={{
+        minHeight: "50px",
+      }}
     />
   );
 }

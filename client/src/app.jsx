@@ -12,6 +12,7 @@ import {
   Page,
 } from "framework7-react";
 
+import axios from "axios";
 import routes from "./js/routes";
 import store from "./js/store";
 import { ws } from "./common/io/socket";
@@ -33,10 +34,12 @@ const MyApp = () => {
     routes,
   };
 
-  f7ready(() => {
+  f7ready(async () => {
     // 初始化Http请求配置
+    const { data } = await axios.get("/api/setting");
+    console.log(data);
     http.initial({
-      baseURL: import.meta.VITE_SOCKET_URL,
+      baseURL: "/api",
     });
     // Socket链接
     // ws.init();
