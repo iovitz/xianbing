@@ -9,7 +9,14 @@ export class LabelService {
   labelModel: Repository<Label>;
 
   async getAllTags() {
-    const res = await this.labelModel.find();
+    const res = await this.labelModel.find({
+      select: {
+        id: true,
+        pid: true,
+        name: true,
+        icon: true,
+      },
+    });
     return res;
   }
 }

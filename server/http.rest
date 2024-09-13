@@ -26,8 +26,8 @@ content-type: application/json
 GET /auth/code?width=200&height=300&type=login
 content-type: application/json
 
-### tag
-GET /tag/list
+### label
+GET /label/all_labels
 content-type: application/json
 
 ### setting

@@ -12,9 +12,10 @@ export class UserController {
   @Inject()
   label: LabelService;
 
-  @Get('/all')
+  @Get('/all_labels')
   async getInfo() {
     const tags = await this.label.getAllTags();
+    console.log(tags);
     return tags;
   }
 }
