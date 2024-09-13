@@ -1,5 +1,5 @@
-import React from 'react';
-import { Page, Navbar, Block, List, ListItem } from 'framework7-react';
+import React from "react";
+import { Page, Navbar, Block, List, ListItem } from "framework7-react";
 
 const RequestAndLoad = (props) => {
   const { user } = props;
@@ -13,12 +13,13 @@ const RequestAndLoad = (props) => {
       <List strong inset dividersIos>
         {user.links.map((link, index) => (
           <ListItem
+            // eslint-disable-next-line react/no-array-index-key
             key={index}
             link={link.url}
             title={link.title}
             external
             target="_blank"
-          ></ListItem>
+          />
         ))}
       </List>
     </Page>

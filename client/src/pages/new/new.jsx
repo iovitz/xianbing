@@ -11,7 +11,7 @@ import {
 import MoneyKeyboard from "../../components/money-keyboard/money-keyboard";
 
 const NewPage = () => {
-  const [type, setType] = useState("");
+  const [_, setType] = useState("");
   const [actionOpen, setActionOpen] = useState(false);
   const tags = [
     {

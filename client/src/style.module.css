@@ -1,0 +1,27 @@
+/* 加载方案来源：https://css-loaders.com/progress/ */
+/* HTML: <div class="loader"></div> */
+.loader {
+  height: 4px;
+  width: 130px;
+  --c: no-repeat linear-gradient(var(--f7-md-primary) 0 0);
+  background: var(--c), var(--c), var(--f7-md-secondary-container);
+  background-size: 60% 100%;
+  animation: l16 2s forwards;
+}
+@keyframes l16 {
+  0% {
+    background-position:
+      -150% 0,
+      -150% 0;
+  }
+  66% {
+    background-position:
+      250% 0,
+      -150% 0;
+  }
+  100% {
+    background-position:
+      250% 0,
+      250% 0;
+  }
+}

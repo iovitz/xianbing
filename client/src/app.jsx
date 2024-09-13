@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { f7ready, App, Views, View, Toolbar, Link } from "framework7-react";
+import {
+  f7ready,
+  App,
+  Views,
+  View,
+  Toolbar,
+  Link,
+  LoginScreen,
+  LoginScreenTitle,
+  Page,
+} from "framework7-react";
 
 import routes from "./js/routes";
 import store from "./js/store";
+import { ws } from "./common/io/socket";
+import { http } from "./common/io/io";
+import style from "./style.module.css";
 
 const MyApp = () => {
-  // Framework7 Parameters
+  const [loginScreenOpened, setLoginScreenOpened] = useState(true);
   const f7params = {
     name: "Ollah", // App name
     theme: "auto", // Automatic theme detection
@@ -21,7 +34,15 @@ const MyApp = () => {
   };
 
   f7ready(() => {
-    // Call F7 APIs here
+    // 初始化Http请求配置
+    http.initial({
+      baseURL: import.meta.VITE_SOCKET_URL,
+    });
+    // Socket链接
+    // ws.init();
+    setTimeout(() => {
+      setLoginScreenOpened(false);
+    }, 2000);
   });
 
   return (
@@ -60,6 +81,21 @@ const MyApp = () => {
         {/* Settings View */}
         <View id="view-settings" name="settings" tab url="/settings/" />
       </Views>
+
+      <LoginScreen
+        className="demo-login-screen"
+        opened={loginScreenOpened}
+        onLoginScreenClosed={() => {
+          setLoginScreenOpened(false);
+        }}
+      >
+        <Page loginScreen>
+          <LoginScreenTitle>Luanching...</LoginScreenTitle>
+          <div className="flex justify-center">
+            <div className={style.loader} />
+          </div>
+        </Page>
+      </LoginScreen>
     </App>
   );
 };

@@ -132,6 +132,7 @@ const HomePage = () => {
       <BlockTitle>DETAIL</BlockTitle>
       <List strong inset dividersIos>
         <ListItem title="Login" link="/login/" />
+        <ListItem title="Luanch" link="/luanch/" />
         <ListItem
           title="Dynamic (Component) Route"
           link="/dynamic-route/blog/45/post/125/?foo=bar#about"
