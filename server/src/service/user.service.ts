@@ -2,7 +2,7 @@ import { Provide } from '@midwayjs/core';
 import { IUserOptions } from '../interface';
 import { pick } from 'lodash';
 import { InjectEntityModel } from '@midwayjs/typeorm';
-import { UserProfile } from '../entity/user-profile.entity';
+import { UserProfile } from '../entity/user-profile.mysql';
 import {
   FindOptionsRelations,
   FindOptionsSelect,

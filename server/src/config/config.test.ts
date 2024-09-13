@@ -1,7 +1,7 @@
 import { MidwayConfig } from '@midwayjs/core';
-import { Session } from '../entity/session.entity';
-import { UserProfile } from '../entity/user-profile.entity';
-import { User } from '../entity/user.entity';
+import { Session } from '../entity/session.mysql';
+import { UserProfile } from '../entity/user-profile.mysql';
+import { User } from '../entity/user.mysql';
 
 export default {
   keys: 'UNI_TEST_KEY',

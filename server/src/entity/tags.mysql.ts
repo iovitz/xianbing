@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from './user.entity';
+import { User } from './user.mysql';
 
 @Entity('tag')
 export class Tag {
@@ -30,6 +30,7 @@ export class Tag {
   // https://www.iconfont.cn/collections/detail?spm=a313x.search_index.0.da5a778a4.69173a81K1yz5L&cid=10840
   @Column('varchar', {
     comment: '标签图标，只有一级标签才有',
+    nullable: true,
   })
   icon: string;
 
@@ -43,7 +44,7 @@ export class Tag {
   })
   createdAt: Date;
 
-  @ManyToOne(() => User, user => user.tags)
-  @JoinColumn({ name: 'userId' })
+  @ManyToOne(() => User, user => user.id)
+  @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   user: User;
 }

@@ -8,9 +8,9 @@ import {
   Repository,
   DataSource,
 } from 'typeorm';
-import { User } from '../entity/user.entity';
-import { Session } from '../entity/session.entity';
-import { UserProfile } from '../entity/user-profile.entity';
+import { User } from '../entity/user.mysql';
+import { Session } from '../entity/session.mysql';
+import { UserProfile } from '../entity/user-profile.mysql';
 import { Application } from '@midwayjs/koa';
 import { EncryptService } from './encrypt.service';
 

@@ -7,9 +7,9 @@ import {
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Session } from './session.entity';
-import { Tag } from './tags.entity';
-import { UserProfile } from './user-profile.entity';
+import { Session } from './session.mysql';
+import { Tag } from './tags.mysql';
+import { UserProfile } from './user-profile.mysql';
 
 @Entity('user')
 export class User {

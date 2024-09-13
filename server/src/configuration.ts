@@ -21,6 +21,7 @@ import * as swagger from '@midwayjs/swagger';
 import { FormatMiddleware } from './middleware/format.middleware';
 import { TypeORMDataSourceManager } from '@midwayjs/typeorm';
 import { BadRequestFilter } from './filter/badrequest.filter';
+import { Logger as TypeOrmLogger } from 'typeorm';
 
 dotenv.config();
 
@@ -64,6 +65,8 @@ export class MainConfiguration {
     );
 
     const mysqlConnection = typeormDataSourceManager.getDataSource('mysql');
+    mysqlConnection.logger = this.getTypeormLogger('MYSQL');
+
     if (mysqlConnection.isConnected) {
       this.logger.info('Data Source has been initialized!');
     }
@@ -80,5 +83,35 @@ export class MainConfiguration {
 
   async onStop(): Promise<void> {
     this.logger.info('Server exit!!!');
+  }
+
+  getTypeormLogger(name: string) {
+    console.log(name);
+    const logger = this.app.getLogger(name);
+    const typeormLogger: TypeOrmLogger = {
+      logQuery: function (query: string, parameters?: any[]) {
+        logger.debug(`[${name}]: ${query}`, parameters);
+      },
+      logQueryError: function (
+        error: string | Error,
+        query: string,
+        parameters?: any[]
+      ) {
+        logger.error(`[${name}]: ${query}`, parameters, error);
+      },
+      logQuerySlow: function (time: number, query: string, parameters?: any[]) {
+        logger.warn(`[${name}]Slow Query(${time}): ${query}`, parameters);
+      },
+      logSchemaBuild: function (message: string) {
+        logger.debug(`[${name}]Schema Build: ${message}`);
+      },
+      logMigration: function (message: string) {
+        logger.debug(`[${name}]Migration: ${message}`);
+      },
+      log: function (level: 'warn' | 'info' | 'log', message: any) {
+        this.log[level](`[${name}]: message`);
+      },
+    };
+    return typeormLogger;
   }
 }
