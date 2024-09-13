@@ -19,9 +19,11 @@ import {
   Icon,
   Subnavbar,
   Searchbar,
+  useStore,
 } from "framework7-react";
 
 const HomePage = () => {
+  const setting = useStore("setting");
   return (
     <Page name="home">
       {/* Top Navbar */}
@@ -29,7 +31,7 @@ const HomePage = () => {
         <NavLeft>
           <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left" />
         </NavLeft>
-        <NavTitle sliding>Ollah</NavTitle>
+        <NavTitle sliding>Ollah{setting.base_url}</NavTitle>
         <NavRight>
           <Button tonal>9 / 2024</Button>
         </NavRight>

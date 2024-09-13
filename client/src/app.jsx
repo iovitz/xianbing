@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   f7ready,
@@ -12,12 +12,13 @@ import {
   Page,
 } from "framework7-react";
 
-import axios from "axios";
 import routes from "./js/routes";
-import store from "./js/store";
-import { ws } from "./common/io/socket";
+import store, { USER_STORE_KEY } from "./js/store";
+// import { ws } from "./common/io/socket";
 import { http } from "./common/io/io";
 import style from "./style.module.css";
+import LS from "./common/local-storage/local-storage";
+import { logger } from "./common/logger/logger";
 
 const MyApp = () => {
   const [loginScreenOpened, setLoginScreenOpened] = useState(true);
@@ -33,21 +34,34 @@ const MyApp = () => {
     // App routes
     routes,
   };
+  http.initial({
+    baseURL: "/api",
+  });
+  // Socket链接
+  // ws.init();
 
-  f7ready(async () => {
+  useEffect(async () => {
     // 初始化Http请求配置
-    const { data } = await axios.get("/api/setting");
-    console.log(data);
-    http.initial({
-      baseURL: "/api",
+    const { data } = await http.request({
+      method: "get",
+      url: "/setting",
     });
-    // Socket链接
-    // ws.init();
+
+    store.dispatch("setSetting", data);
+
+    try {
+      // 持久化存储的内容
+      const userInfo = LS.getItem(USER_STORE_KEY);
+      store.dispatch("setUser", JSON.parse(userInfo));
+    } catch (e) {
+      store.dispatch("setUser", {});
+      logger.error("Get User Info Fail");
+    }
+
     setTimeout(() => {
       setLoginScreenOpened(false);
     }, 2000);
-  });
-
+  }, []);
   return (
     <App {...f7params}>
       {/* Views/Tabs container */}

@@ -1,13 +1,14 @@
+import stringify from "json-stringify-safe";
 import { logger } from "@/common/logger/logger";
 
-const LSUtils = {
+const LS = {
   getItem: (key: string) => {
     return localStorage.getItem(key);
   },
 
   setItem: <T>(key: string, data: T, safely = true) => {
     try {
-      return localStorage.setItem(key, JSON.stringify(data));
+      return localStorage.setItem(key, stringify(data));
     } catch (e) {
       logger.error("Set localStorage fail!", e);
       if (!safely) {
@@ -26,4 +27,4 @@ const LSUtils = {
   },
 };
 
-export default LSUtils;
+export default LS;
