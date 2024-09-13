@@ -9,8 +9,8 @@ import {
 } from 'typeorm';
 import { User } from './user.mysql';
 
-@Entity('tag')
-export class Tag {
+@Entity('labels')
+export class Label {
   @PrimaryGeneratedColumn({
     comment: '自增ID',
   })
@@ -21,18 +21,17 @@ export class Tag {
   })
   name: string;
 
-  @Column('int', {
-    comment: '父级标签ID',
-  })
-  pid: number;
-
-  // https://www.iconfont.cn/collections/detail?spm=a313x.search_index.0.da5a778a4.69173a81K1yz5L&cid=20399
-  // https://www.iconfont.cn/collections/detail?spm=a313x.search_index.0.da5a778a4.69173a81K1yz5L&cid=10840
   @Column('varchar', {
-    comment: '标签图标，只有一级标签才有',
+    comment: '标签图标',
     nullable: true,
   })
   icon: string;
+
+  @Column('int', {
+    comment: '父级标签ID',
+    default: 0,
+  })
+  pid: number;
 
   @UpdateDateColumn({
     type: 'timestamp',

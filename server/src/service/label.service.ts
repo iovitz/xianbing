@@ -1,15 +1,15 @@
 import { Provide } from '@midwayjs/core';
 import { InjectEntityModel } from '@midwayjs/typeorm';
 import { Repository } from 'typeorm';
-import { Tag } from '../entity/tags.mysql';
+import { Label } from '../entity/label.mysql';
 
 @Provide()
-export class TagService {
-  @InjectEntityModel(Tag)
-  tagModel: Repository<Tag>;
+export class LabelService {
+  @InjectEntityModel(Label)
+  labelModel: Repository<Label>;
 
   async getAllTags() {
-    const res = await this.tagModel.find();
+    const res = await this.labelModel.find();
     return res;
   }
 }

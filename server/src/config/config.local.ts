@@ -21,6 +21,7 @@ export default {
         logging: true,
         // 配置实体模型
         entities: ['entity'],
+        migrations: ['migration'],
       },
     },
   },

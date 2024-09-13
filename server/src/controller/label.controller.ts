@@ -1,20 +1,20 @@
 import { Inject, Controller, Get } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { ApiTags } from '@midwayjs/swagger';
-import { TagService } from '../service/tag.service';
+import { LabelService } from '../service/label.service';
 
 @ApiTags('Tag标签')
-@Controller('/api/tag')
+@Controller('/api/label')
 export class UserController {
   @Inject()
   ctx: Context;
 
   @Inject()
-  tag: TagService;
+  label: LabelService;
 
-  @Get('/list')
+  @Get('/all')
   async getInfo() {
-    const tags = await this.tag.getAllTags();
+    const tags = await this.label.getAllTags();
     return tags;
   }
 }

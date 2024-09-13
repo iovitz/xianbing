@@ -3,14 +3,14 @@ import { Context } from '@midwayjs/koa';
 import { ApiOperation, ApiResponse, ApiTags } from '@midwayjs/swagger';
 import { InjectEntityModel } from '@midwayjs/typeorm';
 import { Repository } from 'typeorm';
-import { Tag } from '../entity/tags.mysql';
+import { Label } from '../entity/label.mysql';
 import { GetStatusResponseDTO } from './home.dto';
 
 @ApiTags('Home 根路径请求')
 @Controller()
 export class HomeController {
-  @InjectEntityModel(Tag)
-  private tagModel: Repository<Tag>;
+  @InjectEntityModel(Label)
+  private labelModel: Repository<Label>;
 
   @Inject()
   ctx: Context;
@@ -132,11 +132,13 @@ export class HomeController {
         icon: 'bonus',
       },
     ];
-    tags.forEach(({ name, icon }) => {
-      this.tagModel.create({
-        name,
-        icon,
-      });
+    tags.forEach(async ({ name, icon }) => {
+      console.log(
+        await this.labelModel.insert({
+          name,
+          icon,
+        })
+      );
     });
     return {
       message: 'Hey Bro.',
