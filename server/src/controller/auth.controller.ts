@@ -91,7 +91,7 @@ export class APIController {
 
       return {
         userId: userProfile.id,
-        avatar: userProfile.avatar,
+        avatar: userProfile.avatar ?? null,
         nickname: userProfile.nickname,
         session,
       };
