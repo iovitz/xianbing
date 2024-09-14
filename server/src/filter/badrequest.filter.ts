@@ -1,8 +1,8 @@
-import { Catch, HttpStatus } from '@midwayjs/core';
+import { Catch, httpError, HttpStatus } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { BaseErrorFilter } from './base.filter';
 
-@Catch()
+@Catch(httpError.BadRequestError)
 export class BadRequestFilter extends BaseErrorFilter {
   constructor() {
     super(HttpStatus.BAD_REQUEST);

@@ -1,32 +1,29 @@
 import { App, Inject, Provide } from '@midwayjs/core';
 import { customAlphabet } from 'nanoid';
 import * as uuid from 'uuid';
-import { InjectDataSource, InjectEntityModel } from '@midwayjs/typeorm';
-import {
-  FindOptionsSelect,
-  FindOptionsWhere,
-  Repository,
-  DataSource,
-} from 'typeorm';
-import { User } from '../entity/user.mysql';
-import { Session } from '../entity/session.mysql';
-import { UserProfile } from '../entity/user-profile.mysql';
 import { Application } from '@midwayjs/koa';
 import { EncryptService } from './encrypt.service';
+import { InjectRepository } from '@midwayjs/sequelize';
+import { Session } from '../mysql/session';
+import { User } from '../mysql/user';
+import { Repository } from 'sequelize-typescript';
+import { FindAttributeOptions, WhereOptions } from 'sequelize';
+import { UserProfile } from '../mysql/user-profile';
+import * as UAParser from 'ua-parser-js';
 
 @Provide()
 export class AuthService {
   @App()
   app: Application;
 
-  @InjectEntityModel(Session)
+  @InjectRepository(Session)
   private sessionModel: Repository<Session>;
 
-  @InjectEntityModel(User)
-  private userModel: Repository<User>;
+  @InjectRepository(User)
+  private User: Repository<User>;
 
-  @InjectDataSource()
-  private dataSource: DataSource;
+  @InjectRepository(UserProfile)
+  private UserProfile: Repository<UserProfile>;
 
   @Inject()
   private encrypt: EncryptService;
@@ -36,11 +33,18 @@ export class AuthService {
     10
   );
 
-  findUserBy(where: FindOptionsWhere<User>, select: FindOptionsSelect<User>) {
-    return this.userModel.findOne({
+  private uaParser = new UAParser();
+
+  findUserBy(where: WhereOptions<User>, attributes: FindAttributeOptions) {
+    return this.User.findOne({
       where,
-      select,
+      attributes,
     });
+  }
+
+  getUAParser(useragent: string) {
+    this.uaParser.setUA(useragent);
+    return this.uaParser.getResult();
   }
 
   genUserId() {
@@ -50,38 +54,47 @@ export class AuthService {
 
   async createUser(email: string, password: string) {
     const id = this.genUserId();
-    const profile = await this.dataSource.transaction(async entityManager => {
-      const user = await entityManager.create(User, {
-        id,
-        email,
-        password: this.encrypt.md5(password),
-      });
-      await entityManager.save(user);
+    const transaction = await this.User.sequelize.transaction();
+    try {
+      await this.User.create(
+        {
+          id,
+          email,
+          password: this.encrypt.md5(password),
+        },
+        { transaction }
+      );
+      // 其他操作...
+      const userProfile = await this.UserProfile.create(
+        {
+          id,
+          nickname: `用户${id.substring(0, 5)}`,
+        },
+        { transaction, raw: true }
+      );
 
-      const profile = await entityManager.create(UserProfile, {
-        user,
-        nickname: `用户${id}`,
-        avatar: `https://api.multiavatar.com/Starcrasher.svg?apikey=${this.app.getConfig(
-          'multiAvatar.key'
-        )}`,
-      });
-      await entityManager.save(profile);
-      return profile;
-    });
-    const session = await this.createSession(profile.user);
-    return {
-      nickname: profile.nickname,
-      email: profile.nickname,
-      id: profile.user.id,
-      session,
-    };
+      await transaction.commit(); // 提交事务
+      return userProfile;
+    } catch (error) {
+      await transaction.rollback(); // 回滚事务
+      throw error;
+    }
   }
 
-  async createSession(user: User) {
+  async createSession(userId: string, useragent?: string) {
     const sessionId = uuid.v4();
-    await this.sessionModel.insert({
+    const uaDetail = this.getUAParser(useragent);
+    await this.sessionModel.create({
       sessionId,
-      user,
+      userId,
+      os: uaDetail.os.name,
+      osVersion: uaDetail.os.version,
+      engine: uaDetail.engine.name,
+      browser: uaDetail.browser.name,
+      browserVersion: uaDetail.browser.version,
+      deviceModel: uaDetail.device.model,
+      deviceVendor: uaDetail.device.vendor,
+      useragent,
     });
     return sessionId;
   }

@@ -1,15 +1,15 @@
 import { Provide } from '@midwayjs/core';
-import { InjectEntityModel } from '@midwayjs/typeorm';
-import { Repository } from 'typeorm';
-import { Setting } from '../entity/setting.mysql';
+import { InjectRepository } from '@midwayjs/sequelize';
+import { Repository } from 'sequelize-typescript';
+import { Setting } from '../mysql/setting';
 
 @Provide()
 export class SettingService {
-  @InjectEntityModel(Setting)
+  @InjectRepository(Setting)
   settingModel: Repository<Setting>;
 
   // 获取所有配置
   getAllSettings() {
-    return this.settingModel.find();
+    return this.settingModel.findAll();
   }
 }

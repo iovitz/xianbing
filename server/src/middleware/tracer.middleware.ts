@@ -20,8 +20,8 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
         `+++Incoming Info：${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
         this.app.getEnv() === 'local'
           ? stringify({
-              body: ctx.body,
-              query: ctx.query,
+              body: ctx.request.body,
+              query: ctx.request.query,
               params: ctx.params,
             })
           : {}

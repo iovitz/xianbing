@@ -17,19 +17,19 @@ import { VerifyService } from '../service/verify.service';
 @Controller('/api/auth')
 export class APIController {
   @Inject()
-  ctx: Context;
+  private ctx: Context;
 
   @Inject()
-  auth: AuthService;
+  private auth: AuthService;
 
   @Inject()
-  user: UserService;
+  private user: UserService;
 
   @Inject()
-  encrypt: EncryptService;
+  private encrypt: EncryptService;
 
   @Inject()
-  verify: VerifyService;
+  private verify: VerifyService;
 
   @Get('/check')
   @ApiOperation({
@@ -41,12 +41,7 @@ export class APIController {
     type: CheckRegisterResponseDTO,
   })
   async checkRegister(@Query() query: CheckRegisterDTO) {
-    const exists = await this.auth.findUserBy(
-      { email: query.email },
-      {
-        id: true,
-      }
-    );
+    const exists = await this.auth.findUserBy({ email: query.email }, ['id']);
     return !!exists;
   }
 
@@ -74,21 +69,32 @@ export class APIController {
       }
     }
 
-    const existsUser = await this.auth.findUserBy(
-      { email: body.email },
-      {
-        id: true,
-        password: true,
-      }
-    );
+    const existsUser = await this.auth.findUserBy({ email: body.email }, [
+      'id',
+      'password',
+    ]);
 
     if (body.register) {
       // 注册用户
       if (existsUser) {
         throw new BadRequestError('用户已存在');
       }
-      const userInfo = await this.auth.createUser(body.email, body.password);
-      return userInfo;
+
+      // 创建用户
+      const userProfile = await this.auth.createUser(body.email, body.password);
+
+      // 创建Session
+      const session = await this.auth.createSession(
+        userProfile.id,
+        this.ctx.request.header['user-agent']
+      );
+
+      return {
+        userId: userProfile.id,
+        avatar: userProfile.avatar,
+        nickname: userProfile.nickname,
+        session,
+      };
     } else {
       // 登录
       if (
@@ -99,33 +105,26 @@ export class APIController {
       }
     }
 
-    const [userProfile, sessionId] = await Promise.all([
+    const [userProfile, session] = await Promise.all([
+      // Get User Profile
       this.user.getUserProfileBy(
         {
-          user: existsUser,
+          id: existsUser.id,
         },
-        {
-          id: true,
-          nickname: true,
-          avatar: true,
-          user: {
-            id: true,
-            email: true,
-          },
-        },
-        {
-          user: true,
-        }
+        ['id', 'nickname', 'avatar']
       ),
-      this.auth.createSession(existsUser),
+      // Crate Session ID
+      this.auth.createSession(
+        existsUser.id,
+        this.ctx.request.header['user-agent']
+      ),
     ]);
 
     return {
-      userId: userProfile.user.id,
-      email: userProfile.user.email,
+      userId: userProfile.id,
       avatar: userProfile.avatar,
       nickname: userProfile.nickname,
-      session: sessionId,
+      session,
     };
   }
 }

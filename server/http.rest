@@ -17,7 +17,7 @@ POST /auth/login
 content-type: application/json
 
 {
-  "email": "iixWSsiQtf@gmail.com",
+  "email": "owucDYsWAS@gmail.com",
   "password": "123123",
   "code": "PASS"
 }

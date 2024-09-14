@@ -1,21 +1,17 @@
 import { Provide } from '@midwayjs/core';
-import { InjectEntityModel } from '@midwayjs/typeorm';
-import { Repository } from 'typeorm';
-import { Label } from '../entity/label.mysql';
+import { InjectRepository } from '@midwayjs/sequelize';
+import { Repository } from 'sequelize-typescript';
+import { Label } from '../mysql/label';
 
 @Provide()
 export class LabelService {
-  @InjectEntityModel(Label)
+  @InjectRepository(Label)
   labelModel: Repository<Label>;
 
   async getAllTags() {
-    const res = await this.labelModel.find({
-      select: {
-        id: true,
-        pid: true,
-        name: true,
-        icon: true,
-      },
+    const res = await this.labelModel.findAll<Label>({
+      where: {},
+      attributes: ['id', 'name', 'icon'],
     });
     return res;
   }
