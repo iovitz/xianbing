@@ -40,14 +40,15 @@ const MyApp = () => {
   // Socket链接
   // ws.init();
 
-  useEffect(async () => {
-    // 初始化Http请求配置
-    const { data } = await http.request({
-      method: "get",
-      url: "/setting",
-    });
-
-    store.dispatch("setSetting", data);
+  useEffect(() => {
+    http
+      .request({
+        method: "get",
+        url: "/setting",
+      })
+      .then((data) => {
+        store.dispatch("setSetting", data);
+      });
 
     try {
       // 持久化存储的内容
@@ -61,6 +62,7 @@ const MyApp = () => {
     setTimeout(() => {
       setLoginScreenOpened(false);
     }, 2000);
+    return () => {};
   }, []);
   return (
     <App {...f7params}>

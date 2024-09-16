@@ -11,7 +11,7 @@ import VerifyCode from "@/components/verify-code/verify-code";
 import store from "@/js/store";
 import { http } from "@/common/io/io";
 
-const LoginPage = () => {
+const LoginPage = ({ f7router }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,25 +25,23 @@ const LoginPage = () => {
     });
   };
 
-  const onPageBeforeRemove = () => {
-    console.log("退出");
-  };
-
-  const handleSubmit = () => {
-    http.request({
+  const handleSubmit = async () => {
+    const { data } = await http.request({
       method: "post",
       url: "/auth/login",
       data: {
         ...formData,
       },
     });
-    store.dispatch("login", {
-      ...formData,
+
+    f7router.navigate("/");
+    store.dispatch("setUser", {
+      ...data,
     });
   };
 
   return (
-    <Page noToolbar onPageBeforeRemove={onPageBeforeRemove}>
+    <Page noToolbar>
       <Navbar title="Login" backLink="Back" />
       <List strongIos outlineIos dividersIos>
         <ListInput

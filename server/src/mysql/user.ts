@@ -62,7 +62,7 @@ export class User extends Model {
   @Column({
     type: DataType.BOOLEAN,
     comment: '可用状态',
-    defaultValue: false,
+    defaultValue: true,
   })
   state: boolean;
 
@@ -70,10 +70,18 @@ export class User extends Model {
   sessions: Session[];
 
   @UpdatedAt
-  @Column({ field: 'update_at' }) // 自定义列名
+  @Column({
+    field: 'update_at',
+    type: DataType.TIME,
+    defaultValue: DataType.NOW,
+  })
   createAt: Date;
 
   @CreatedAt
-  @Column({ field: 'create_at' }) // 自定义列名
+  @Column({
+    field: 'create_at',
+    type: DataType.TIME,
+    defaultValue: DataType.NOW,
+  })
   updateAt: Date;
 }

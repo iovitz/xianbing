@@ -20,7 +20,7 @@ export class Label extends Model {
   @AutoIncrement
   @Column({
     type: DataType.INTEGER.UNSIGNED,
-    comment: '主键自增ID',
+    comment: '自增主键',
   })
   id: number;
 
@@ -49,6 +49,13 @@ export class Label extends Model {
   })
   pid: number;
 
+  @Column({
+    type: DataType.BOOLEAN,
+    comment: '类型(falsy:支出, truthy:收入)',
+    allowNull: false,
+  })
+  type: boolean;
+
   @ForeignKey(() => UserProfile)
   @Column({
     type: DataType.STRING({
@@ -65,15 +72,23 @@ export class Label extends Model {
   @Column({
     type: DataType.BOOLEAN,
     comment: '可用状态',
-    defaultValue: false,
+    defaultValue: true,
   })
   state: boolean;
 
   @UpdatedAt
-  @Column({ field: 'update_at' })
+  @Column({
+    field: 'update_at',
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+  })
   createAt: Date;
 
   @CreatedAt
-  @Column({ field: 'create_at' }) // 自定义列名
+  @Column({
+    field: 'create_at',
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+  })
   updateAt: Date;
 }

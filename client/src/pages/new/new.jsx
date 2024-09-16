@@ -139,6 +139,7 @@ const NewPage = () => {
                   setType(item.name);
                   setActionOpen(true);
                 }}
+                key={item.name}
               >
                 <Button key={item.name} className="h-16 w-16 rounded-full">
                   <img

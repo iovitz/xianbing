@@ -6,11 +6,12 @@ import {
   ListInput,
   ListItem,
 } from "framework7-react";
-import React from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 import style from "./style.module.scss";
 
 export default function MoneyKeyboard() {
+  const [desc, setDesc] = useState("");
   return (
     <Card className="p-4">
       <CardHeader>添加记账</CardHeader>
@@ -22,11 +23,20 @@ export default function MoneyKeyboard() {
           }}
           tonal
         >
-          <ListInput
-            className={classNames(style["input-no-margin"], "flex-1", "mr-2")}
-            type="number"
-            placeholder="#支出类型"
-          />
+          <div className="item-content item-input mx-0 flex-1 mr-4">
+            <div className="item-inner">
+              <div className="item-input-wrap">
+                <input
+                  type="number"
+                  placeholder="#支出类型"
+                  value={desc}
+                  onInput={(v) => {
+                    setDesc(v.target.value);
+                  }}
+                />
+              </div>
+            </div>
+          </div>
           <h2 className="m-0">123</h2>
         </ListItem>
       </List>

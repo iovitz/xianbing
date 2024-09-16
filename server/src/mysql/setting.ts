@@ -17,7 +17,7 @@ export class Setting extends Model {
   @AutoIncrement
   @Column({
     type: DataType.INTEGER.UNSIGNED,
-    comment: '主键自增ID',
+    comment: '自增主键',
   })
   id: number;
 
@@ -42,15 +42,23 @@ export class Setting extends Model {
   @Column({
     type: DataType.BOOLEAN,
     comment: '可用状态',
-    defaultValue: false,
+    defaultValue: true,
   })
   state: boolean;
 
   @UpdatedAt
-  @Column({ field: 'update_at' }) // 自定义列名
+  @Column({
+    field: 'update_at',
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+  })
   createAt: Date;
 
   @CreatedAt
-  @Column({ field: 'create_at' }) // 自定义列名
+  @Column({
+    field: 'create_at',
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+  })
   updateAt: Date;
 }
