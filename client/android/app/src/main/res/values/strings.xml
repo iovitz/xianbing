@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">ollah</string>
-    <string name="title_activity_main">ollah</string>
-    <string name="package_name">iovitz.app.ollah</string>
-    <string name="custom_url_scheme">iovitz.app.ollah</string>
-</resources>
