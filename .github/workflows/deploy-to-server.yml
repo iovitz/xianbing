@@ -16,7 +16,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_USER: ${{ secrets.SERVER_USERNAME }}
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          SOURCE: 'src/ package.json package-lock.yaml tsconfig.json view/ src/ public/ .npmrc'
+          SOURCE: 'src/ package.json package-lock.yaml tsconfig.json view/ src/ public/ .npmrc bootstrap.js'
           TARGET: /root/ollah/server
           EXCLUDE: '/dist/, node_modules/'
           SCRIPT_BEFORE: |
