@@ -1,0 +1,28 @@
+name: Deploy To Server
+
+on:
+  push:
+    branches: ['master']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SERVER_USERNAME }}
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          SOURCE: .
+          TARGET: /root/duuk/serve
+          EXCLUDE: "/dist/, /.vscode/, '/.github/', '.editorconfig', /test/, /node_modules/"
+          SCRIPT_BEFORE: |
+          SCRIPT_AFTER: |
+            source ~/.profile
+            cd /root/ollah/server
+            pnpm i
+            pnpm stop
+            pnpm start
