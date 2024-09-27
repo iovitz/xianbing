@@ -17,7 +17,7 @@ jobs:
           REMOTE_USER: ${{ secrets.SERVER_USERNAME }}
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SOURCE: .
-          TARGET: /root/duuk/server
+          TARGET: /root/ollah/server
           EXCLUDE: "/dist/, /.vscode/, '/.github/', '.editorconfig', /test/, /node_modules/"
           SCRIPT_BEFORE: |
           SCRIPT_AFTER: |
