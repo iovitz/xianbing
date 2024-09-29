@@ -21,6 +21,7 @@ import * as swagger from '@midwayjs/swagger';
 import { FormatMiddleware } from './middleware/format.middleware';
 import { BadRequestFilter } from './filter/badrequest.filter';
 import { SequelizeDataSourceManager } from '@midwayjs/sequelize';
+import { WxPusherService } from './service/wxpusher.service';
 
 dotenv.config();
 
@@ -57,8 +58,19 @@ export class MainConfiguration {
     this.app.useFilter([NotFoundFilter, DefaultErrorFilter, BadRequestFilter]);
   }
 
-  async onServerReady(container: IMidwayContainer): Promise<void> {
+  async onServerReady(
+    container: IMidwayContainer,
+    app: koa.Application
+  ): Promise<void> {
     const port = this.app.getConfig('koa.port');
+    const wxPusher = await app
+      .getApplicationContext()
+      .getAsync(WxPusherService);
+    wxPusher.pushMessage(
+      `服务启动成功${process.pid}`,
+      '启动成功',
+      'http://5yuan.iovitz.fun/'
+    );
 
     // 链接数据库
     const dataSourceManager = await container.getAsync(
