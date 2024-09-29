@@ -52,7 +52,7 @@ export class Bill extends Model implements BillParams {
 
   @ForeignKey(() => Label)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER.UNSIGNED,
     comment: '账单标签',
     allowNull: false,
   })

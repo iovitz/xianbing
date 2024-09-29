@@ -5,11 +5,13 @@ import {
   CreatedAt,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
   UpdatedAt,
 } from 'sequelize-typescript';
+import { Bill } from './bill';
 import { UserProfile } from './user-profile';
 
 @Table({
@@ -68,6 +70,9 @@ export class Label extends Model {
 
   @BelongsTo(() => UserProfile)
   user: UserProfile;
+
+  @HasMany(() => Bill)
+  bill: Bill;
 
   @Column({
     type: DataType.BOOLEAN,

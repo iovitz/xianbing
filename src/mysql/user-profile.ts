@@ -10,6 +10,7 @@ import {
   Table,
   UpdatedAt,
 } from 'sequelize-typescript';
+import { Bill } from './bill';
 import { Label } from './label';
 import { User } from './user';
 
@@ -32,6 +33,9 @@ export class UserProfile extends Model {
 
   @HasMany(() => Label)
   label: Label[];
+
+  @HasMany(() => Bill)
+  bill: Bill[];
 
   @Column({
     type: DataType.STRING({
