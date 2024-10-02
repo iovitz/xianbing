@@ -20,9 +20,15 @@ jobs:
           TARGET: /root/ollah/server
           EXCLUDE: '/dist/, node_modules/'
           SCRIPT_BEFORE: |
+            echo $0
           SCRIPT_AFTER: |
-            source ~/.bashrc
             cd /root/ollah/server
+            echo 'Check Version'
+            node -v
+            pnpm -v
+            echo 'Use NODE V22'
+            echo 'Install Dependence'
             pnpm i
+            echo 'Running Server'
             pnpm stop
             pnpm start
