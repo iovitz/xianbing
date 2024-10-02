@@ -21,14 +21,17 @@ jobs:
           EXCLUDE: '/dist/, node_modules/'
           SCRIPT_BEFORE: |
             echo $0
+            echo 'Check Version'
+            npm i pnpm -g
+            node -v
+            npm -v
+            pnpm -v
           SCRIPT_AFTER: |
             cd /root/ollah/server
-            echo 'Check Version'
-            node -v
-            pnpm -v
-            echo 'Use NODE V22'
+
             echo 'Install Dependence'
             pnpm i
+
             echo 'Running Server'
             pnpm stop
             pnpm start
