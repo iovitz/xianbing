@@ -1,12 +1,7 @@
-import { Inject, Controller, Get, Query, Post, Body } from '@midwayjs/core';
+import { Inject, Controller, Post, Body } from '@midwayjs/core';
 import { BadRequestError } from '@midwayjs/core/dist/error/http';
 import { Context } from '@midwayjs/koa';
-import {
-  CheckRegisterDTO,
-  CheckRegisterResponseDTO,
-  LoginDTO,
-  LoginResponseDTO,
-} from './auth.dto';
+import { RegisterDTO, LoginDTO, LoginResponseDTO } from './auth.dto';
 import { AuthService } from '../service/auth.service';
 import { EncryptService } from '../service/encrypt.service';
 import { UserService } from '../service/user.service';
@@ -31,23 +26,50 @@ export class APIController {
   @Inject()
   private verify: VerifyService;
 
-  @Get('/check')
+  @Post('/register')
   @ApiOperation({
-    description: '检查用户是否已经登录过',
+    description: '用户注册',
   })
   @ApiResponse({
     status: 200,
-    description: '检查是否需要注册（Email在数据库中不存在时，需要注册）',
-    type: CheckRegisterResponseDTO,
+    description: '注册成功的用户信息',
+    type: LoginResponseDTO,
   })
-  async checkRegister(@Query() query: CheckRegisterDTO) {
-    const exists = await this.auth.findUserBy({ email: query.email }, ['id']);
-    return !!exists;
+  async register(@Body() body: RegisterDTO) {
+    // 校验验证码
+    // 本地开发环境时，允许跳过验证码逻辑（有点入侵）
+    if (this.ctx.app.getEnv() !== 'local' && body.code !== 'PASS') {
+      const isVerifyCodeRight = this.verify.checkVerifyCode(
+        this.ctx.session,
+        'register',
+        body.code
+      );
+
+      if (!isVerifyCodeRight) {
+        throw new BadRequestError('请求错误');
+      }
+    }
+
+    // 创建用户
+    const userProfile = await this.auth.createUser(body.email, body.password);
+
+    // 创建Session
+    const session = await this.auth.createSession(
+      userProfile.id,
+      this.ctx.request.header['user-agent']
+    );
+
+    return {
+      userId: userProfile.id,
+      avatar: userProfile.avatar ?? null,
+      nickname: userProfile.nickname,
+      session,
+    };
   }
 
   @Post('/login')
   @ApiOperation({
-    description: '登录和注册的共用接口',
+    description: '登录接口',
   })
   @ApiResponse({
     status: 200,
@@ -74,35 +96,12 @@ export class APIController {
       'password',
     ]);
 
-    if (body.register) {
-      // 注册用户
-      if (existsUser) {
-        throw new BadRequestError('用户已存在');
-      }
-
-      // 创建用户
-      const userProfile = await this.auth.createUser(body.email, body.password);
-
-      // 创建Session
-      const session = await this.auth.createSession(
-        userProfile.id,
-        this.ctx.request.header['user-agent']
-      );
-
-      return {
-        userId: userProfile.id,
-        avatar: userProfile.avatar ?? null,
-        nickname: userProfile.nickname,
-        session,
-      };
-    } else {
-      // 登录
-      if (
-        !existsUser ||
-        !this.encrypt.md5Match(body.password, existsUser.password)
-      ) {
-        throw new BadRequestError('密码错误');
-      }
+    // 登录
+    if (
+      !existsUser ||
+      !this.encrypt.md5Match(body.password, existsUser.password)
+    ) {
+      throw new BadRequestError('密码错误');
     }
 
     const [userProfile, session] = await Promise.all([

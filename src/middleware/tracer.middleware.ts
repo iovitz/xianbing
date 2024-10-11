@@ -12,12 +12,13 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
     '0123456789abcdefghijklmnopqrstuvwxyz',
     10
   );
+
   resolve() {
     return async (ctx: Context, next: NextFunction) => {
       const stime = process.hrtime.bigint();
       ctx.traceId = this.tracerIdGenerator();
       ctx.logger.info(
-        `+++Incoming Info：${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
+        `+++++${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
         this.app.getEnv() === 'local'
           ? stringify({
               body: ctx.request.body,
@@ -28,14 +29,17 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
       );
       try {
         const result = await next();
+        const cost = process.hrtime.bigint() - stime;
+        ctx.logger.info(
+          '-----',
+          stringify({
+            cost: `cost:${cost}us`,
+          })
+        );
         return result;
       } catch (e) {
         // ...
         throw e;
-      } finally {
-        const cost = process.hrtime.bigint() - stime;
-
-        ctx.logger.info(`---Request Finish, cost: ${cost}us`);
       }
     };
   }

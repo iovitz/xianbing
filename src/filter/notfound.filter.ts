@@ -1,4 +1,5 @@
 import { Catch, httpError, HttpStatus } from '@midwayjs/core';
+import { Context } from '@midwayjs/koa';
 import { BaseErrorFilter } from './base.filter';
 
 @Catch(httpError.NotFoundError)
@@ -7,5 +8,7 @@ export class NotFoundFilter extends BaseErrorFilter {
     super(HttpStatus.NOT_FOUND);
   }
 
-  protected log() {}
+  protected log(message: string, err: Error, ctx: Context) {
+    ctx.logger.info('NotFound');
+  }
 }

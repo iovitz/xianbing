@@ -53,7 +53,11 @@ export class MainConfiguration {
 
   async onReady() {
     // add middleware
-    this.app.useMiddleware([TracerMiddleware, FormatMiddleware]);
+    this.app.useMiddleware([
+      TracerMiddleware,
+      FormatMiddleware,
+      // 统计Controller的耗时的，需要放在最后
+    ]);
     // add filter
     this.app.useFilter([NotFoundFilter, DefaultErrorFilter, BadRequestFilter]);
   }

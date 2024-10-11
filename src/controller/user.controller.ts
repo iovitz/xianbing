@@ -1,7 +1,6 @@
-import { Inject, Controller, Get, Query } from '@midwayjs/core';
+import { Inject, Controller } from '@midwayjs/core';
 import { Context } from '@midwayjs/koa';
 import { ApiTags } from '@midwayjs/swagger';
-import { CheckRegisterDTO } from './auth.dto';
 import { UserService } from '../service/user.service';
 
 @ApiTags('User用户数据')
@@ -12,9 +11,4 @@ export class UserController {
 
   @Inject()
   userService: UserService;
-
-  @Get('/info')
-  async getInfo(@Query() query: CheckRegisterDTO) {
-    return query;
-  }
 }
