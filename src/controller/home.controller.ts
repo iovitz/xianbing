@@ -17,11 +17,10 @@ export class HomeController {
     description: '服务器的运行状态',
     type: GetStatusResponseDTO,
   })
-  @Get('/status')
+  @Get('/api/status')
   async home() {
     return {
       message: 'Hey Bro.',
-      running: true,
     };
   }
 
