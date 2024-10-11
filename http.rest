@@ -3,13 +3,13 @@ GET /status
 
 ### register
 @username = {{$random.alphabetic()}}
-POST /auth/login
+POST /auth/register
 content-type: application/json
 {
+  "nickname": "{{username}}",
   "email": "{{username}}@gmail.com",
   "password": "123123",
-  "code": "PASS",
-  "register": true
+  "code": "PASS"
 }
 
 ### login
@@ -17,13 +17,13 @@ POST /auth/login
 content-type: application/json
 
 {
-  "email": "owucDYsWAS@gmail.com",
+  "email": "dJElsySoej@gmail.com",
   "password": "123123",
   "code": "PASS"
 }
 
 ### code
-GET /auth/code?width=200&height=300&type=login
+GET /security/verify-code?width=200&height=300&type=login
 content-type: application/json
 
 ### label

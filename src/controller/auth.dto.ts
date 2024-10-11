@@ -1,21 +1,14 @@
 import { ApiProperty } from '@midwayjs/swagger';
 import { Rule, RuleType } from '@midwayjs/validate';
 
-export class UserDTO {
-  @Rule(RuleType.number().required())
-  id: number;
-
-  @Rule(RuleType.string().required())
-  firstName: string;
-
-  @Rule(RuleType.string().max(10))
-  lastName: string;
-
-  @Rule(RuleType.number().max(60))
-  age: number;
-}
-
 export class RegisterDTO {
+  @ApiProperty({
+    example: 'Peter',
+    description: '昵称',
+  })
+  @Rule(RuleType.string().required().max(10).min(1))
+  nickname: string;
+
   @ApiProperty({
     example: 'peter@gmail.com',
   })
@@ -36,20 +29,12 @@ export class RegisterDTO {
   })
   @Rule(RuleType.string().length(4))
   code: string;
-}
-
-export class CheckRegisterResponseDTO {
-  @ApiProperty({
-    example: true,
-    description: '是否需要注册（邮箱在数据库不存在时，需要注册）',
-  })
-  @Rule(RuleType.boolean().required())
-  needRegister: boolean;
 }
 
 export class LoginDTO {
   @ApiProperty({
     example: 'peter@gmail.com',
+    description: '邮箱',
   })
   @Rule(RuleType.string().email().required().max(30).min(6))
   email: string;
@@ -64,18 +49,23 @@ export class LoginDTO {
   @ApiProperty({
     example: 'abcd',
     description: '四位验证码',
-    examples: ['1234', '4312'],
   })
   @Rule(RuleType.string().length(4))
   code: string;
 }
 
-export class LoginResponseDTO {
+export class LoginSuccessDTO {
   @ApiProperty({
     example: 'u123456789',
     description: '用户的UserID',
   })
-  id: string;
+  userId: string;
+
+  @ApiProperty({
+    example: 'http://xxx.com/a.jpg',
+    description: '头像地址',
+  })
+  avatar: string;
 
   @ApiProperty({
     example: 'peter@gmail.com',
@@ -90,8 +80,8 @@ export class LoginResponseDTO {
   nickname: string;
 
   @ApiProperty({
-    example: '<UUID V4>',
-    description: 'SessionID',
+    example: '6a4fd79b-07d0-42ac-a3b7-17786ef495d9',
+    description: 'UUID V4',
   })
   session: string;
 }

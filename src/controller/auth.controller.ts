@@ -1,7 +1,7 @@
 import { Inject, Controller, Post, Body } from '@midwayjs/core';
 import { BadRequestError } from '@midwayjs/core/dist/error/http';
 import { Context } from '@midwayjs/koa';
-import { RegisterDTO, LoginDTO, LoginResponseDTO } from './auth.dto';
+import { RegisterDTO, LoginDTO, LoginSuccessDTO } from './auth.dto';
 import { AuthService } from '../service/auth.service';
 import { EncryptService } from '../service/encrypt.service';
 import { UserService } from '../service/user.service';
@@ -33,7 +33,7 @@ export class APIController {
   @ApiResponse({
     status: 200,
     description: '注册成功的用户信息',
-    type: LoginResponseDTO,
+    type: LoginSuccessDTO,
   })
   async register(@Body() body: RegisterDTO) {
     // 校验验证码
@@ -63,6 +63,7 @@ export class APIController {
       userId: userProfile.id,
       avatar: userProfile.avatar ?? null,
       nickname: userProfile.nickname,
+      email: body.email,
       session,
     };
   }
@@ -74,7 +75,7 @@ export class APIController {
   @ApiResponse({
     status: 200,
     description: '登录成功的用户信息',
-    type: LoginResponseDTO,
+    type: LoginSuccessDTO,
   })
   async login(@Body() body: LoginDTO) {
     // 校验验证码
@@ -123,6 +124,7 @@ export class APIController {
       userId: userProfile.id,
       avatar: userProfile.avatar,
       nickname: userProfile.nickname,
+      email: body.email,
       session,
     };
   }
