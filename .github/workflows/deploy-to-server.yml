@@ -22,16 +22,17 @@ jobs:
           SCRIPT_BEFORE: |
             echo $0
             echo 'Check Version'
-            npm i pnpm -g
-            node -v
-            npm -v
-            pnpm -v
           SCRIPT_AFTER: |
             cd /root/ollah/server
+
+            echo 'Pull Code'
+            git pull
 
             echo 'Install Dependence'
             pnpm i
 
+            echo 'Build'
+            pnpm build
+
             echo 'Running Server'
-            pnpm stop
-            pnpm start
+            pm2 start
