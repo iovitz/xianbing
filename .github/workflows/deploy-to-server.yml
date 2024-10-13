@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 部署到测试环境服务器
-      - name: Deploy To Test Environment
+      # 部署到预发环境
+      - name: Deploy To Pre
         uses: appleboy/ssh-action@v1.1.0
         with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.KEY }}
+          host: ${{ secrets.PRE_SERVER_HOST }}
+          username: ${{ secrets.PRE_SERVER_NAME }}
+          key: ${{ secrets.PRE_SERVER_SSH_KEY }}
           script: |
-            cd ~/projects/ollah/server
+            cd ~/projects/ollah/ollah-server
             git pull
             pnpm i
             pnpm build
