@@ -13,10 +13,11 @@ jobs:
       - name: Deploy To Pre
         uses: appleboy/ssh-action@v1.1.0
         with:
-          host: ${{ secrets.PRE_SERVER_HOST }}
+          host: '${{ secrets.PRE_SERVER_HOST }}'
           username: ${{ secrets.PRE_SERVER_NAME }}
           key: ${{ secrets.PRE_SERVER_SSH_KEY }}
           script: |
+            whoami
             cd ~/projects/ollah/ollah-server
             git pull
             pnpm i
