@@ -2,37 +2,23 @@ name: Deploy To Server
 
 on:
   push:
-    branches: ['master']
+    branches: ['develop']
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Deploy to Staging server
-        uses: easingthemes/ssh-deploy@main
+      # 部署到测试环境服务器
+      - name: Deploy To Test Environment
+        uses: appleboy/ssh-action@v1.1.0
         with:
-          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-          REMOTE_USER: ${{ secrets.SERVER_USERNAME }}
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          SOURCE: 'src/ package.json pnpm-lock.yaml tsconfig.json view/ src/ public/ .npmrc bootstrap.js'
-          TARGET: /root/ollah/server
-          EXCLUDE: '/dist/, node_modules/'
-          SCRIPT_BEFORE: |
-            echo $0
-            echo 'Check Version'
-          SCRIPT_AFTER: |
-            cd /root/ollah/server
-
-            echo 'Pull Code'
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd ~/projects/ollah/server
             git pull
-
-            echo 'Install Dependence'
             pnpm i
-
-            echo 'Build'
             pnpm build
-
-            echo 'Running Server'
             pm2 start
