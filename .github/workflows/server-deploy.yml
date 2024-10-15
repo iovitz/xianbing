@@ -1,8 +1,11 @@
-name: Deploy To Server
+name: Deploy Node Server
 
 on:
   push:
-    branches: ['develop']
+    branches:
+      - develop
+    paths:
+      - 'server/**'
 
 jobs:
   build:

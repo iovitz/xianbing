@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'ollah-server',
+      name: 'xianbing-server',
       script: 'bootstrap.js',
       instances: 1,
       autorestart: true,

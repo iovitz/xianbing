@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ollah</title>
+    <title>XianBing</title>
   </head>
   <body>
-    <h1>1111niubi</h1>
     <script type="module">
       import { io } from 'https://cdn.socket.io/4.7.5/socket.io.esm.min.js';
 
-      const socket = io('http://127.0.0.1:13131/socket.io', {
+      const socket = io('http://127.0.0.1:13131/ws/socket.io', {
         transports: ['websocket'],
       });
       // 监听连接事件
