@@ -2,8 +2,14 @@
 // 参考文档：https://blog.csdn.net/weixin_44240581/article/details/141998847
 module.exports = {
   types: [
-    { value: "feat", name: "feat: 完整新功能提交（e.g. 增加用户注册功能）" },
-    { value: "fix", name: "fix: 修复Bug（e.g. 注册错误码透传失败）" },
+    {
+      value: "feat",
+      name: "feat: 完整新功能提交（e.g. 增加用户注册功能）",
+    },
+    {
+      value: "fix",
+      name: "fix: 修复Bug（e.g. 注册错误码透传失败）",
+    },
     {
       value: "update",
       name: "update: 功能开发阶段性提交（e.g. 设计用户表的ORM）",
