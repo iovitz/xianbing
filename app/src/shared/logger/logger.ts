@@ -1,1 +1,1 @@
-export class Logger {}
+export default class Logger {}
