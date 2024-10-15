@@ -2,16 +2,19 @@
 // 参考文档：https://blog.csdn.net/weixin_44240581/article/details/141998847
 module.exports = {
   types: [
-    { value: "update", name: "update: 功能开发阶段性提交" },
-    { value: "feat", name: "feat: 完整新功能提交" },
-    { value: "fix", name: "fix: 修复Bug" },
+    { value: "feat", name: "feat: 完整新功能提交（e.g. 增加用户注册功能）" },
+    { value: "fix", name: "fix: 修复Bug（e.g. 注册错误码透传失败）" },
+    {
+      value: "update",
+      name: "update: 功能开发阶段性提交（e.g. 设计用户表的ORM）",
+    },
     {
       value: "perf",
-      name: "perf: 性能优化（在不影响代码内部行为的前提下，对程序性能进行优化）",
+      name: "perf: 对程序性能进行优化（e.g. 加载链路耗时优化）",
     },
     {
       value: "refactor",
-      name: "refactor: 代码重构（在不影响代码内部行为、功能下的代码修改）",
+      name: "refactor: 代码重构，在不影响代码内部行为（e.g. 重构用户注册功能）",
     },
     {
       value: "docs",
@@ -22,8 +25,8 @@ module.exports = {
       name: "style: 代码风格、不影响代码功能的更改（e.g. 修改空格缩进，换行规范）",
     },
     {
-      value: "build",
-      name: "build: 影响项目构建或依赖项修改（e.g. 升级webpack到版本5）",
+      value: "ci",
+      name: "ci: CI/CD流程变更（e.g. 减少CI运行耗时）",
     },
     {
       value: "chore",
@@ -32,6 +35,10 @@ module.exports = {
     {
       value: "revert",
       name: "revert: 恢复上一次提交（e.g. 回滚feat: 增加用户注册功能）",
+    },
+    {
+      value: "test",
+      name: "test: 单元测试相关（e.g. 补充单元测试功能",
     },
   ],
 
