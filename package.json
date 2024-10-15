@@ -1,15 +1,17 @@
 {
   "name": "xianbing",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "XianBing App",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "",
+    "dev:app": "dev",
+    "dev:server": ""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^9.0.1",
     "lerna": "^8.1.8"
   }
 }
