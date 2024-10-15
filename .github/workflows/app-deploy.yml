@@ -43,5 +43,5 @@ jobs:
           server: ${{ secrets.APP_H5_FTP_HOST }}
           username: ${{ secrets.APP_H5_FTP_USERNAME }}
           password: ${{ secrets.APP_H5_FTP_PASSWORD }}
-          local-dir: "/app/dist"
+          local-dir: "app/dist/"
           server-dir: "${{ secrets.APP_H5_FTP_SERVER_DIR }}"
