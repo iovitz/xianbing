@@ -31,11 +31,11 @@ jobs:
           npm install -g pnpm@9.9.0
 
       # 安装依赖
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build Project
-        run: pnpm build
+      - name: Install dependencies & Build
+        run: |
+          cd app
+          pnpm install
+          pnpm build
 
       - name: Sync Files To Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
