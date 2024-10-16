@@ -15,32 +15,15 @@ export default {
   koa: {
     port: 13131,
   },
-  typeorm: {
-    defaultDataSourceName: 'mysql',
-    dataSource: {
-      mysql: {
-        host: env.XIANBING_DB_MYSQL_HOST,
-        port: Number(env.XIANBING_DB_MYSQL_PORT),
-        username: env.XIANBING_DB_MYSQL_USER,
-        password: env.XIANBING_DB_MYSQL_PASSWORD,
-        database: env.XIANBING_DB_MYSQL_DB_NAME,
-        synchronize: true, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
-        logging: true,
-        // 配置实体模型
-        entities: ['entity'],
-        migrations: ['migration'],
-      },
-    },
-  },
   sequelize: {
     dataSource: {
       // 第一个数据源，数据源的名字可以完全自定义
       default: {
-        database: env.DB_MYSQL_DB_NAME,
-        username: env.DB_MYSQL_USER,
-        password: env.DB_MYSQL_PASSWORD,
-        host: env.DB_MYSQL_HOST,
-        port: Number(env.DB_MYSQL_PORT),
+        database: env.XIANBING_DB_MYSQL_DB_NAME,
+        username: env.XIANBING_DB_MYSQL_USER,
+        password: env.XIANBING_DB_MYSQL_PASSWORD,
+        host: env.XIANBING_DB_MYSQL_HOST,
+        port: Number(env.XIANBING_DB_MYSQL_PORT),
         encrypt: false,
         dialect: 'mysql',
         define: { charset: 'utf8' },
