@@ -65,16 +65,6 @@ export default {
       },
     },
   },
-  typeorm: {
-    defaultDataSourceName: 'mysql',
-    dataSource: {
-      mysql: {
-        type: 'mysql',
-        synchronize: false, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
-        logging: false,
-      },
-    },
-  },
 } as MidwayConfig;
 
 function logFormater(info) {
