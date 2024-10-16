@@ -5,7 +5,7 @@ on:
     branches:
       - develop
     paths:
-      - 'server/**'
+      - "server/**"
 
 jobs:
   build:
@@ -16,12 +16,24 @@ jobs:
       - name: Deploy To Pre
         uses: appleboy/ssh-action@v1.1.0
         with:
-          host: '${{ secrets.PRE_SERVER_HOST }}'
+          host: "${{ secrets.PRE_SERVER_HOST }}"
           username: ${{ secrets.PRE_SERVER_NAME }}
           key: ${{ secrets.PRE_SERVER_SSH_KEY }}
           script: |
-            whoami
+            echo 'Export Environment Variable'
+            export XIANBING_APP_COOKIE_KEY="${{ secrets.XIANBING_APP_COOKIE_KEY }}"
+            export XIANBING_APP_PORT="${{ secrets.XIANBING_APP_PORT }}"
+            export XIANBING_DB_MYSQL_DB_NAME="${{ secrets.XIANBING_DB_MYSQL_DB_NAME }}"
+            export XIANBING_DB_MYSQL_HOST="${{ secrets.XIANBING_DB_MYSQL_HOST }}"
+            export XIANBING_DB_MYSQL_PASSWORD="${{ secrets.XIANBING_DB_MYSQL_PASSWORD }}"
+            export XIANBING_DB_MYSQL_PORT="${{ secrets.XIANBING_DB_MYSQL_PORT }}"
+            export XIANBING_DB_MYSQL_USER="${{ secrets.XIANBING_DB_MYSQL_USER }}"
+            export XIANBING_MULTIAVATAR_KEY="${{ secrets.XIANBING_MULTIAVATAR_KEY }}"
+
+            echo 'Build App'
             cd ~/projects/ollah/ollah-server
             pnpm i
             pnpm build
+
+            echo 'Restart Server'
             pm2 start
