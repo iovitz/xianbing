@@ -1,34 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>XianBing</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: content:" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
+
+    <meta name="theme-color" content="#fff" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="icon" type="image/svg+xml" href="/assets/vite.svg" />
+    <title><%= title %></title>
+    <script>
+      window.User = { id: "<%= userId %>" }
+    </script>
+    <script type="module" crossorigin src="/assets/index.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index.css">
   </head>
   <body>
-    <script type="module">
-      import { io } from 'https://cdn.socket.io/4.7.5/socket.io.esm.min.js';
-
-      const socket = io('http://127.0.0.1:13131/ws/socket.io', {
-        transports: ['websocket'],
-      });
-      // 监听连接事件
-      socket.on('connect', () => {
-        console.log('Connected to server');
-
-        // 发送消息到服务器
-        socket.emit('niubi', 'Hello from client!');
-      });
-
-      // 监听从服务器发送的消息
-      socket.on('message', data => {
-        console.log('Received from server: ' + data);
-      });
-
-      // 监听断开连接事件
-      socket.on('disconnect', () => {
-        console.log('Disconnected from server');
-      });
-    </script>
+    <div id="XIANBING_APP"></div>
   </body>
 </html>

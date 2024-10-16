@@ -31,7 +31,8 @@ export class HomeController {
       'Cache-Control': 'no store',
     });
     await this.ctx.render('index', {
-      data: 'niubi',
+      title: 'Xianbing',
+      userId: '123123',
     });
   }
 }
