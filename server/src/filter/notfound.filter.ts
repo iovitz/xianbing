@@ -9,6 +9,6 @@ export class NotFoundFilter extends BaseErrorFilter {
   }
 
   protected log(message: string, err: Error, ctx: Context) {
-    ctx.logger.info('NotFound');
+    ctx.logger.debug('NotFound');
   }
 }
