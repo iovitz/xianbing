@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.PRE_SERVER_NAME }}
           key: ${{ secrets.PRE_SERVER_SSH_KEY }}
           script: |
-            echo 'Export Environment Variable'
+            echo 'Set Environment Variable'
             export XIANBING_APP_COOKIE_KEY="${{ secrets.XIANBING_APP_COOKIE_KEY }}"
             export XIANBING_APP_PORT="${{ secrets.XIANBING_APP_PORT }}"
             export XIANBING_DB_MYSQL_DB_NAME="${{ secrets.XIANBING_DB_MYSQL_DB_NAME }}"
@@ -30,8 +30,12 @@ jobs:
             export XIANBING_DB_MYSQL_USER="${{ secrets.XIANBING_DB_MYSQL_USER }}"
             export XIANBING_MULTIAVATAR_KEY="${{ secrets.XIANBING_MULTIAVATAR_KEY }}"
 
-            echo 'Build App'
-            cd ~/projects/ollah/ollah-server
+            echo 'Update Code'
+            cd ~/apps/xianbing/
+            git pull
+
+            echo 'Install Dependence & Build'
+            cd server/
             pnpm i
             pnpm build
 
