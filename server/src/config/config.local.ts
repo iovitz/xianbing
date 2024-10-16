@@ -1,13 +1,6 @@
 import { MidwayConfig } from '@midwayjs/core';
 
 const env = process.env;
-console.log({
-  host: env.XIANBING_DB_MYSQL_HOST,
-  port: Number(env.XIANBING_DB_MYSQL_PORT),
-  username: env.XIANBING_DB_MYSQL_USER,
-  password: env.XIANBING_DB_MYSQL_PASSWORD,
-  database: env.XIANBING_DB_MYSQL_DB_NAME,
-});
 
 export default {
   // use for cookie sign key, should change to your own and keep security
