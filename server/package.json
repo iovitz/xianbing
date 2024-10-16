@@ -7,7 +7,6 @@
     "start": "NODE_ENV=production node ./bootstrap.js",
     "dev": "cross-env NODE_ENV=local mwtsc --watch --run @midwayjs/mock/app.js",
     "test": "cross-env NODE_ENV=unittest jest",
-    "pi": "pnpm i --shamefully-hoist",
     "cov": "jest --coverage",
     "lint": "mwts check",
     "lint:fix": "mwts fix",

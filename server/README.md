@@ -21,15 +21,15 @@ STEP 3：准备Secret Key
 项目中用到了一些三方服务和数据库，使用需要申请这些服务的密钥，项目中用到的密钥统一放在`.env`文件中，如果想使用自己的密钥可以替换`.env`文件中的内容
 
 * Github Token（没有也没关系，只要不访问Github相关接口就不会有问题）
-  * GITHUB_TOKEN：（获取提交信息，读取更新日志）：需要具有读取Commit信息的权限
+  * XIANBING_GITHUB_TOKEN：（获取提交信息，读取更新日志）：需要具有读取Commit信息的权限
 * [Multiavatar](https://multiavatar.com/)生成随机头像）
-  * MULTIAVATAR_KEY：Multiavatar的API Access Key
+  * XIANBING_MULTIAVATAR_KEY：Multiavatar的API Access Key
 * MySQL数据库
-  * DB_MYSQL_HOST：数据库主机地址
-  * DB_MYSQL_PORT：数据库主机端口
-  * DB_MYSQL_DB_NAME：数据库名
-  * DB_MYSQL_USER：数据库用户名
-  * DB_MYSQL_PASSWORD：数据库密码
+  * XIANBING_DB_MYSQL_HOST：数据库主机地址
+  * XIANBING_DB_MYSQL_PORT：数据库主机端口
+  * XIANBING_DB_MYSQL_DB_NAME：数据库名
+  * XIANBING_DB_MYSQL_USER：数据库用户名
+  * XIANBING_DB_MYSQL_PASSWORD：数据库密码
 
 STEP 4：运行项目
 
