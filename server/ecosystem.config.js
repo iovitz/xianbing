@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'xianbing-server',
+      name: '馅饼',
       script: 'bootstrap.js',
       instances: 1,
       autorestart: true,
