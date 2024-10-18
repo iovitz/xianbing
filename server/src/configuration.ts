@@ -22,6 +22,7 @@ import { FormatMiddleware } from './middleware/format.middleware';
 import { BadRequestFilter } from './filter/badrequest.filter';
 import { SequelizeDataSourceManager } from '@midwayjs/sequelize';
 import { WxPusherService } from './service/wxpusher.service';
+import { PromiseManagerMiddleware } from './middleware/promise-manager.middleware';
 
 dotenv.config();
 
@@ -55,6 +56,7 @@ export class MainConfiguration {
     // add middleware
     this.app.useMiddleware([
       TracerMiddleware,
+      PromiseManagerMiddleware,
       FormatMiddleware,
       // 统计Controller的耗时的，需要放在最后
     ]);

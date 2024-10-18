@@ -1,6 +1,6 @@
 import { Middleware, IMiddleware, App } from '@midwayjs/core';
 import { NextFunction, Context, Application } from '@midwayjs/koa';
-import stringify = require('fast-json-stable-stringify');
+import { stringify } from 'safe-stable-stringify';
 import { customAlphabet } from 'nanoid';
 
 @Middleware()
@@ -18,29 +18,25 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
       const stime = process.hrtime.bigint();
       ctx.traceId = this.tracerIdGenerator();
       ctx.logger.info(
-        `+++++${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
+        `+++${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
+        //开发环境打印请求参数
         this.app.getEnv() === 'local'
           ? stringify({
               body: ctx.request.body,
               query: ctx.request.query,
               params: ctx.params,
             })
-          : {}
+          : void 0
       );
-      try {
-        const result = await next();
-        const cost = process.hrtime.bigint() - stime;
-        ctx.logger.info(
-          '-----',
-          stringify({
-            cost: `cost:${cost}us`,
-          })
-        );
-        return result;
-      } catch (e) {
-        // ...
-        throw e;
-      }
+      const result = await next();
+      const cost = process.hrtime.bigint() - stime;
+      ctx.logger.info(
+        '---',
+        stringify({
+          cost: `cost:${cost}us`,
+        })
+      );
+      return result;
     };
   }
 

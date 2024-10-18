@@ -1,9 +1,11 @@
 import '@midwayjs/koa';
+import { PromiseManager } from './middleware/promise-manager.middleware';
 
 declare module '@midwayjs/koa' {
   interface Context {
-    skipFormat?: boolean;
-    controllerCost?: bigint;
+    skipFormat: boolean;
+    userId: string;
+    promiseManager: PromiseManager;
   }
 }
 /**

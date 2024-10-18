@@ -29,7 +29,7 @@ export class APIController {
 
   @Post('bill')
   async postBill() {
-    this.bill;
+    // this.bill;
   }
 
   @Patch('bill')

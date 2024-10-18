@@ -58,6 +58,8 @@ export class APIController {
       userProfile.id,
       this.ctx.request.header['user-agent']
     );
+    // 写入Cookie
+    this.ctx.set('session-id', session);
 
     return {
       userId: userProfile.id,
@@ -119,6 +121,9 @@ export class APIController {
         this.ctx.request.header['user-agent']
       ),
     ]);
+
+    // 写入Cookie
+    this.ctx.set('session-id', session);
 
     return {
       userId: userProfile.id,
