@@ -8,7 +8,7 @@ export default function Me() {
   const { t } = useTranslation()
   return (
     <>
-      <NavBar back={null}>{t('app.tabbar.mine')}</NavBar>
+      <NavBar back={null}>{t('page-name.mine')}</NavBar>
 
       <List header="可点击列表">
         <List.Item prefix={<UnorderedListOutline />} onClick={noop}>

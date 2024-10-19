@@ -85,7 +85,9 @@ export class MainConfiguration {
     const conn = dataSourceManager.getDataSource('default');
     await conn.authenticate();
 
-    this.logger.info(`Server Running Success: http://localhost:${port}`);
+    this.logger.info(
+      `Server Running Success[${this.app.getEnv()}]: http://localhost:${port}`
+    );
 
     if (this.app.getEnv() === 'local') {
       // 本地开发时，打印Swagger地址

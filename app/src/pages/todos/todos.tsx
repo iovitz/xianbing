@@ -6,7 +6,7 @@ export default function Todos() {
   const { t } = useTranslation()
   return (
     <>
-      <NavBar back={null}>{t('app.tabbar.todos')}</NavBar>
+      <NavBar back={null}>{t('page-name.todos')}</NavBar>
     </>
   )
 }

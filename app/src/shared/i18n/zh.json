@@ -1,17 +1,28 @@
 {
-  "app": {
-    "tabbar": {
-      "dashboard": "仪表盘",
-      "todos": "待办",
-      "mine": "我的"
-    },
-    "common": {
-      "contact-us": "联系我们"
-    },
-    "notfound": {
-      "page-not-found": "页面不存在",
-      "back-to-dashboard": "返回主页",
-      "page-no-content": "当前页面没有数据，如果您认为这是BUG，请进行反馈"
+  "page-name": {
+    "dashboard": "仪表盘",
+    "todos": "待办",
+    "mine": "我的",
+    "login": "登录"
+  },
+  "pages": {
+    "login": {
+      "login": "立即登录",
+      "register": "立即注册",
+      "input-your-email": "请输入你的注册邮箱",
+      "input-your-password": "请输入你的密码",
+      "input-your-code": "请输入验证码"
     }
+  },
+  "common": {
+    "email": "邮箱",
+    "password": "密码",
+    "verify-code": "验证码",
+    "contact-us": "联系我们"
+  },
+  "notfound": {
+    "page-not-found": "页面不存在",
+    "back-to-dashboard": "返回主页",
+    "page-no-content": "当前页面没有数据，如果您认为这是BUG，请进行反馈"
   }
 }

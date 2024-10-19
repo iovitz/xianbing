@@ -18,17 +18,17 @@ export default function Home() {
   const tabs = [
     {
       key: '/dashboard',
-      title: t('app.tabbar.dashboard'),
+      title: t('page-name.dashboard'),
       icon: <AppOutline />
     },
     {
       key: '/todo',
-      title: t('app.tabbar.todos'),
+      title: t('page-name.todos'),
       icon: <UnorderedListOutline />
     },
     {
       key: '/me',
-      title: '我的',
+      title: t('page-name.mine'),
       icon: <UserOutline />
     }
   ]
