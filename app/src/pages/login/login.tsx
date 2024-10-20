@@ -1,43 +1,33 @@
-import { Input, Form, NavBar, Button, Space } from 'antd-mobile'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { NavBar, Form, Button, Input } from 'react-vant'
 
 export default function Login() {
   const { t } = useTranslation()
-  function onSubmit() {
+  const [form] = Form.useForm()
+  function onFinish() {
     console.log('Submit')
   }
   return (
     <>
-      <NavBar back={null}>{t('page-name.login')}</NavBar>
+      <NavBar title={t('page-name.login')} />
       <Form
-        requiredMarkStyle="asterisk"
-        style={{
-          '--border-bottom': 'none',
-          '--border-top': 'none'
-        }}
-      >
-        <Space
-          direction="vertical"
-          style={{
-            width: '100%'
-          }}
-        >
-          <Form.Item name="email" label={t('common.email')}>
-            <Input placeholder={t('pages.login.input-your-email')} />
-          </Form.Item>
-          <Form.Item name="password" label={t('common.password')} rules={[{ required: true }]}>
-            <Input placeholder={t('pages.login.input-your-password')} />
-          </Form.Item>
-          <Form.Item name="code" label={t('common.verify-code')} rules={[{ required: true }]}>
-            <Input placeholder={t('pages.login.input-your-code')} />
-          </Form.Item>
-          <Form.Item>
-            <Button block color="primary" onClick={onSubmit} size="large">
+        form={form}
+        onFinish={onFinish}
+        footer={
+          <div style={{ margin: '16px 16px 0' }}>
+            <Button round nativeType="submit" type="primary" block>
               {t('pages.login.login')}
             </Button>
-          </Form.Item>
-        </Space>
+          </div>
+        }
+      >
+        <Form.Item labelWidth={40} rules={[{ required: true, message: '字段不能为空' }]} name="email" label={t('common.email')}>
+          <Input placeholder={t('pages.login.input-your-email')} />
+        </Form.Item>
+        <Form.Item labelWidth={40} rules={[{ required: true, message: '请填写密码' }]} name="password" label={t('common.password')}>
+          <Input placeholder={t('pages.login.input-your-password')} />
+        </Form.Item>
       </Form>
     </>
   )

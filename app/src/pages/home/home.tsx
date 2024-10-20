@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './home.module.scss'
-import { TabBar } from 'antd-mobile'
-import { AppOutline, UnorderedListOutline, UserOutline } from 'antd-mobile-icons'
+import { FriendsO, HomeO, Search } from '@react-vant/icons'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Tabbar } from 'react-vant'
 import { useTranslation } from 'react-i18next'
 
 export default function Home() {
@@ -11,39 +11,29 @@ export default function Home() {
   const { t } = useTranslation()
   const { pathname } = location
 
-  const setRouteActive = (value: string) => {
-    navigate(value)
-  }
-
-  const tabs = [
-    {
-      key: '/dashboard',
-      title: t('page-name.dashboard'),
-      icon: <AppOutline />
-    },
-    {
-      key: '/todo',
-      title: t('page-name.todos'),
-      icon: <UnorderedListOutline />
-    },
-    {
-      key: '/me',
-      title: t('page-name.mine'),
-      icon: <UserOutline />
-    }
-  ]
-
   return (
     <div className={style['home-container']}>
       <div className={style['view-wrapper']}>
         <Outlet />
       </div>
       <div className={style.tabbar}>
-        <TabBar activeKey={pathname} onChange={value => setRouteActive(value)}>
-          {tabs.map(item => (
-            <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
-          ))}
-        </TabBar>
+        <Tabbar
+          value={pathname}
+          placeholder={true}
+          onChange={v => {
+            navigate(v as string)
+          }}
+        >
+          <Tabbar.Item name="/dashboard" icon={<HomeO />}>
+            {t('page-name.dashboard')}
+          </Tabbar.Item>
+          <Tabbar.Item name="/todos" icon={<Search />}>
+            {t('page-name.todos')}
+          </Tabbar.Item>
+          <Tabbar.Item name="/me" icon={<FriendsO />}>
+            {t('page-name.mine')}
+          </Tabbar.Item>
+        </Tabbar>
       </div>
     </div>
   )

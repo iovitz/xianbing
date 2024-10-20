@@ -23,7 +23,7 @@ export default function AppRoutes() {
           element: <Dashboard />
         },
         {
-          path: '/todo',
+          path: '/todos',
           element: <Todos />
         },
         {

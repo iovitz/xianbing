@@ -1,21 +1,36 @@
-import { Card, NavBar } from 'antd-mobile'
+import Block from '@/components/block'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Card, NavBar, Space } from 'react-vant'
 
 export default function Dashboard() {
   const { t } = useTranslation()
   return (
     <>
-      <NavBar back={null}>{t('page-name.dashboard')}</NavBar>
+      <NavBar title={t('page-name.dashboard')} leftArrow={false} />
 
-      <Card
-        headerStyle={{
-          color: '#1677ff'
-        }}
-        title="卡片标题"
-      >
-        卡片内容
-      </Card>
+      <Block>
+        <Space
+          direction="vertical"
+          style={{
+            width: '100%'
+          }}
+        >
+          <Card round>
+            <Card.Header>本月数据</Card.Header>
+            <Card.Body>卡片内容区域</Card.Body>
+            <Card.Footer>
+              <div
+                style={{
+                  textAlign: 'left'
+                }}
+              >
+                卡片内容区域
+              </div>
+            </Card.Footer>
+          </Card>
+        </Space>
+      </Block>
     </>
   )
 }

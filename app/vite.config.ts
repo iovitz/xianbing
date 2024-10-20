@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       // 键必须以斜线开始和结束
-      '/@/': resolve(__dirname, './src')
+      '@': resolve(__dirname, 'src')
     }
   },
   build: {
