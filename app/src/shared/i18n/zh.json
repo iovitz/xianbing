@@ -7,6 +7,11 @@
     "not-found": "页面不存在"
   },
   "pages": {
+    "dashboard": {
+      "month-expenses": "本月支出",
+      "month-income": "本月收入",
+      "month-balance": "本月结余"
+    },
     "login": {
       "login": "立即登录",
       "register": "立即注册",

@@ -5,7 +5,8 @@ import { HashRouter } from 'react-router-dom'
 import './shared/i18n/i18n'
 import './style/theme.scss'
 import './style/initial.scss'
-import './style/mini-tailwind.scss'
+import './style/utils.scss'
+import 'tailwindcss/tailwind.css'
 
 createRoot(document.getElementById('XIANBING_APP')!).render(
   <HashRouter>
