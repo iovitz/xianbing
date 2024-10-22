@@ -1,9 +1,12 @@
 module.exports = {
   apps: [
     {
-      name: '馅饼',
-      script: 'npm',
-      args: 'start',
+      name: 'xb',
+      exec_interpreter: 'node',
+      script: './bootstrap.js',
+      // 不要使用npm的方式，否则会多出一个npm start的进程
+      // script: 'npm',
+      // args: ['run', 'start'],
       exec_mode: 'fork',
       instances: 1,
       autorestart: true,
