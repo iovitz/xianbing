@@ -13,7 +13,9 @@
     "ci": "npm run cov",
     "build": "mwtsc --cleanOutDir",
     "yac": "node_modules/.bin/httpyac -e dev -o body ./http.rest",
-    "lint-staged": "../node_modules/.bin/lint-staged --config ../.commitlintrc.js"
+    "lint-staged": "../node_modules/.bin/lint-staged --config ../.commitlintrc.js",
+    "logs": "tail ~/logs/@xianbing/server/midway-app.log -n 30 -f",
+    "logs:pm2": "pm2 logs xb"
   },
   "dependencies": {
     "@midwayjs/bootstrap": "^3.12.0",
