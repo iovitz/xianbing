@@ -9,7 +9,7 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
   app: Application;
 
   private tracerIdGenerator = customAlphabet(
-    '0123456789abcdefghijklmnopqrstuvwxyz',
+    'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789',
     10
   );
 
