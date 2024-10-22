@@ -97,7 +97,10 @@ export default {
   },
 } as MidwayConfig;
 
-function logFormater(info) {
+function logFormater(info: any) {
+  if (process.env.NODE_ENV === 'production') {
+    return `${info.timestamp} ${info.LEVEL} ${info.pid} ${info.message}`;
+  }
   return `${gray(info.timestamp)} ${yellow(info.LEVEL)} ${gray(info.pid)} ${
     info.message
   }`;

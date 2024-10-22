@@ -26,7 +26,7 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
               query: ctx.request.query,
               params: ctx.params,
             })
-          : void 0
+          : ''
       );
       const result = await next();
       const cost = process.hrtime.bigint() - stime;
