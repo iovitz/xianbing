@@ -55,7 +55,7 @@ export class APIController {
 
     // 创建Session
     const session = await this.auth.createSession(
-      userProfile.id,
+      userProfile.uid,
       this.ctx.request.header['user-agent']
     );
     // 写入Cookie
@@ -94,10 +94,13 @@ export class APIController {
       }
     }
 
-    const existsUser = await this.auth.findUserBy({ email: body.email }, [
-      'id',
-      'password',
-    ]);
+    const existsUser = await this.auth.findUserBy(
+      { email: body.email },
+      {
+        id: true,
+        password: true,
+      }
+    );
 
     // 登录
     if (
@@ -113,11 +116,15 @@ export class APIController {
         {
           id: existsUser.id,
         },
-        ['id', 'nickname', 'avatar']
+        {
+          id: true,
+          nickname: true,
+          avatar: true,
+        }
       ),
       // Crate Session ID
       this.auth.createSession(
-        existsUser.id,
+        existsUser.userId,
         this.ctx.request.header['user-agent']
       ),
     ]);

@@ -1,8 +1,8 @@
 import { Middleware, IMiddleware, App, ILogger } from '@midwayjs/core';
 import { NextFunction, Context, Application } from '@midwayjs/koa';
-import { Session } from '../mysql/session';
-import { Repository } from 'sequelize-typescript';
-import { InjectRepository } from '@midwayjs/sequelize';
+import { InjectEntityModel } from '@midwayjs/typeorm';
+import { Repository } from 'typeorm';
+import { Session } from '../models/session.sqlite';
 
 type PromiseKey = 'get-user-info-by-session-id';
 
@@ -36,7 +36,7 @@ export class PromiseManagerMiddleware
   @App()
   app: Application;
 
-  @InjectRepository(Session)
+  @InjectEntityModel(Session)
   private sessionModel: Repository<Session>;
 
   resolve() {

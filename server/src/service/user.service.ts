@@ -1,14 +1,18 @@
 import { Provide } from '@midwayjs/core';
 import { IUserOptions } from '../interface';
 import { pick } from 'lodash';
-import { InjectRepository } from '@midwayjs/sequelize';
-import { UserProfile } from '../mysql/user-profile';
-import { Repository } from 'sequelize-typescript';
-import { FindOptions } from 'sequelize';
+import { InjectEntityModel } from '@midwayjs/typeorm';
+import { UserProfile } from '../models/user-profile.sqlite';
+import {
+  FindOneOptions,
+  FindOptionsSelect,
+  FindOptionsWhere,
+  Repository,
+} from 'typeorm';
 
 @Provide()
 export class UserService {
-  @InjectRepository(UserProfile)
+  @InjectEntityModel(UserProfile)
   userProfileModel: Repository<UserProfile>;
 
   async getUser(options: IUserOptions) {
@@ -21,14 +25,14 @@ export class UserService {
   }
 
   getUserProfileBy(
-    where: FindOptions<UserProfile>['where'],
-    attributes: FindOptions<UserProfile>['attributes'],
-    include: FindOptions<UserProfile>['include'] = []
+    where: FindOptionsWhere<UserProfile>,
+    select: FindOptionsSelect<UserProfile> = {},
+    relations: FindOneOptions<UserProfile>['relations'] = []
   ) {
     return this.userProfileModel.findOne({
       where,
-      attributes,
-      include,
+      select,
+      relations,
     });
   }
 

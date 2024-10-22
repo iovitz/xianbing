@@ -16,20 +16,20 @@ import { DefaultErrorFilter } from './filter/default.filter';
 import { NotFoundFilter } from './filter/notfound.filter';
 import { TracerMiddleware } from './middleware/tracer.middleware';
 import * as dotenv from 'dotenv';
-import * as sequelize from '@midwayjs/sequelize';
+import * as typeorm from '@midwayjs/typeorm';
 import * as swagger from '@midwayjs/swagger';
 import { FormatMiddleware } from './middleware/format.middleware';
 import { BadRequestFilter } from './filter/badrequest.filter';
-import { SequelizeDataSourceManager } from '@midwayjs/sequelize';
-import { WxPusherService } from './service/wxpusher.service';
+import { NoticerService } from './service/noticer.service';
 import { PromiseManagerMiddleware } from './middleware/promise-manager.middleware';
+import { TagsMiddleware } from './middleware/tags.middleware';
 
 dotenv.config();
 
 @Configuration({
   imports: [
     koa,
-    sequelize,
+    typeorm,
     staticFile,
     validate,
     view,
@@ -56,6 +56,7 @@ export class MainConfiguration {
     // add middleware
     this.app.useMiddleware([
       TracerMiddleware,
+      TagsMiddleware,
       PromiseManagerMiddleware,
       FormatMiddleware,
       // 统计Controller的耗时的，需要放在最后
@@ -69,21 +70,8 @@ export class MainConfiguration {
     app: koa.Application
   ): Promise<void> {
     const port = this.app.getConfig('koa.port');
-    const wxPusher = await app
-      .getApplicationContext()
-      .getAsync(WxPusherService);
-    wxPusher.pushMessage(
-      `服务启动成功${process.pid}`,
-      '启动成功',
-      'http://5yuan.iovitz.fun/'
-    );
-
-    // 链接数据库
-    const dataSourceManager = await container.getAsync(
-      SequelizeDataSourceManager
-    );
-    const conn = dataSourceManager.getDataSource('default');
-    await conn.authenticate();
+    const noticer = await app.getApplicationContext().getAsync(NoticerService);
+    noticer.pushMessage('Hello');
 
     this.logger.info(
       `Server Running Success[${this.app.getEnv()}]: http://localhost:${port}`

@@ -17,6 +17,7 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
     return async (ctx: Context, next: NextFunction) => {
       const stime = process.hrtime.bigint();
       ctx.traceId = this.tracerIdGenerator();
+      ctx.set('x-xb-trace-id', ctx.traceId);
       ctx.logger.info(
         `+++${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
         //开发环境打印请求参数

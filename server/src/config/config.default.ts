@@ -1,7 +1,13 @@
 import { MidwayConfig } from '@midwayjs/core';
 import { gray, red, yellow } from 'ansis';
+import { homedir } from 'os';
+import { join } from 'path';
 
 const env = process.env;
+
+console.log(
+  `${env.npm_package_name.replace(new RegExp('[@\\/]'), '#')}.sqlite`
+);
 export default {
   // use for cookie sign key, should change to your own and keep security
   koa: {
@@ -18,22 +24,31 @@ export default {
   keys: env.XIANBING_APP_COOKIE_KEY,
 
   // database
-  sequelize: {
+  typeorm: {
     dataSource: {
-      // 第一个数据源，数据源的名字可以完全自定义
       default: {
-        database: env.XIANBING_DB_MYSQL_DB_NAME,
-        username: env.XIANBING_DB_MYSQL_USER,
-        password: env.XIANBING_DB_MYSQL_PASSWORD,
-        host: env.XIANBING_DB_MYSQL_HOST,
-        port: Number(env.XIANBING_DB_MYSQL_PORT),
-        encrypt: false,
-        dialect: 'mysql',
-        define: { charset: 'utf8' },
-        timezone: '+08:00',
-        entities: ['mysql'],
-        sync: true,
-        repositoryMode: true,
+        /**
+         * 单数据库实例
+         */
+        type: 'sqlite',
+        // 数据放在 ~/sqlite 目录下
+        database: join(
+          homedir(),
+          'sqlite',
+          `${env.npm_package_name.replace(/@\//, '#')}.sqlite`
+        ),
+
+        synchronize: true, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
+        logging: false,
+
+        // 配置实体模型
+        // entities: [User],
+
+        // 支持如下的扫描形式，为了兼容我们可以同时进行.js和.ts匹配
+        entities: [
+          // 'sqlite', // 特定目录
+          'models/*.sqlite.{j,t}s', // 通配加后缀匹配
+        ],
       },
     },
   },
