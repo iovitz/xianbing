@@ -5,9 +5,6 @@ import { join } from 'path';
 
 const env = process.env;
 
-console.log(
-  `${env.npm_package_name.replace(new RegExp('[@\\/]'), '#')}.sqlite`
-);
 export default {
   // use for cookie sign key, should change to your own and keep security
   koa: {
