@@ -32,11 +32,7 @@ export default {
          */
         type: 'sqlite',
         // 数据放在 ~/sqlite 目录下
-        database: join(
-          homedir(),
-          'sqlite',
-          `${env.npm_package_name.replace(/@\//, '#')}.sqlite`
-        ),
+        database: join(homedir(), 'sqlite', 'xianbing.sqlite'),
 
         synchronize: true, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
         logging: false,
