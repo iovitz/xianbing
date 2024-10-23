@@ -17,6 +17,11 @@ export default {
     },
   },
 
+  gateway: {
+    // 网关超时时间3S
+    timeout: 3000,
+  },
+
   // use for cookie sign key, should change to your own and keep security
   keys: env.XIANBING_APP_COOKIE_KEY,
 
