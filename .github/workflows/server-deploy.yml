@@ -39,5 +39,5 @@ jobs:
             pnpm i
             pnpm build
 
-            echo 'Restart Server'
-            pm2 start
+            echo 'Reload Server'
+            pm2 startOrReload –wait_ready
