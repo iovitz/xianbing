@@ -25,6 +25,7 @@ import { PromiseManagerMiddleware } from './middleware/promise-manager.middlewar
 import { TagsMiddleware } from './middleware/tags.middleware';
 import { TimeoutMiddleware } from './middleware/timeout.middleware';
 import { GatewayTimeoutFilter } from './filter/timeout.filter';
+import stringify from 'safe-stable-stringify';
 
 dotenv.config();
 
@@ -77,16 +78,19 @@ export class MainConfiguration {
     container: IMidwayContainer,
     app: koa.Application
   ): Promise<void> {
+    const env = this.app.getEnv();
     const port = this.app.getConfig('koa.port');
     const noticer = await app.getApplicationContext().getAsync(NoticerService);
     noticer.pushMessage('Hello');
 
     this.logger.info(
-      `[bootstrap]Server Running Success[${this.app.getEnv()}]: http://localhost:${port}`
+      `[bootstrap]Server Running Success[${env}]: http://localhost:${port}`
     );
-    this.logger.info('[bootstrap]: App Environment', process.env);
 
-    if (this.app.getEnv() === 'local') {
+    if (this.app.getEnv() === 'production') {
+      // 线上环境打印环境变量
+      this.logger.info('[bootstrap]: App Environment', stringify(process.env));
+    } else {
       // 本地开发时，打印Swagger地址
       this.logger.info(
         `[bootstrap]Swagger Running In: http://localhost:${port}/swagger-ui/index.html`

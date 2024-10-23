@@ -7,7 +7,7 @@ module.exports = {
       // 不要使用npm的方式，否则会多出一个npm start的进程
       // script: 'npm',
       // args: ['run', 'start'],
-      exec_mode: 'fork',
+      exec_mode: 'cluster',
       instances: 1,
       autorestart: true,
       watch: false,
