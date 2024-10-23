@@ -13,10 +13,13 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
     10
   );
 
+  private count = 1;
+
   resolve() {
     return async (ctx: Context, next: NextFunction) => {
       const stime = process.hrtime.bigint();
-      ctx.traceId = this.tracerIdGenerator();
+      ctx.traceId =
+        this.tracerIdGenerator() + `${this.count++}`.padStart(10, '0');
       ctx.set('x-xb-trace-id', ctx.traceId);
       ctx.logger.info(
         `+++${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
