@@ -96,6 +96,9 @@ export class MainConfiguration {
         `[bootstrap]Swagger Running In: http://localhost:${port}/swagger-ui/index.html`
       );
     }
+
+    // 通知PM2开始营业
+    process.send('ready');
   }
 
   async onStop(): Promise<void> {
