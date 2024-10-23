@@ -35,7 +35,7 @@ export default {
         // 错误原因查看官网的nativeBinding选项介绍
         // 官网：https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md
         // typeorm 对 better_sqlite3 的支持度不太好，没有直接build
-        nativeBinding: 'src/shared/sqlite/better_sqlite3.node', // 直接指定已经打包编译的文件
+        // nativeBinding: 'src/shared/sqlite/better_sqlite3.node', // 直接指定已经打包编译的文件
 
         synchronize: true, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
         logging: false,

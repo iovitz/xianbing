@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "XianBing App",
   "scripts": {
-    "dev": "",
-    "dev:app": "dev",
-    "dev:server": "",
+    "postinstall": "pnpm i:server && pnpm i:app",
+    "i:server": "pnpm --prefix server i",
+    "i:app": "pnpm --prefix app i",
+    "dev:app": "pnpm --prefix app dev",
+    "dev:server": "pnpm --prefix server dev",
     "cz": "node_modules/.bin/cz",
     "lint-staged": "pnpm --filter server --filter app run lint-staged",
     "prepare": "husky install"
