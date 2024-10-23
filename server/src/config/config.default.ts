@@ -27,9 +27,12 @@ export default {
         /**
          * 单数据库实例
          */
-        type: 'sqlite',
+        type: 'better-sqlite3', // 使用 better-sqlite3 驱动
         // 数据放在 ~/sqlite 目录下
         database: join(homedir(), 'sqlite', 'xianbing.sqlite'),
+        // 使用better-sqlite3一定要选上这个
+        nativeBinding:
+          'node_modules/better-sqlite3/build/Release/better_sqlite3',
 
         synchronize: true, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
         logging: false,
