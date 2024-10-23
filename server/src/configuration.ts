@@ -23,7 +23,6 @@ import { BadRequestFilter } from './filter/badrequest.filter';
 import { NoticerService } from './service/noticer.service';
 import { PromiseManagerMiddleware } from './middleware/promise-manager.middleware';
 import { TagsMiddleware } from './middleware/tags.middleware';
-import { TimeoutMiddleware } from './middleware/timeout.middleware';
 import { GatewayTimeoutFilter } from './filter/timeout.filter';
 import stringify from 'safe-stable-stringify';
 
@@ -60,7 +59,6 @@ export class MainConfiguration {
     this.app.useMiddleware([
       TracerMiddleware,
       TagsMiddleware,
-      TimeoutMiddleware,
       PromiseManagerMiddleware,
       FormatMiddleware,
       // 统计Controller的耗时的，需要放在最后
