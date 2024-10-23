@@ -10,7 +10,7 @@
     "dev:server": "pnpm --prefix server dev",
     "cz": "node_modules/.bin/cz",
     "lint-staged": "pnpm --filter server --filter app run lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
