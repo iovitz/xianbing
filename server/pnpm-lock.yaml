@@ -9,38 +9,38 @@ importers:
   .:
     dependencies:
       '@midwayjs/bootstrap':
-        specifier: ^3.12.0
+        specifier: 3.17.1
         version: 3.17.1
       '@midwayjs/core':
-        specifier: ^3.12.0
+        specifier: 3.17.1
         version: 3.17.1
       '@midwayjs/info':
-        specifier: ^3.12.0
-        version: 3.17.1
+        specifier: 3.17.3
+        version: 3.17.3
       '@midwayjs/koa':
-        specifier: ^3.12.0
+        specifier: 3.17.1
         version: 3.17.1
       '@midwayjs/logger':
         specifier: ^3.1.0
         version: 3.4.2
       '@midwayjs/mock':
-        specifier: ^3.12.0
+        specifier: 3.17.1
         version: 3.17.1
       '@midwayjs/socketio':
         specifier: ^3.17.1
         version: 3.17.1
       '@midwayjs/static-file':
-        specifier: ^3.17.1
-        version: 3.17.1
+        specifier: 3.17.3
+        version: 3.17.3
       '@midwayjs/swagger':
-        specifier: ^3.17.1
-        version: 3.17.1
+        specifier: 3.17.3
+        version: 3.17.3
       '@midwayjs/typeorm':
-        specifier: '3'
-        version: 3.18.2
-      '@midwayjs/validate':
-        specifier: ^3.12.0
+        specifier: 3.17.1
         version: 3.17.1
+      '@midwayjs/validate':
+        specifier: 3.17.3
+        version: 3.17.3
       '@midwayjs/view-ejs':
         specifier: ^3.17.1
         version: 3.17.1
@@ -529,6 +529,7 @@ packages:
   '@koa/router@12.0.1':
     resolution: {integrity: sha512-ribfPYfHb+Uw3b27Eiw6NPqjhIhTpVFzEWLwyc/1Xp+DCdwRRyIlAUODX+9bPARF6aQtUu1+/PHzdNvRzcs/+Q==}
     engines: {node: '>= 12'}
+    deprecated: Use v12.0.2 or higher to fix the vulnerability issue
 
   '@midwayjs/async-hooks-context-manager@3.17.1':
     resolution: {integrity: sha512-raKSYisrMpF4lwd4dTkK46E140ObFzlvjTJBfociPROGf+QrwlyXz8QFQdx1IoUO9XPqPiFoNPEj/BEe6tttHw==}
@@ -553,12 +554,12 @@ packages:
   '@midwayjs/glob@1.1.1':
     resolution: {integrity: sha512-xoNU+JdCxE214KQrB0qgs88+Da7KYVICeuTL9VeKwaxZXj6a/PbpmEaH4+5BHLvZRRe78tHGR19+nKZrmMHBJg==}
 
-  '@midwayjs/i18n@3.17.1':
-    resolution: {integrity: sha512-Ji1jMQJTZNFFmsmpy3sqGVINSk2LyK79qpAdQp99LFU3qrfxdH+5nyL1oZKT7Fu7YALdO+ZNpL6cskjrjohlHw==}
+  '@midwayjs/i18n@3.18.2':
+    resolution: {integrity: sha512-8EX46AxZ3uy7M/MgEwn5C0o1vqdOnVaQgb2TeCgCpenPzrB7ogcRgBWqDFXMSpND/qoIkq6mTSPESvI3iOoa3g==}
     engines: {node: '>=12'}
 
-  '@midwayjs/info@3.17.1':
-    resolution: {integrity: sha512-e2j5QKpXq0yncmU7UFTwTD4NNyWnUVN8Nx86Ikcspoq09RCpX2a892VToYW48DGAGjK1OoKSAzDVQQaaYTBApw==}
+  '@midwayjs/info@3.17.3':
+    resolution: {integrity: sha512-4i/8SGY4tazVhyRFy0PnR2M2fMf2nmoKs8R8P5GHTGY14zhbR1rY2UqZxlGF2NXksCOkzoNnBqEnt7g42kSjVQ==}
     engines: {node: '>=12'}
 
   '@midwayjs/koa@3.17.1':
@@ -581,20 +582,20 @@ packages:
     resolution: {integrity: sha512-hQPSRH1pdL51em9vt3V3ak8hJEXt2C/V+Ag/MkyThZrPthM22evaqF+Evx2AhwBFjewaIlpp++GLZeUiQvm1Rw==}
     engines: {node: '>=12'}
 
-  '@midwayjs/static-file@3.17.1':
-    resolution: {integrity: sha512-P44ojqjuT8bi5E0kx7/acr43riv3nFH/1o6CxqsxXXpkp+M6TegMXoQfW4OHzFBeZBAULXLu+YWacq3Yj17meg==}
+  '@midwayjs/static-file@3.17.3':
+    resolution: {integrity: sha512-s53Xo3MGDyx8bB7dBJFLQNcWr/3yDbergUQ2h8+tKA5BUwIE3dtKKlPLYYHY/aDCTWVuN7djrxgbO2eFukTOxQ==}
     engines: {node: '>=12'}
 
-  '@midwayjs/swagger@3.17.1':
-    resolution: {integrity: sha512-xCwFFAeQEYB7OWqkTdAL8h65M83iG81d8lSLEgQYh73RhACv05YUKt+dHvxmrEt53neNCCH6YkF66kAUiLXpVA==}
+  '@midwayjs/swagger@3.17.3':
+    resolution: {integrity: sha512-AcCG66k7yZYZKouk1ueW7ok5ldHSmp0Nr+jDjgjiW7uwYGaLRILN/aYH8tk0eU4mPv6/Ir3twbTHkRyFmLkJsg==}
 
-  '@midwayjs/typeorm@3.18.2':
-    resolution: {integrity: sha512-Y4KDfIORd566+wgKYcI514nCtyG8XkXW/UL3Y2zDzCo4O+DaeOYO7uuw/wDkf49lUD+pgBW6uA4JXMdyl9zhEA==}
+  '@midwayjs/typeorm@3.17.1':
+    resolution: {integrity: sha512-fWuOcPVmM5xWrU98dMx9YH7nyy/Cq82hEnbc3YwDLAU4AUCSaZRdfx6JaVgEvStlvGMwucgdMtP0HHCNPGGEww==}
     engines: {node: '>=12'}
     hasBin: true
 
-  '@midwayjs/validate@3.17.1':
-    resolution: {integrity: sha512-mtUAXqpl5gjM3ZA6F6CQBnMad7zPyOuoKPXjmWQ6JvudC8FMVyijo28M06Aom2w3cY00uF/k6sdfIKq/NvGayQ==}
+  '@midwayjs/validate@3.17.3':
+    resolution: {integrity: sha512-aNF/b7wvDUK2WZcCKptePAoOd84Vj/nzxDHbJ7Ks8o6QtK8dLFe6StsBPkFibLldgH+xEW4BrwcyxltcvkQarQ==}
     engines: {node: '>=12'}
 
   '@midwayjs/view-ejs@3.17.1':
@@ -5062,11 +5063,11 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  '@midwayjs/i18n@3.17.1':
+  '@midwayjs/i18n@3.18.2':
     dependencies:
       picomatch: 2.3.1
 
-  '@midwayjs/info@3.17.1':
+  '@midwayjs/info@3.17.3':
     dependencies:
       picomatch: 2.3.1
 
@@ -5114,7 +5115,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@midwayjs/static-file@3.17.1':
+  '@midwayjs/static-file@3.17.3':
     dependencies:
       koa-range: 0.3.0
       koa-static-cache: 5.1.4
@@ -5122,13 +5123,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@midwayjs/swagger@3.17.1': {}
+  '@midwayjs/swagger@3.17.3': {}
 
-  '@midwayjs/typeorm@3.18.2': {}
+  '@midwayjs/typeorm@3.17.1': {}
 
-  '@midwayjs/validate@3.17.1':
+  '@midwayjs/validate@3.17.3':
     dependencies:
-      '@midwayjs/i18n': 3.17.1
+      '@midwayjs/i18n': 3.18.2
       joi: 17.13.3
 
   '@midwayjs/view-ejs@3.17.1':
