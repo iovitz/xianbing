@@ -52,22 +52,22 @@ export class APIController {
     }
 
     // 创建用户
-    const userProfile = await this.auth.createUser(body.email, body.password);
+    const user = await this.auth.createUser(body.email, body.password);
 
     // 创建Session
-    // const session = await this.auth.createSession(
-    //   userProfile.uid,
-    //   this.ctx.request.header['user-agent']
-    // );
+    const session = await this.auth.createSession(
+      user.userId,
+      this.ctx.request.header['user-agent']
+    );
     // 写入Cookie
-    // this.ctx.set('session-id', session);
+    this.ctx.set('session-id', session);
 
     return {
-      userId: userProfile.id,
-      avatar: userProfile.avatar ?? null,
-      nickname: userProfile.nickname,
+      userId: user.id,
+      avatar: user.avatar,
+      nickname: user.nickname,
       email: body.email,
-      // session,
+      session,
     };
   }
 
