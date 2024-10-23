@@ -1,19 +1,19 @@
 import { Provide } from '@midwayjs/core';
 import { IUserOptions } from '../interface';
 import { pick } from 'lodash';
-import { InjectEntityModel } from '@midwayjs/typeorm';
-import { UserProfile } from '../models/user-profile.sqlite';
 import {
   FindOneOptions,
   FindOptionsSelect,
   FindOptionsWhere,
   Repository,
 } from 'typeorm';
+import { User } from '../models/user.sqlite';
+import { InjectEntityModel } from '@midwayjs/typeorm';
 
 @Provide()
 export class UserService {
-  @InjectEntityModel(UserProfile)
-  userProfileModel: Repository<UserProfile>;
+  @InjectEntityModel(User)
+  private User: Repository<User>;
 
   async getUser(options: IUserOptions) {
     return {
@@ -25,20 +25,20 @@ export class UserService {
   }
 
   getUserProfileBy(
-    where: FindOptionsWhere<UserProfile>,
-    select: FindOptionsSelect<UserProfile> = {},
-    relations: FindOneOptions<UserProfile>['relations'] = []
+    where: FindOptionsWhere<User>,
+    select: FindOptionsSelect<User> = {},
+    relations: FindOneOptions<User>['relations'] = []
   ) {
-    return this.userProfileModel.findOne({
+    return this.User.findOne({
       where,
       select,
       relations,
     });
   }
 
-  getUserProfileInfo(userProfileModel: unknown) {
+  getUserProfileInfo(userModel: unknown) {
     return {
-      ...pick(userProfileModel, [
+      ...pick(userModel, [
         'id',
         'avatar',
         'nickname',

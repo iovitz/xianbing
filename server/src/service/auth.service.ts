@@ -13,7 +13,6 @@ import {
   Repository,
 } from 'typeorm';
 import { User } from '../models/user.sqlite';
-import { UserProfile } from '../models/user-profile.sqlite';
 
 @Provide()
 export class AuthService {
@@ -58,21 +57,18 @@ export class AuthService {
 
   async createUser(email: string, password: string) {
     const id = this.genUserId();
-    return this.defaultDataSource.transaction(async entityManager => {
-      const user = new User();
-      const userProfile = new UserProfile();
+    const key = this.app.getConfig('multiAvatar.key');
+    const user = new User();
 
-      user.userId = userProfile.uid = id;
+    user.userId = id;
 
-      userProfile.nickname = `用户${id.substring(0, 5)}`;
-      user.email = email;
-      user.password = await this.encrypt.encryptPassword(password);
+    user.nickname = `用户${id.substring(0, 5)}`;
+    user.email = email;
+    user.password = await this.encrypt.encryptPassword(password);
+    user.avatar = `https://api.multiavatar.com/Starcrasher.png?apikey=${key}`;
 
-      await entityManager.save(user);
-
-      const profile = await entityManager.save(userProfile);
-      return profile;
-    });
+    await this.User.save(user);
+    return user;
   }
 
   async createSession(userId: string, useragent?: string) {
