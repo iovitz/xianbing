@@ -38,35 +38,35 @@ export class APIController {
   async register(@Body() body: RegisterDTO) {
     // 校验验证码
     // 本地开发环境时，允许跳过验证码逻辑（有点入侵）
-    if (this.ctx.app.getEnv() !== 'local' && body.code !== 'PASS') {
-      const isVerifyCodeRight = this.verify.checkVerifyCode(
-        this.ctx.session,
-        'register',
-        body.code
-      );
+    // if (this.ctx.app.getEnv() !== 'local' && body.code !== 'PASS') {
+    //   const isVerifyCodeRight = this.verify.checkVerifyCode(
+    //     this.ctx.session,
+    //     'register',
+    //     body.code
+    //   );
 
-      if (!isVerifyCodeRight) {
-        throw new BadRequestError('请求错误');
-      }
-    }
+    //   if (!isVerifyCodeRight) {
+    //     throw new BadRequestError('请求错误');
+    //   }
+    // }
 
     // 创建用户
     const userProfile = await this.auth.createUser(body.email, body.password);
 
     // 创建Session
-    const session = await this.auth.createSession(
-      userProfile.uid,
-      this.ctx.request.header['user-agent']
-    );
+    // const session = await this.auth.createSession(
+    //   userProfile.uid,
+    //   this.ctx.request.header['user-agent']
+    // );
     // 写入Cookie
-    this.ctx.set('session-id', session);
+    // this.ctx.set('session-id', session);
 
     return {
       userId: userProfile.id,
       avatar: userProfile.avatar ?? null,
       nickname: userProfile.nickname,
       email: body.email,
-      session,
+      // session,
     };
   }
 
