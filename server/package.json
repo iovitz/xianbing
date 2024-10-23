@@ -1,5 +1,5 @@
 {
-  "name": "@xianbing/server",
+  "name": "xianbing",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -15,7 +15,7 @@
     "yac": "node_modules/.bin/httpyac -e dev -o body ./http.rest",
     "lint-staged": "../node_modules/.bin/lint-staged --config ../.commitlintrc.js",
     "logs": "tail -n 50 -f ~/logs/@xianbing/server/midway-app.log",
-    "logs:bootstrap": "tail -n 10000 ~/logs/@xianbing/server/midway-app.log | grep [bootstrap]",
+    "logs:bootstrap": "tail -n 10000 ~/logs/xianbing/midway-app.log | grep [bootstrap]",
     "logs:pm2": "pm2 logs xb",
     "build:bs3": "pnpm --prefix /node_modules/better-sqlite3 build",
     "sqlite3": "sqlite3 ~/sqlite/xianbing.sqlite"
