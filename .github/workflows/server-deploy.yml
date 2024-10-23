@@ -40,4 +40,4 @@ jobs:
             pnpm build
 
             echo 'Reload Server'
-            pm2 startOrReload –wait_ready
+            pm2 startOrReload --wait-ready ecosystem.config.js
