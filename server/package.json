@@ -16,7 +16,8 @@
     "lint-staged": "../node_modules/.bin/lint-staged --config ../.commitlintrc.js",
     "logs": "tail ~/logs/@xianbing/server/midway-app.log -n 30 -f",
     "logs:pm2": "pm2 logs xb",
-    "build:bs3": "pnpm --prefix /node_modules/better-sqlite3 build"
+    "build:bs3": "pnpm --prefix /node_modules/better-sqlite3 build",
+    "sqlite3": "sqlite3 ~/sqlite/xianbing.sqlite"
   },
   "dependencies": {
     "@midwayjs/bootstrap": "3.17.1",

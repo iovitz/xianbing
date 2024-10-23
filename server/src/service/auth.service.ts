@@ -73,11 +73,12 @@ export class AuthService {
 
   async createSession(userId: string, useragent?: string) {
     const sessionId = uuid.v4();
-    await this.sessionModel.create({
+    const session = this.sessionModel.create({
       sessionId,
       userId,
       useragent: useragent,
     });
+    this.sessionModel.save(session);
     return sessionId;
   }
 }

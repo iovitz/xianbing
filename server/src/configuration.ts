@@ -82,13 +82,14 @@ export class MainConfiguration {
     noticer.pushMessage('Hello');
 
     this.logger.info(
-      `Server Running Success[${this.app.getEnv()}]: http://localhost:${port}`
+      `[bootstrap]Server Running Success[${this.app.getEnv()}]: http://localhost:${port}`
     );
+    this.logger.info('[bootstrap]: App Environment');
 
     if (this.app.getEnv() === 'local') {
       // 本地开发时，打印Swagger地址
       this.logger.info(
-        `Swagger Running In: http://localhost:${port}/swagger-ui/index.html`
+        `[bootstrap]Swagger Running In: http://localhost:${port}/swagger-ui/index.html`
       );
     }
   }

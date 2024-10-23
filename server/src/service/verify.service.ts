@@ -1,11 +1,14 @@
-import { Provide } from '@midwayjs/core';
+import { Inject, Provide } from '@midwayjs/core';
 import * as svgCaptcha from 'svg-captcha';
 import * as dayjs from 'dayjs';
 import { Context } from 'vm';
 
 @Provide()
 export class VerifyService {
-  constructor(private ctx: Context) {}
+  @Inject()
+  private ctx: Context;
+
+  constructor() {}
   getVerifyCode(width: number, height: number, length = 4) {
     return svgCaptcha.create({
       size: length, // 验证码长度

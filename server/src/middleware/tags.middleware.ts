@@ -12,7 +12,7 @@ export class TagsMiddleware implements IMiddleware<Context, NextFunction> {
           prev[curr] = ctx.header[curr];
           return prev;
         }, {});
-      ctx.logger.info('xb header tags', xbTags);
+      ctx.logger.info('header tags', xbTags);
 
       return next();
     };
