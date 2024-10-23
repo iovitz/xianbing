@@ -9,7 +9,7 @@ module.exports = {
       "host": "http://localhost:13131/api"
     },
     "prod": {
-      "host": "http://bgxp.buzz:3030/api"
+      "host": "http://localhost:13131/api"
     }
   }
 }
