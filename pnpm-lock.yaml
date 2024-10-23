@@ -180,12 +180,15 @@ importers:
       '@midwayjs/view-ejs':
         specifier: ^3.17.1
         version: 3.18.2
+      '@types/better-sqlite3':
+        specifier: 7.6.11
+        version: 7.6.11
       ansis:
         specifier: ^3.3.2
         version: 3.3.2
       better-sqlite3:
-        specifier: 9.6.0
-        version: 9.6.0
+        specifier: 11.5.0
+        version: 11.5.0
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
@@ -227,7 +230,7 @@ importers:
         version: 5.17.14
       typeorm:
         specifier: 0.3.20
-        version: 0.3.20(better-sqlite3@9.6.0)(mysql2@3.11.3)(redis@3.1.2)(sqlite3@5.1.7)
+        version: 0.3.20(better-sqlite3@11.5.0)(mysql2@3.11.3)(redis@3.1.2)(sqlite3@5.1.7)
       ua-parser-js:
         specifier: ^1.0.39
         version: 1.0.39
@@ -1771,6 +1774,9 @@ packages:
   '@types/babel__traverse@7.20.6':
     resolution: {integrity: sha512-r1bzfrm0tomOI8g1SzvCaQHo6Lcv6zu0EA+W2kHrt8dyrHQxGzBBL4kdkzIS+jBMV+EYcMAEAqXqYaLJq5rOZg==}
 
+  '@types/better-sqlite3@7.6.11':
+    resolution: {integrity: sha512-i8KcD3PgGtGBLl3+mMYA8PdKkButvPyARxA7IQAd6qeslht13qxb1zzO8dRCtE7U3IoJS782zDBAeoKiM695kg==}
+
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
@@ -2353,8 +2359,8 @@ packages:
   before-after-hook@2.2.3:
     resolution: {integrity: sha512-NzUnlZexiaH/46WDhANlyR2bXRopNg4F/zuSA3OpZnllCUgRaOF2znDioDWrmbNVsuZk6l9pMquQB38cfBZwkQ==}
 
-  better-sqlite3@9.6.0:
-    resolution: {integrity: sha512-yR5HATnqeYNVnkaUTf4bOP2dJSnyhP4puJN/QPRyx4YkBEEUxib422n2XzPqDEHjQQqazoYoADdAm5vE15+dAQ==}
+  better-sqlite3@11.5.0:
+    resolution: {integrity: sha512-e/6eggfOutzoK0JWiU36jsisdWoHOfN9iWiW/SieKvb7SAa6aGNmBM/UKyp+/wWSXpLlWNN8tCPwoDNPhzUvuQ==}
 
   bin-links@4.0.4:
     resolution: {integrity: sha512-cMtq4W5ZsEwcutJrVId+a/tjt8GSbS+h0oNkdl6+6rBuEv8Ot33Bevj5KPm40t309zuhVic8NjpuL42QCiJWWA==}
@@ -8997,6 +9003,10 @@ snapshots:
     dependencies:
       '@babel/types': 7.25.8
 
+  '@types/better-sqlite3@7.6.11':
+    dependencies:
+      '@types/node': 14.18.63
+
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
@@ -9721,7 +9731,7 @@ snapshots:
 
   before-after-hook@2.2.3: {}
 
-  better-sqlite3@9.6.0:
+  better-sqlite3@11.5.0:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.2
@@ -14913,7 +14923,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typeorm@0.3.20(better-sqlite3@9.6.0)(mysql2@3.11.3)(redis@3.1.2)(sqlite3@5.1.7):
+  typeorm@0.3.20(better-sqlite3@11.5.0)(mysql2@3.11.3)(redis@3.1.2)(sqlite3@5.1.7):
     dependencies:
       '@sqltools/formatter': 1.2.5
       app-root-path: 3.1.0
@@ -14931,7 +14941,7 @@ snapshots:
       uuid: 9.0.1
       yargs: 17.7.2
     optionalDependencies:
-      better-sqlite3: 9.6.0
+      better-sqlite3: 11.5.0
       mysql2: 3.11.3
       redis: 3.1.2
       sqlite3: 5.1.7

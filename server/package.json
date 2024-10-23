@@ -15,7 +15,8 @@
     "yac": "node_modules/.bin/httpyac -e dev -o body ./http.rest",
     "lint-staged": "../node_modules/.bin/lint-staged --config ../.commitlintrc.js",
     "logs": "tail ~/logs/@xianbing/server/midway-app.log -n 30 -f",
-    "logs:pm2": "pm2 logs xb"
+    "logs:pm2": "pm2 logs xb",
+    "build:bs3": "pnpm --prefix /node_modules/better-sqlite3 build"
   },
   "dependencies": {
     "@midwayjs/bootstrap": "^3.12.0",
@@ -30,8 +31,9 @@
     "@midwayjs/typeorm": "3",
     "@midwayjs/validate": "^3.12.0",
     "@midwayjs/view-ejs": "^3.17.1",
+    "@types/better-sqlite3": "7.6.11",
     "ansis": "^3.3.2",
-    "better-sqlite3": "9.6.0",
+    "better-sqlite3": "11.5.0",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
