@@ -101,9 +101,11 @@ export default {
     },
     clients: {
       appLogger: {
+        level: 'info',
         format: logFormater,
       },
       coreLogger: {
+        level: 'info',
         format: logFormater,
       },
     },

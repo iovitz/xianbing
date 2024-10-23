@@ -84,7 +84,7 @@ export class MainConfiguration {
     this.logger.info(
       `[bootstrap]Server Running Success[${this.app.getEnv()}]: http://localhost:${port}`
     );
-    this.logger.info('[bootstrap]: App Environment');
+    this.logger.info('[bootstrap]: App Environment', process.env);
 
     if (this.app.getEnv() === 'local') {
       // 本地开发时，打印Swagger地址
