@@ -42,7 +42,7 @@ export default {
         // typeorm 对 better_sqlite3 的支持度不太好，没有直接build
         // nativeBinding: 'src/shared/sqlite/better_sqlite3.node', // 直接指定已经打包编译的文件
 
-        synchronize: true, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
+        synchronize: false, // 如果第一次使用，不存在表，有同步的需求可以写 true，注意会丢数据
         logging: false,
 
         // 配置实体模型
