@@ -29,9 +29,6 @@ export class AuthService {
   @InjectEntityModel(User)
   private User: Repository<User>;
 
-  @InjectEntityModel(UserProfile)
-  private UserProfile: Repository<UserProfile>;
-
   @Inject()
   private encrypt: EncryptService;
 
@@ -61,26 +58,21 @@ export class AuthService {
 
   async createUser(email: string, password: string) {
     const id = this.genUserId();
-    return this.UserProfile.create({
-      uid: id,
-      nickname: `用户${id.substring(0, 5)}`,
-      avatar: email + password,
+    return this.defaultDataSource.transaction(async entityManager => {
+      const user = new User();
+      const userProfile = new UserProfile();
+
+      user.userId = userProfile.uid = id;
+
+      userProfile.nickname = `用户${id.substring(0, 5)}`;
+      user.email = email;
+      user.password = await this.encrypt.encryptPassword(password);
+
+      await entityManager.save(user);
+
+      const profile = await entityManager.save(userProfile);
+      return profile;
     });
-    // return this.defaultDataSource.transaction(async entityManager => {
-    //   const user = new User();
-    //   const userProfile = new UserProfile();
-
-    //   user.userId = userProfile.uid = id;
-
-    //   userProfile.nickname = `用户${id.substring(0, 5)}`;
-    //   user.email = email;
-    //   user.password = await this.encrypt.encryptPassword(password);
-
-    //   await entityManager.save(user);
-
-    //   const profile = await entityManager.save(userProfile);
-    //   return profile;
-    // });
   }
 
   async createSession(userId: string, useragent?: string) {
