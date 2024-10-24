@@ -23,7 +23,7 @@ STEP 3：准备Secret Key
 * Github Token（没有也没关系，只要不访问Github相关接口就不会有问题）
   * XIANBING_GITHUB_TOKEN：（获取提交信息，读取更新日志）：需要具有读取Commit信息的权限
 * [Multiavatar](https://multiavatar.com/)生成随机头像）
-  * XIANBING_MULTIAVATAR_KEY：Multiavatar的API Access Key
+  * XIANBING_SECRET_MULTIAVATAR：Multiavatar的API Access Key
 * MySQL数据库
   * XIANBING_DB_MYSQL_HOST：数据库主机地址
   * XIANBING_DB_MYSQL_PORT：数据库主机端口

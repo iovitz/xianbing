@@ -57,7 +57,7 @@ export class AuthService {
 
   async createUser(email: string, password: string) {
     const id = this.genUserId();
-    const key = this.app.getConfig('multiAvatar.key');
+    const key = this.app.getConfig('secrets.multiAvatar');
     const user = new User();
 
     user.userId = id;

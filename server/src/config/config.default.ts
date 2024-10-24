@@ -46,8 +46,9 @@ export default {
     },
   },
 
-  multiAvatar: {
-    key: env.XIANBING_MULTIAVATAR_KEY,
+  secrets: {
+    multiAvatar: env.XIANBING_SECRET_MULTIAVATAR,
+    fwalert: env.XIANBING_FW_ALERT_SECRET,
   },
 
   socketIO: {

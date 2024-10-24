@@ -4,12 +4,16 @@ import { InjectEntityModel } from '@midwayjs/typeorm';
 import { Repository } from 'typeorm';
 import { Session } from '../models/session.sqlite';
 
-type PromiseKey = 'get-user-info-by-session-id';
+type PromiseKey = 'GET_USER_BY_SESSION';
 
 export class PromiseManager {
   private promises = new Map<string, Promise<any>>();
 
   constructor(private logger: ILogger) {}
+
+  wait(keys: PromiseKey[]) {
+    return Promise.all(keys.map(k => this.get(k)));
+  }
 
   set(key: PromiseKey, promise: Promise<unknown>) {
     if (this.promises.has(key)) {
@@ -18,7 +22,7 @@ export class PromiseManager {
     this.promises.set(
       key,
       promise.catch(e => {
-        this.logger.error('promise error', { key });
+        e['PROMISE_KEY'] = key;
         throw e;
       })
     );
@@ -49,7 +53,7 @@ export class PromiseManagerMiddleware
       const sessionId = ctx.cookies.get('session-id');
       if (sessionId) {
         promiseManager.set(
-          'get-user-info-by-session-id',
+          'GET_USER_BY_SESSION',
           this.sessionModel
             .findOne({
               where: {
@@ -57,6 +61,7 @@ export class PromiseManagerMiddleware
               },
             })
             .then(v => {
+              // 挂载到ctx上
               ctx.userId = v.userId;
             })
         );

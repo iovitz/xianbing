@@ -19,7 +19,7 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
       ctx.traceId = this.tracerIdGenerator();
       ctx.set('x-xb-trace-id', ctx.traceId);
       ctx.logger.info(
-        `+++${ctx.userId ?? '??'} ${ctx.method} ${ctx.url}`,
+        `+++${ctx.method} ${ctx.url}`,
         //开发环境打印请求参数
         this.app.getEnv() === 'local'
           ? stringify({
@@ -32,7 +32,7 @@ export class TracerMiddleware implements IMiddleware<Context, NextFunction> {
       const result = await next();
       const cost = process.hrtime.bigint() - stime;
       ctx.logger.info(
-        '---',
+        `--- ${ctx.userId ?? '??'}`,
         stringify({
           cost: `cost:${cost}us`,
         })

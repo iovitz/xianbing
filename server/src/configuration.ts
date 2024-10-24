@@ -4,6 +4,7 @@ import {
   IMidwayContainer,
   Logger,
   ILogger,
+  ILifeCycle,
 } from '@midwayjs/core';
 import * as koa from '@midwayjs/koa';
 import * as validate from '@midwayjs/validate';
@@ -20,11 +21,11 @@ import * as typeorm from '@midwayjs/typeorm';
 import * as swagger from '@midwayjs/swagger';
 import { FormatMiddleware } from './middleware/format.middleware';
 import { BadRequestFilter } from './filter/badrequest.filter';
-import { NoticerService } from './service/noticer.service';
+import { NoticeService } from './service/noticer.service';
 import { PromiseManagerMiddleware } from './middleware/promise-manager.middleware';
 import { TagsMiddleware } from './middleware/tags.middleware';
 import { GatewayTimeoutFilter } from './filter/timeout.filter';
-import stringify from 'safe-stable-stringify';
+import { stringify } from 'querystring';
 
 dotenv.config();
 
@@ -47,12 +48,14 @@ dotenv.config();
   ],
   importConfigs: [join(__dirname, './config')],
 })
-export class MainConfiguration {
+export class MainConfiguration implements ILifeCycle {
   @App('koa')
   app: koa.Application;
 
   @Logger()
   logger: ILogger;
+
+  private noticer: NoticeService;
 
   async onReady() {
     // add middleware
@@ -78,16 +81,20 @@ export class MainConfiguration {
   ): Promise<void> {
     const env = this.app.getEnv();
     const port = this.app.getConfig('koa.port');
-    const noticer = await app.getApplicationContext().getAsync(NoticerService);
-    noticer.pushMessage('Hello');
 
-    this.logger.info(
-      `[bootstrap]Server Running Success[${env}]: http://localhost:${port}`
-    );
+    const noticer = await app.getApplicationContext().getAsync(NoticeService);
+    this.noticer = noticer;
+
+    // 线上环境打印环境变量
 
     if (this.app.getEnv() === 'production') {
-      // 线上环境打印环境变量
-      this.logger.info('[bootstrap]: App Environment', stringify(process.env));
+      this.logger.info(
+        '[bootstrap]: App Running Environment',
+        stringify(process.env)
+      );
+      this.logger.info(
+        `[bootstrap]Server Running Success[${env}]: http://localhost:${port}`
+      );
     } else {
       // 本地开发时，打印Swagger地址
       this.logger.info(
@@ -100,6 +107,6 @@ export class MainConfiguration {
   }
 
   async onStop(): Promise<void> {
-    this.logger.info('Server exit!!!');
+    this.noticer.warn('Server Exits');
   }
 }
